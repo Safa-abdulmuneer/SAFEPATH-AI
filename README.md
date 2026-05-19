@@ -19,6 +19,7 @@
 - [ML Safety Prediction](#-ml-safety-prediction)
 - [Project Structure](#-project-structure)
 - [Contributing](#-contributing)
+- [Presentation](#-presentation)
 - [Team](#-team)
 - [License](#-license)
 
@@ -293,6 +294,14 @@ Please make sure your code follows the existing style and includes appropriate c
 - The blockchain path in `blockchain.py` contains hardcoded local paths — update these before deploying or sharing.
 - Never commit your `settings.py` with real database credentials. Use environment variables or a `.env` file.
 - Add a `.gitignore` to exclude `*.pyc`, `__pycache__/`, `*.pkl`, `*.env`, `venv/`, and `node_modules/`.
+
+---
+
+## 📊 Presentation
+
+For a detailed overview of the project including architecture diagrams, UI screenshots, and system flow, refer to our project presentation:
+
+📄 [View Presentation (PDF)](./Presentation_PPT.pdf)
 
 ---
 
