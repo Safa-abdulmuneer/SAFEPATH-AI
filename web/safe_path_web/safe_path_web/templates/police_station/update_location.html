@@ -1,0 +1,542 @@
+{% extends "police_station/index.html" %}
+{% block body %}
+
+<style>
+    .location-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+
+    .location-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 12px 12px 0 0;
+        margin-bottom: 0;
+    }
+
+    .location-header h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .location-header h2 i {
+        color: #fff;
+        background: rgba(255,255,255,0.2);
+        padding: 10px;
+        border-radius: 50%;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 40px;
+    }
+
+    .current-location-box {
+        background: #e8f4fd;
+        border-left: 4px solid #2196F3;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .current-location-box h4 {
+        margin: 0 0 10px 0;
+        color: #1976d2;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .current-coords {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .coord-item {
+        background: white;
+        padding: 10px 15px;
+        border-radius: 6px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .coord-item strong {
+        color: #666;
+        font-size: 12px;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .coord-item span {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .btn-locate {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+
+    .btn-locate:hover {
+        background: #45a049;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    .map-container {
+        height: 400px;
+        width: 100%;
+        margin: 20px 0 30px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 2px solid #e1e8ed;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .coordinates-display {
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+
+    .coord-row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 15px;
+    }
+
+    .coord-input-group {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .coord-input-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .coord-input-group label i {
+        color: #667eea;
+        margin-right: 5px;
+    }
+
+    .coord-input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e1e8ed;
+        border-radius: 6px;
+        font-size: 14px;
+        background: white;
+        color: #333;
+    }
+
+    .coord-input:focus {
+        border-color: #667eea;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .coord-input[readonly] {
+        background: #f5f5f5;
+        cursor: pointer;
+    }
+
+    .info-box {
+        background: #fff3e0;
+        border-left: 4px solid #FF9800;
+        padding: 15px 20px;
+        border-radius: 6px;
+        margin: 20px 0;
+    }
+
+    .info-box h5 {
+        margin: 0 0 10px 0;
+        color: #F57C00;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .info-box ul {
+        margin: 0;
+        padding-left: 20px;
+        color: #666;
+    }
+
+    .info-box li {
+        margin-bottom: 5px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 1px solid #eaeaea;
+    }
+
+    .btn-save {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 14px 40px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-save:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-cancel {
+        background: #f5f5f5;
+        color: #666;
+        border: 2px solid #ddd;
+        padding: 14px 40px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s;
+    }
+
+    .btn-cancel:hover {
+        background: #eaeaea;
+        color: #333;
+    }
+
+    .accuracy-note {
+        font-size: 13px;
+        color: #999;
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    @media (max-width: 768px) {
+        .location-container {
+            padding: 15px;
+        }
+
+        .form-card {
+            padding: 25px;
+        }
+
+        .current-location-box {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .current-coords {
+            width: 100%;
+        }
+
+        .btn-locate {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-container {
+            flex-direction: column;
+        }
+
+        .btn-save, .btn-cancel {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+
+<!-- Leaflet CSS and JS for map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<div class="location-container">
+    <div class="location-header">
+        <h2>
+            <i class="fas fa-map-marker-alt"></i>
+            Update Police Station Location
+        </h2>
+    </div>
+
+    <div class="form-card">
+        <!-- Current Location Display -->
+        <div class="current-location-box">
+            <div>
+                <h4><i class="fas fa-info-circle"></i> Current Location</h4>
+                <div class="current-coords">
+                    <div class="coord-item">
+                        <strong>LATITUDE</strong>
+                        <span id="currentLat">{{ station_lat|default:"Not set" }}</span>
+                    </div>
+                    <div class="coord-item">
+                        <strong>LONGITUDE</strong>
+                        <span id="currentLng">{{ station_lon|default:"Not set" }}</span>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn-locate" onclick="getCurrentLocation()">
+                <i class="fas fa-location-arrow"></i> Get My Current Location
+            </button>
+        </div>
+
+        <!-- Map Container -->
+        <div class="map-container" id="map"></div>
+
+        <form method="post" action="{% url 'police_update_location' %}" id="locationForm" onsubmit="return validateForm()">
+            {% csrf_token %}
+            
+            <!-- Coordinates Display -->
+            <div class="coordinates-display">
+                <div class="coord-row">
+                    <div class="coord-input-group">
+                        <label><i class="fas fa-globe-asia"></i> Latitude</label>
+                        <input type="text" 
+                               id="latitude" 
+                               name="latitude" 
+                               class="coord-input" 
+                               value="{{ station_lat|default:'' }}"
+                               placeholder="Click on map to select latitude"
+                               readonly 
+                               required>
+                    </div>
+                    <div class="coord-input-group">
+                        <label><i class="fas fa-globe-asia"></i> Longitude</label>
+                        <input type="text" 
+                               id="longitude" 
+                               name="longitude" 
+                               class="coord-input" 
+                               value="{{ station_lon|default:'' }}"
+                               placeholder="Click on map to select longitude"
+                               readonly 
+                               required>
+                    </div>
+                </div>
+                <div class="accuracy-note">
+                    <i class="fas fa-info-circle"></i>
+                    Coordinates are automatically updated when you click on the map
+                </div>
+            </div>
+
+            <!-- Information Box -->
+            <div class="info-box">
+                <h5><i class="fas fa-lightbulb"></i> Instructions</h5>
+                <ul>
+                    <li>Click on the map to set your police station location</li>
+                    <li>Use "Get My Current Location" button to use your device's location</li>
+                    <li>Drag the marker to adjust the exact position</li>
+                    <li>This location will be used to find nearby SOS alerts</li>
+                    <li>More accurate location helps in faster response to emergencies</li>
+                </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="btn-container">
+                <button type="submit" class="btn-save">
+                    <i class="fas fa-save"></i> Update Location
+                </button>
+                <a href="{% url 'police_view_nearby_sos_alerts' %}" class="btn-cancel">
+                    <i class="fas fa-times"></i> Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Get current values or set default
+    var currentLat = {{ station_lat|default:"10.5276" }};
+    var currentLng = {{ station_lon|default:"76.2144" }};
+    
+    // Initialize map
+    var map = L.map('map').setView([currentLat, currentLng], 15);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Variable to store marker
+    var marker;
+
+    // Function to update coordinates
+    function updateCoordinates(lat, lng) {
+        // Update input fields
+        document.getElementById('latitude').value = lat.toFixed(6);
+        document.getElementById('longitude').value = lng.toFixed(6);
+        
+        // Update display
+        document.getElementById('currentLat').innerText = lat.toFixed(6);
+        document.getElementById('currentLng').innerText = lng.toFixed(6);
+
+        // Update or create marker
+        if (marker) {
+            marker.setLatLng([lat, lng]);
+        } else {
+            marker = L.marker([lat, lng], {draggable: true}).addTo(map);
+            
+            // Make marker draggable for fine adjustments
+            marker.on('dragend', function(e) {
+                var position = marker.getLatLng();
+                updateCoordinates(position.lat, position.lng);
+            });
+        }
+        
+        // Center map on selected location
+        map.setView([lat, lng], 16);
+        
+        showToast('📍 Location updated!');
+    }
+
+    // Initialize marker with existing coordinates
+    window.onload = function() {
+        if (currentLat && currentLng && currentLat !== 'Not set') {
+            updateCoordinates(parseFloat(currentLat), parseFloat(currentLng));
+        }
+    };
+
+    // Handle map click
+    map.on('click', function(e) {
+        updateCoordinates(e.latlng.lat, e.latlng.lng);
+    });
+
+    // Get current location using browser geolocation
+    function getCurrentLocation() {
+        if (navigator.geolocation) {
+            showToast('📍 Getting your location...');
+            
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    var accuracy = position.coords.accuracy;
+                    
+                    updateCoordinates(lat, lng);
+                    showToast(`✅ Location detected! Accuracy: ${Math.round(accuracy)} meters`);
+                },
+                function(error) {
+                    var message = 'Error getting location: ';
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            message += 'Please allow location access';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            message += 'Location information unavailable';
+                            break;
+                        case error.TIMEOUT:
+                            message += 'Location request timed out';
+                            break;
+                    }
+                    alert(message);
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                }
+            );
+        } else {
+            alert('Geolocation is not supported by this browser');
+        }
+    }
+
+    // Validate form before submit
+    function validateForm() {
+        var lat = document.getElementById('latitude').value;
+        var lng = document.getElementById('longitude').value;
+
+        if (!lat || !lng) {
+            alert('Please select a location on the map');
+            return false;
+        }
+
+        return confirm('Are you sure you want to update the station location?');
+    }
+
+    // Simple toast message function
+    function showToast(message) {
+        // Create toast element
+        var toast = document.createElement('div');
+        toast.innerHTML = message;
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 9999;
+            font-size: 14px;
+            animation: slideUp 0.3s ease;
+        `;
+
+        document.body.appendChild(toast);
+
+        // Remove after 3 seconds
+        setTimeout(function() {
+            toast.style.animation = 'slideDown 0.3s ease';
+            setTimeout(function() {
+                document.body.removeChild(toast);
+            }, 300);
+        }, 3000);
+    }
+
+    // Add animations
+    var style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes slideUp {
+            from { bottom: -50px; opacity: 0; }
+            to { bottom: 20px; opacity: 1; }
+        }
+        @keyframes slideDown {
+            from { bottom: 20px; opacity: 1; }
+            to { bottom: -50px; opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+{% endblock %}

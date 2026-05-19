@@ -1,0 +1,45 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{% extends 'SUBADMIN/Admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="">
+  <table class="table table-bordered">
+    <tr>
+      <td>
+      <input type="text" name="textfield" id="textfield" class="form-control" required/></td>
+      <td><input type="submit" class="btn btn-success" name="button" id="button" value="Search" /></td>
+    </tr>
+  </table>
+  <table class="table table-bordered">
+    <tr>
+      <th>SI</th>
+      <th>Date</th>
+      <th>Image</th>
+      <th>User</th>
+      <th>Latittude</th>
+      <th>Longitude</th>
+      <th></th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>{{ i.date }}&nbsp;</td>
+      <td><img src="{{ i.photo }}" height="100px" width="100px">&nbsp;</td>
+      <td>{{ i.USER.name }}&nbsp;</td>
+      <td>{{ i.latitude }}&nbsp;</td>
+      <td>{{ i.longitude }}&nbsp;</td>
+      <td>&nbsp;<a href="https://maps.google.com/?q={{ i.latitude }},{{ i.longitude }}">Locate</a> </td>
+    </tr>
+      {% endfor %}
+  </table>
+  <p>&nbsp;</p>
+</form>
+{#</body>#}
+{#</html>#}
+{% endblock %}

@@ -1,0 +1,152 @@
+{% include 'ADMIN/home.html' %}
+
+<main class="dashboard-container">
+
+    <!-- Page Header -->
+    <div class="dashboard-header">
+        <h1><i class="fas fa-user-edit me-2"></i>Edit Pink Police</h1>
+        <p>Update the officer details and save changes</p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="quick-actions p-4" style="border-radius: 20px;">
+        <h2 class="section-title"><i class="fas fa-user-shield"></i> Officer Information</h2>
+
+        <form id="editPinkPoliceForm" method="post" action="/myapp/edit_pinkpolice_post/" class="row g-4 needs-validation" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ data.id }}">
+
+            <!-- Police Station -->
+            <div class="col-12">
+                <label class="form-label fw-semibold">Police Station</label>
+                <select name="textfield10" class="form-select form-select-lg" required>
+                    <option value="" disabled>Select station</option>
+                    {% for i in data1 %}
+                        <option value="{{ i.id }}" {% if i.id == data.POLICESTATION.id %}selected{% endif %}>
+                            {{ i.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="invalid-feedback">Please select a police station</div>
+            </div>
+
+            <!-- Vehicle Number -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Vehicle Number</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-car"></i></span>
+                    <input type="text" name="textfield" value="{{ data.vechileno }}" class="form-control" required>
+                </div>
+            </div>
+
+            <!-- Officer Name -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Officer Name</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" name="textfield2" value="{{ data.officername }}" class="form-control" required>
+                </div>
+            </div>
+
+            <!-- Place -->
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">Place</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    <input type="text" name="textfield3" value="{{ data.place }}" class="form-control" required>
+                </div>
+            </div>
+
+            <!-- Post -->
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">Post</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                    <input type="text" name="textfield4" value="{{ data.post }}" class="form-control" required>
+                </div>
+            </div>
+
+            <!-- DOB -->
+            <div class="col-md-4">
+                <label class="form-label fw-semibold">Date of Birth</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                    <input type="date" name="textfield9" value="{{ data.dob|date:'Y-m-d' }}" class="form-control" required>
+                </div>
+            </div>
+
+            <!-- District -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">District</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-landmark"></i></span>
+                    <input type="text" name="textfield5" value="{{ data.district }}" class="form-control" required>
+                </div>
+            </div>
+
+            <!-- State -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">State</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-flag"></i></span>
+                    <input type="text" name="textfield6" value="{{ data.state }}" class="form-control" required>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    <input type="email" name="textfield7" value="{{ data.email }}" class="form-control" required>
+                </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Phone Number</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    <input type="tel" name="textfield8" value="{{ data.phone }}" class="form-control" required pattern="[0-9]{10}">
+                </div>
+            </div>
+
+            <!-- Gender -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold d-block">Gender</label>
+                <div class="d-flex gap-4 flex-wrap">
+                    <label class="btn btn-outline-primary rounded-pill px-4">
+                        <input type="radio" class="d-none" name="RadioGroup1" value="Male" {% if data.gender == 'Male' %}checked{% endif %}>
+                        <i class="fas fa-male me-2"></i>Male
+                    </label>
+                    <label class="btn btn-outline-primary rounded-pill px-4">
+                        <input type="radio" class="d-none" name="RadioGroup1" value="Female" {% if data.gender == 'Female' %}checked{% endif %}>
+                        <i class="fas fa-female me-2"></i>Female
+                    </label>
+                    <label class="btn btn-outline-primary rounded-pill px-4">
+                        <input type="radio" class="d-none" name="RadioGroup1" value="Other" {% if data.gender == 'Other' %}checked{% endif %}>
+                        <i class="fas fa-user me-2"></i>Other
+                    </label>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="col-12 d-flex justify-content-between align-items-center pt-4 border-top">
+                <span class="text-muted small">Officer ID: #{{ data.id }}</span>
+
+                <div class="d-flex gap-3">
+                    <button type="button" onclick="window.history.back()" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back
+                    </button>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="fas fa-save me-2"></i>Update Officer
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</main>
+
+{% include 'ADMIN/footer.html' %}

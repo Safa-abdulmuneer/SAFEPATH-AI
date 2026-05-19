@@ -1,0 +1,2280 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:sensors_plus/sensors_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shecare/UserDangerousSpot.dart';
+import 'package:shecare/change_password.dart';
+import 'package:shecare/chatBot.dart';
+import 'package:shecare/emergency_number.dart';
+import 'package:shecare/falseAlarmPage.dart';
+import 'package:shecare/hk/change_password.dart';
+import 'package:shecare/hk/view_profile.dart';
+import 'package:shecare/login.dart';
+import 'package:shecare/sendComplaint.dart';
+import 'package:shecare/sendRequest.dart';
+import 'package:shecare/sos_service.dart';
+import 'package:http/http.dart' as http;
+import 'package:shecare/viewCompalintReply.dart';
+import 'package:shecare/viewNearbyDangerousSpots.dart';
+import 'package:shecare/viewNearbyUser.dart';
+import 'package:shecare/viewProfile.dart';
+import 'package:shecare/viewSafePoints.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:telephony/telephony.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'add_idea_page.dart';
+
+class UserHome extends StatefulWidget {
+  const UserHome({Key? key}) : super(key: key);
+
+  static const String id = 'HomeScreen';
+
+  @override
+  State<UserHome> createState() => _UserHomeState();
+}
+
+class _UserHomeState extends State<UserHome> {
+  int selectedIndex = 0;
+  List<dynamic> phn = [];
+  List userData = [];
+  bool toggleValue = false;
+  bool toggleLoaded = false;
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  FlutterLocalNotificationsPlugin();
+  Timer? _continuousCheckTimer;
+  Set<String> _activeDangerZones = {};
+
+  // Voice detection - SIMPLIFIED VERSION
+  final stt.SpeechToText _speech = stt.SpeechToText();
+  bool _isListening = false;
+  final List<String> _targetWords = [
+    "help",
+    "emergency",
+    "sos",
+    "save me",
+    "danger",
+    "help me",
+    "someone help",
+    "i need help",
+    "assistance",
+    "rescue",
+    "police",
+    "save",
+    "help now",
+    "urgent"
+  ];
+
+  // Audio recording and sending
+  bool _isRecording = false;
+  String? _currentAudioPath;
+  Timer? _recordingTimer;
+  final FlutterSoundRecorder _audioRecorder = FlutterSoundRecorder();
+  final int _recordingInterval = 30;
+
+  // SOS trigger flag
+  bool _sosTriggered = false;
+  bool isMicButtonPressed = false;
+
+  // MOTION DETECTION VARIABLES
+  AccelerometerEvent? _lastAccelerometer;
+  GyroscopeEvent? _lastGyroscope;
+  StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
+  StreamSubscription<GyroscopeEvent>? _gyroscopeSubscription;
+  Timer? _motionSamplingTimer;
+  final int _samplingRate = 33;
+
+  // Motion detection state
+  String _currentMotion = "monitoring";
+  String _lastPrediction = "none";
+  double _lastConfidence = 0.0;
+  bool _motionDetectionActive = true;
+
+  // LAST CAPTURED MOTION FROM BACKEND
+  Map<String, dynamic>? _lastCapturedMotion;
+  Timer? _motionUpdateTimer;
+
+  // VOLUME BUTTON VARIABLES
+  int _volumeButtonPressCount = 0;
+  Timer? _volumeButtonTimer;
+  final int _requiredVolumePresses = 3;
+  final Duration _volumePressTimeout = const Duration(seconds: 2);
+
+  // SENSOR DATA BUFFER
+  List<Map<String, double>> _sensorBuffer = [];
+  final int _bufferSize = 10;
+
+  // MULTI-FACTOR DETECTION VARIABLES
+  bool _voiceTriggerDetected = false;
+  bool _voiceEmotionDetected = false;
+  bool _phoneMotionDetected = false;
+  Timer? _detectionResetTimer;
+
+  // FETCH DANGEROUS SPOT
+  Future<void> fetchSafePoints() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String baseUrl = prefs.getString('url') ?? '';
+
+      String url = "$baseUrl/myapp/user_view_nearbyDangerosSpot/";
+      print("🔗 Fetching safe points from: $url");
+
+      var response = await http.post(Uri.parse(url));
+      print("Response: ${response.body}");
+
+      var jsonData = json.decode(response.body);
+
+      if (jsonData['status'] == 'ok') {
+        setState(() {});
+      } else {
+        print("⚠️ Error: ${jsonData['message']}");
+      }
+    } catch (e) {
+      print("❌ Exception: $e");
+    }
+  }
+
+  void _debugStartSOSFeatures() {
+    print("🔧 [DEBUG] startSOSFeatures() called");
+    print("🔧 [DEBUG] toggleValue = $toggleValue");
+    print("🔧 [DEBUG] mounted = $mounted");
+
+    if (!toggleValue) {
+      print("❌ [DEBUG] toggleValue is false, returning");
+      return;
+    }
+
+    print("✅ [DEBUG] Starting all SOS features...");
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadToggleValue();
+    _initializeLocalNotifications();
+    // CRITICAL: Do NOT initialize speech here - only in startSOSFeatures()
+  }
+
+  Future<void> _initializeLocalNotifications() async {
+    const AndroidInitializationSettings initializationSettingsAndroid =
+    AndroidInitializationSettings('@mipmap/ic_launcher');
+
+    const InitializationSettings initializationSettings =
+    InitializationSettings(
+      android: initializationSettingsAndroid,
+    );
+
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  }
+
+  // Show notification
+  Future<void> _showDangerNotification(String placeName, double distance) async {
+    int notificationId = placeName.hashCode.abs() % 10000;
+
+    const AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails(
+      'danger_spots_channel',
+      'Danger Spots Alerts',
+      channelDescription: 'Alerts for nearby dangerous locations',
+      importance: Importance.max,
+      priority: Priority.high,
+      color: Colors.red,
+      enableLights: true,
+      enableVibration: true,
+    );
+
+    const NotificationDetails notificationDetails =
+    NotificationDetails(android: androidNotificationDetails);
+
+    await flutterLocalNotificationsPlugin.show(
+      notificationId,
+      '⚠️ Danger Zone Alert',
+      'Near dangerous area: $placeName\nDistance: ${distance.toStringAsFixed(2)} km',
+      notificationDetails,
+    );
+  }
+
+  // Check for dangerous spots every 30 seconds
+  void _startContinuousDangerMonitoring() {
+    _continuousCheckTimer?.cancel();
+    _activeDangerZones.clear();
+
+    if (!toggleValue) return;
+
+    print("🔄 [DANGER MONITOR] Starting at ${DateTime.now()}");
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkForDangerZones();
+    });
+
+    _continuousCheckTimer = Timer.periodic(Duration(seconds: 30), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
+
+      if (!toggleValue) {
+        timer.cancel();
+        return;
+      }
+
+      if (_sosTriggered) {
+        return;
+      }
+
+      _checkForDangerZones();
+    });
+  }
+
+  // Check and show notifications
+  Future<void> _checkForDangerZones() async {
+    try {
+      if (!toggleValue) return;
+
+      print("📍 Checking for dangerous spots...");
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String baseUrl = prefs.getString('url') ?? '';
+      String lid = prefs.getString('lid') ?? '';
+
+      if (baseUrl.isEmpty || lid.isEmpty) return;
+
+      String url = "$baseUrl/myapp/user_view_nearbyDangerosSpot/";
+      var response = await http.post(
+        Uri.parse(url),
+        body: {'lid': lid, 'radius': '2'},
+      );
+
+      if (response.statusCode == 200) {
+        var jsonData = json.decode(response.body);
+
+        if (jsonData['status'] == 'ok' && jsonData.containsKey('data')) {
+          var spots = jsonData['data'];
+
+          Set<String> currentZones = {};
+
+          for (var spot in spots) {
+            String spotId = spot['id'].toString();
+            double distance = double.tryParse(spot['distance'].toString()) ?? 999.0;
+            String placeName = spot['place'] ?? 'Unknown location';
+
+            if (distance <= 1.0) {
+              currentZones.add(spotId);
+
+              if (!_activeDangerZones.contains(spotId)) {
+                await _showDangerNotification(placeName, distance);
+                print("🚨 Notification sent for: $placeName (${distance}km)");
+              }
+            }
+          }
+
+          _activeDangerZones = currentZones;
+        }
+      }
+    } catch (e) {
+      print("❌ Error checking danger zones: $e");
+    }
+  }
+
+  Future<bool> _requestPermissions() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.microphone,
+      Permission.storage,
+      Permission.sensors,
+      Permission.location,
+      Permission.sms
+    ].request();
+
+    bool allGranted = statuses.values.every((status) => status.isGranted);
+    if (!allGranted) {
+      Fluttertoast.showToast(
+          msg: 'Microphone, storage and sensor permissions required');
+    }
+    return allGranted;
+  }
+
+  Future<void> _initAudioRecorder() async {
+    try {
+      await _audioRecorder.openRecorder();
+      await _audioRecorder
+          .setSubscriptionDuration(const Duration(milliseconds: 10));
+      print("✅ Audio recorder initialized successfully");
+    } catch (e) {
+      print("❌ Error initializing audio recorder: $e");
+    }
+  }
+
+  Future<void> _checkBackendURL() async {
+    SharedPreferences sh = await SharedPreferences.getInstance();
+    String urls = sh.getString('url') ?? "";
+    print("🔗 Stored backend URL: $urls");
+
+    if (urls.isEmpty) {
+      print("❌ No backend URL found in SharedPreferences!");
+    } else {
+      print("✅ Backend URL found: $urls");
+    }
+  }
+
+  void _startMotionDetection() async {
+    if (_accelerometerSubscription != null) {
+      await _accelerometerSubscription?.cancel();
+    }
+    if (_gyroscopeSubscription != null) {
+      await _gyroscopeSubscription?.cancel();
+    }
+    _motionSamplingTimer?.cancel();
+    _motionUpdateTimer?.cancel();
+
+    _motionDetectionActive = true;
+
+    if (!toggleValue) return;
+
+    print("🔄 Starting/Restarting motion detection system...");
+
+    _accelerometerSubscription =
+        accelerometerEvents.listen((AccelerometerEvent event) {
+          if (mounted) {
+            setState(() {
+              _lastAccelerometer = event;
+            });
+          }
+        });
+
+    _gyroscopeSubscription = gyroscopeEvents.listen((GyroscopeEvent event) {
+      if (mounted) {
+        setState(() {
+          _lastGyroscope = event;
+        });
+      }
+    });
+
+    _motionSamplingTimer =
+        Timer.periodic(Duration(milliseconds: _samplingRate), (timer) {
+          _checkMotionForSOS();
+        });
+
+    _motionUpdateTimer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      _getLastCapturedMotion();
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _getLastCapturedMotion();
+    });
+
+    print("✅ Motion detection started/restarted with update timer");
+  }
+
+  Future<void> _getLastCapturedMotion() async {
+    try {
+      SharedPreferences sh = await SharedPreferences.getInstance();
+      String urls = sh.getString('url') ?? "";
+
+      if (urls.isEmpty) return;
+
+      var url = Uri.parse('$urls/myapp/get-motion-history/');
+      var response = await http.get(url).timeout(const Duration(seconds: 5));
+
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        if (result.containsKey('motion_history') &&
+            result['motion_history'] != null &&
+            result['motion_history'].length > 0) {
+          var lastMotion = result['motion_history'].last;
+          setState(() {
+            _lastCapturedMotion = lastMotion;
+          });
+          _checkLastMotionForSOS(lastMotion);
+        }
+      }
+    } catch (e) {
+      print("❌ Last motion fetch error: $e");
+    }
+  }
+
+  void _checkLastMotionForSOS(Map<String, dynamic> motionData) {
+    if (_sosTriggered || !toggleValue) return;
+
+    String motionType = motionData['motion_type'] ?? '';
+    bool first3SecCompleted = motionData['first_3sec_completed'] ?? false;
+
+    if ((motionType == "rapid_shake" || motionType == "throw") &&
+        first3SecCompleted &&
+        !_sosTriggered) {
+      _setPhoneMotionDetected();
+      print("✅ [MOTION] Dangerous motion detected: $motionType");
+    }
+  }
+
+  void _setPhoneMotionDetected() {
+    if (!toggleValue) return;
+    setState(() {
+      _phoneMotionDetected = true;
+    });
+    _checkMultiFactorDetection();
+    _startDetectionResetTimer();
+  }
+
+  void _setVoiceTriggerDetected() {
+    if (!toggleValue) return;
+    setState(() {
+      _voiceTriggerDetected = true;
+    });
+    _checkMultiFactorDetection();
+    _startDetectionResetTimer();
+    print("✅ [VOICE] Trigger word detected!");
+  }
+
+  void _setVoiceEmotionDetected() {
+    if (!toggleValue) return;
+    setState(() {
+      _voiceEmotionDetected = true;
+    });
+    _checkMultiFactorDetection();
+    _startDetectionResetTimer();
+  }
+
+  void _checkMultiFactorDetection() {
+    if (!toggleValue) return;
+
+    int detectedFactors = 0;
+    if (_voiceTriggerDetected) detectedFactors++;
+    if (_voiceEmotionDetected) detectedFactors++;
+    if (_phoneMotionDetected) detectedFactors++;
+
+    print("🔍 [MULTI-FACTOR] Detected factors: $detectedFactors");
+    print("  - Voice Trigger: $_voiceTriggerDetected");
+    print("  - Voice Emotion: $_voiceEmotionDetected");
+    print("  - Phone Motion: $_phoneMotionDetected");
+
+    if (detectedFactors >= 2 && !_sosTriggered) {
+      print("🚨 [MULTI-FACTOR] Triggering SOS (2+ factors detected)");
+      _triggerSOSFromMultiFactor();
+    }
+  }
+
+  void _startDetectionResetTimer() {
+    _detectionResetTimer?.cancel();
+    _detectionResetTimer = Timer(const Duration(seconds: 30), () {
+      if (mounted) {
+        setState(() {
+          _voiceTriggerDetected = false;
+          _voiceEmotionDetected = false;
+          _phoneMotionDetected = false;
+        });
+        print("🔄 [MULTI-FACTOR] Reset all detection flags");
+      }
+    });
+  }
+
+  void _checkMotionForSOS() {
+    if (_lastAccelerometer == null ||
+        _lastGyroscope == null ||
+        _sosTriggered ||
+        !toggleValue ||
+        !_motionDetectionActive) return;
+
+    Map<String, double> sample = {
+      "ax": _lastAccelerometer!.x,
+      "ay": _lastAccelerometer!.y,
+      "az": _lastAccelerometer!.z,
+      "gx": _lastGyroscope!.x,
+      "gy": _lastGyroscope!.y,
+      "gz": _lastGyroscope!.z,
+    };
+
+    _addToSensorBuffer(sample);
+
+    if (_isSignificantMotion(sample)) {
+      _sendMotionToBackend(_getSensorBuffer());
+    }
+  }
+
+  void _addToSensorBuffer(Map<String, double> sample) {
+    _sensorBuffer.add(sample);
+    if (_sensorBuffer.length > _bufferSize) {
+      _sensorBuffer.removeAt(0);
+    }
+  }
+
+  List<Map<String, double>> _getSensorBuffer() {
+    return List.from(_sensorBuffer);
+  }
+
+  bool _isSignificantMotion(Map<String, double> sample) {
+    double accMagnitude = sqrt(sample['ax']! * sample['ax']! +
+        sample['ay']! * sample['ay']! +
+        sample['az']! * sample['az']!);
+
+    double gyroMagnitude = sqrt(sample['gx']! * sample['gx']! +
+        sample['gy']! * sample['gy']! +
+        sample['gz']! * sample['gz']!);
+
+    return accMagnitude > 20.0 || gyroMagnitude > 5.0;
+  }
+
+  void _sendMotionToBackend(List<Map<String, double>> samples) async {
+    try {
+      SharedPreferences sh = await SharedPreferences.getInstance();
+      String urls = sh.getString('url') ?? "";
+
+      if (urls.isEmpty) return;
+
+      var url = Uri.parse('$urls/myapp/predict-motion/');
+      var response = await http
+          .post(
+        url,
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({"data": samples}),
+      )
+          .timeout(const Duration(seconds: 5));
+
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        if (!result.containsKey('error')) {
+          String predictedAction = result['action'] ?? '';
+          double confidence = result['confidence'] ?? 0.0;
+
+          setState(() {
+            _lastPrediction = predictedAction;
+            _lastConfidence = confidence;
+          });
+
+          if ((predictedAction == "rapid_shake" ||
+              predictedAction == "throw") &&
+              confidence > 0.8) {
+            _setPhoneMotionDetected();
+            print("✅ [SOS] Dangerous motion detected: $predictedAction");
+          }
+        }
+      }
+    } catch (e) {
+      print("❌ Motion analysis error: $e");
+    }
+  }
+
+  Future<void> _triggerSOSFromMultiFactor() async {
+    if (_sosTriggered || !toggleValue) return;
+
+    setState(() {
+      _sosTriggered = true;
+      _currentMotion = "sos_activated";
+    });
+
+    if (_speech.isListening) _speech.stop();
+    if (_isRecording) await _stopRecording();
+
+    Fluttertoast.showToast(
+      msg: '🚨 SOS ACTIVATED! Multiple danger signs detected',
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.TOP,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+    );
+
+    await SOSService.triggerSOS(phone: phn);
+
+    _sensorBuffer.clear();
+
+    setState(() {
+      _voiceTriggerDetected = false;
+      _voiceEmotionDetected = false;
+      _phoneMotionDetected = false;
+    });
+
+    Timer(const Duration(seconds: 15), () {
+      if (mounted) {
+        setState(() {
+          _sosTriggered = false;
+          _currentMotion = "monitoring";
+        });
+        _restartListening();
+      }
+    });
+  }
+
+  void _handleVolumeButtonPress() {
+    if (!toggleValue) return;
+
+    _volumeButtonTimer?.cancel();
+
+    setState(() {
+      _volumeButtonPressCount++;
+    });
+
+    _volumeButtonTimer = Timer(_volumePressTimeout, () {
+      if (mounted) {
+        setState(() {
+          _volumeButtonPressCount = 0;
+        });
+      }
+    });
+
+    if (_volumeButtonPressCount >= _requiredVolumePresses) {
+      _volumeButtonTimer?.cancel();
+      setState(() {
+        _volumeButtonPressCount = 0;
+      });
+      _triggerSOS();
+    }
+  }
+
+  // CRITICAL: SIMPLIFIED SPEECH RECOGNITION - Back to working version
+  Future<void> _initSpeech() async {
+    if (!toggleValue) return;
+
+    print("🎤 [SPEECH] Initializing speech recognition...");
+
+    try {
+      bool speechAvailable = await _speech.initialize(
+        onStatus: (status) {
+          print("🎤 [SPEECH] Status: $status");
+          if (status == 'done' && _isListening && !_sosTriggered && toggleValue) {
+            _restartListening();
+          }
+        },
+        onError: (error) {
+          print("❌ [SPEECH] Error: $error");
+          if (!_sosTriggered && toggleValue) {
+            Timer(const Duration(seconds: 2), _restartListening);
+          }
+        },
+      );
+
+      if (speechAvailable) {
+        print("✅ [SPEECH] Speech recognition available");
+        setState(() {
+          _isListening = true;
+        });
+        _startListening();
+      } else {
+        print("❌ [SPEECH] Speech recognition NOT available");
+      }
+    } catch (e) {
+      print("💥 [SPEECH] Exception: $e");
+    }
+  }
+
+  void _restartListening() {
+    if (!_sosTriggered && !_speech.isListening && toggleValue) {
+      Timer(const Duration(seconds: 1), _startListening);
+    }
+  }
+
+  void _startListening() {
+    if (_speech.isListening || _sosTriggered || !toggleValue) return;
+
+    try {
+      _speech.listen(
+        onResult: (result) {
+          String recognizedText = result.recognizedWords.toLowerCase().trim();
+          print("🎤 [SPEECH] Recognized: '$recognizedText'");
+
+          if (recognizedText.isNotEmpty) {
+            // Check for trigger words
+            bool triggerFound = false;
+            for (String target in _targetWords) {
+              if (recognizedText.contains(target)) {
+                print("✅ [SPEECH] Trigger word '$target' found in: '$recognizedText'");
+                triggerFound = true;
+                break;
+              }
+            }
+
+            if (triggerFound && !_sosTriggered) {
+              _setVoiceTriggerDetected();
+
+              // Immediate SOS for high-priority words
+              if (recognizedText.contains("sos") ||
+                  recognizedText.contains("emergency") ||
+                  recognizedText.contains("help me") ||
+                  recognizedText.contains("save me")) {
+                print("🚨 [SPEECH] Immediate SOS trigger for high-priority word");
+                _triggerImmediateSOSFromVoice();
+              }
+            }
+          }
+        },
+        listenFor: const Duration(seconds: 10),
+        pauseFor: const Duration(seconds: 3),
+        partialResults: true,
+        cancelOnError: true,
+        localeId: "en_US",
+        listenMode: stt.ListenMode.confirmation,
+      );
+    } catch (e) {
+      print("❌ Error starting speech: $e");
+    }
+  }
+
+  Future<void> _triggerImmediateSOSFromVoice() async {
+    if (_sosTriggered || !toggleValue) return;
+
+    print("🚨 [VOICE SOS] Immediate SOS triggered by voice command");
+
+    setState(() {
+      _sosTriggered = true;
+    });
+
+    if (_speech.isListening) _speech.stop();
+
+    Fluttertoast.showToast(
+      msg: '🚨 SOS ACTIVATED! Voice command detected',
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.TOP,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+    );
+
+    await SOSService.triggerSOS(phone: phn);
+
+    Timer(const Duration(seconds: 15), () {
+      if (mounted) {
+        setState(() {
+          _sosTriggered = false;
+        });
+        _restartListening();
+      }
+    });
+  }
+
+  Future<void> _triggerSOS() async {
+    if (_sosTriggered || !toggleValue) return;
+
+    setState(() {
+      _sosTriggered = true;
+    });
+
+    if (_speech.isListening) _speech.stop();
+    if (_isRecording) await _stopRecording();
+
+    Fluttertoast.showToast(
+      msg: '🚨 SOS ACTIVATED! Sending alerts...',
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.TOP,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+    );
+
+    await SOSService.triggerSOS(phone: phn);
+
+    Timer(const Duration(seconds: 3), () {
+      if (mounted) {
+        setState(() {
+          _sosTriggered = false;
+        });
+        _restartListening();
+      }
+    });
+  }
+
+  Future<void> _startRecording() async {
+    if (_isRecording || _sosTriggered || !toggleValue) return;
+
+    try {
+      final tempDir = await getTemporaryDirectory();
+      final timestamp = DateTime.now().millisecondsSinceEpoch;
+      _currentAudioPath = '${tempDir.path}/audio$timestamp.m4a';
+
+      await _audioRecorder.startRecorder(
+        toFile: _currentAudioPath,
+        codec: Codec.aacMP4,
+        audioSource: AudioSource.microphone,
+      );
+
+      setState(() => _isRecording = true);
+    } catch (e) {
+      setState(() => _isRecording = false);
+    }
+  }
+
+  Future<void> _stopRecording() async {
+    try {
+      if (!_isRecording) return;
+      await _audioRecorder.stopRecorder();
+      setState(() => _isRecording = false);
+    } catch (e) {
+      setState(() => _isRecording = false);
+    }
+  }
+
+  Future<void> _stopRecordingAndSend() async {
+    try {
+      if (!_isRecording || _sosTriggered || !toggleValue) return;
+
+      await _audioRecorder.stopRecorder();
+      setState(() => _isRecording = false);
+
+      final audioFile = File(_currentAudioPath!);
+      if (await audioFile.exists() && await audioFile.length() > 0) {
+        await _sendAudioToBackend(_currentAudioPath!);
+        _setVoiceEmotionDetected();
+      }
+    } catch (e) {
+      setState(() => _isRecording = false);
+    }
+  }
+
+  Future<void> _sendAudioToBackend(String filePath) async {
+    try {
+      final file = File(filePath);
+      if (!file.existsSync()) return;
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String url = prefs.getString('url') ?? '';
+      if (url.isEmpty) return;
+
+      final request =
+      http.MultipartRequest('POST', Uri.parse('$url/myapp/recordings/'))
+        ..files.add(await http.MultipartFile.fromPath(
+          'audio',
+          file.path,
+          filename: 'child_audio.wav',
+        ));
+
+      final streamedResponse =
+      await request.send().timeout(const Duration(seconds: 30));
+      final response = await http.Response.fromStream(streamedResponse);
+
+      if (response.statusCode == 200) {
+        await file.delete();
+      }
+    } catch (e) {}
+  }
+
+  Future<void> fetchContacts() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String urls = prefs.getString('url') ?? '';
+      String lid = prefs.getString('lid') ?? '';
+
+      if (urls.isEmpty) return;
+
+      String url = '$urls/myapp/user_view_emergency_number/';
+      var response = await http.post(Uri.parse(url), body: {'lid': lid});
+      var jsonData = json.decode(response.body);
+      var data = jsonData['data'];
+
+      List<dynamic> numbers = [];
+      for (var contact in data) {
+        String number = contact['number'].toString();
+        numbers.add(number);
+      }
+
+      setState(() => phn = numbers);
+
+      if (phn.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Please add emergency numbers")));
+      }
+    } catch (e) {}
+  }
+
+  Future<void> loadToggleValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    toggleValue = prefs.getBool("user_toggle_enabled") ?? false;
+
+    setState(() {
+      toggleLoaded = true;
+    });
+
+    if (toggleValue) {
+      startSOSFeatures();
+    }
+  }
+
+  Future<void> saveToggleValue(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("user_toggle_enabled", value);
+
+    setState(() {
+      toggleValue = value;
+    });
+
+    if (value) {
+      startSOSFeatures();
+    } else {
+      stopSOSFeatures();
+    }
+  }
+
+  void stopSOSFeatures() {
+    if (_speech.isListening) _speech.stop();
+    setState(() {
+      _isListening = false;
+    });
+
+    if (_isRecording) {
+      _stopRecording();
+    }
+
+    // Cancel all timers and subscriptions
+    _motionSamplingTimer?.cancel();
+    _motionUpdateTimer?.cancel();
+    _accelerometerSubscription?.cancel();
+    _gyroscopeSubscription?.cancel();
+
+    // Reset motion detection state
+    _motionDetectionActive = false;
+
+    // Clear sensor data
+    _sensorBuffer.clear();
+
+    // Reset all triggers
+    _voiceTriggerDetected = false;
+    _voiceEmotionDetected = false;
+    _phoneMotionDetected = false;
+
+    _detectionResetTimer?.cancel();
+    _volumeButtonTimer?.cancel();
+    _recordingTimer?.cancel();
+
+    _sosTriggered = false;
+
+    // Properly stop danger monitoring
+    _continuousCheckTimer?.cancel();
+    _continuousCheckTimer = null;
+    _activeDangerZones.clear();
+
+    print("🛑 [DANGER MONITOR] Stopped all features");
+  }
+
+  @override
+  void dispose() {
+    _recordingTimer?.cancel();
+    _motionSamplingTimer?.cancel();
+    _motionUpdateTimer?.cancel();
+    _detectionResetTimer?.cancel();
+    _accelerometerSubscription?.cancel();
+    _gyroscopeSubscription?.cancel();
+    _volumeButtonTimer?.cancel();
+    _speech.stop();
+    _audioRecorder.closeRecorder();
+    _continuousCheckTimer?.cancel();
+    super.dispose();
+  }
+
+  void startSOSFeatures() {
+    if (!toggleValue) return;
+    _debugStartSOSFeatures();
+
+    // Reset motion detection state
+    _motionDetectionActive = true;
+
+    _requestPermissions();
+
+    fetchContacts();
+    _initSpeech(); // CRITICAL: Speech initialized HERE, not in initState
+    _initAudioRecorder();
+
+    _checkBackendURL();
+    _startMotionDetection();
+
+    const platform = MethodChannel('volume.channel');
+    platform.setMethodCallHandler((call) async {
+      if (call.method == "volumeButtonPressed" && !_sosTriggered) {
+        if (toggleValue) {
+          _handleVolumeButtonPress();
+        }
+      }
+    });
+
+    print("🚀 [DEBUG] About to start danger monitoring...");
+    _startContinuousDangerMonitoring();
+  }
+
+  void _testTimerManually() {
+    print("🧪 [TEST] Manual timer test started at ${DateTime.now()}");
+
+    int count = 0;
+    Timer.periodic(Duration(seconds: 10), (timer) {
+      count++;
+      print("🧪 [TEST] Timer tick #$count at ${DateTime.now()}");
+
+      if (count >= 3) {
+        timer.cancel();
+        print("🧪 [TEST] Timer test completed");
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    if (!toggleLoaded) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.pink,
+        title: Row(
+          children: [
+            SizedBox(width: 8),
+            Text("SheCare", style: TextStyle(color: Colors.white)),
+          ],
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 10),
+            child: Container(
+              decoration: BoxDecoration(
+                color: toggleValue ? Colors.green : Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12.0),
+                    child: Icon(
+                      toggleValue ? Icons.security : Icons.security_outlined,
+                      color: toggleValue ? Colors.white : Colors.grey.shade700,
+                      size: 18,
+                    ),
+                  ),
+                  Switch(
+                    value: toggleValue,
+                    onChanged: saveToggleValue,
+                    activeColor: Colors.white,
+                    inactiveThumbColor: Colors.white,
+                    inactiveTrackColor: Colors.grey.shade500,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: Text(
+                      toggleValue ? "ON" : "OFF",
+                      style: TextStyle(
+                        color: toggleValue ? Colors.white : Colors.grey.shade700,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+      drawer: _buildBeautifulDrawer(context),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8,
+        color: Colors.white,
+        elevation: 8,
+        child: SizedBox(
+          height: 65,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(Icons.home, 'Home', 0),
+              const SizedBox(width: 40),
+              _buildNavItem(Icons.contact_phone_rounded, 'Contact', 1),
+            ],
+          ),
+        ),
+      ),
+      body: Stack(
+        children: [
+          screens[selectedIndex],
+          if (_isRecording)
+            const Positioned(
+              top: 50,
+              right: 20,
+              child: _StatusIndicator(
+                  icon: Icons.mic, text: 'Recording', color: Colors.red),
+            ),
+        ],
+      ),
+      floatingActionButton: isMicButtonPressed
+          ? FloatingActionButton(
+        shape: const CircleBorder(),
+        onPressed: () {
+          _stopRecording();
+          _stopRecordingAndSend();
+          setState(() {
+            isMicButtonPressed = false;
+          });
+        },
+        child: const Icon(Icons.stop),
+      )
+          : FloatingActionButton(
+        shape: const CircleBorder(),
+        onPressed: () {
+          _initAudioRecorder();
+          _startRecording();
+          setState(() {
+            isMicButtonPressed = true;
+          });
+        },
+        child: const Icon(Icons.mic),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  Widget _buildBeautifulDrawer(BuildContext context) {
+    return Drawer(
+      width: MediaQuery.of(context).size.width * 0.85,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.pink.shade50,
+              Colors.white,
+            ],
+          ),
+        ),
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            // Drawer Header
+            Container(
+              height: 180,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.pink.shade400,
+                    Colors.pink.shade600,
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(onPressed: (){
+                          Navigator.of(context).pop();
+                        }, child: Text('alarm',style: TextStyle(color: Colors.white),))
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    right: -30,
+                    top: -30,
+                    child: Container(
+                      width: 120,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: -20,
+                    bottom: -20,
+                    child: Container(
+                      width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: 70,
+                          height: 70,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                            border: Border.all(color: Colors.white, width: 3),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                blurRadius: 10,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: Icon(
+                            Icons.person,
+                            size: 36,
+                            color: Colors.pink.shade400,
+                          ),
+                        ),
+                        SizedBox(height: 12),
+                        Text(
+                          "SheCare User",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          "Stay Safe • Stay Protected",
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.9),
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // SOS Status Card
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: toggleValue ? Colors.green.shade50 : Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 8,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                  border: Border.all(
+                    color: toggleValue ? Colors.green.shade200 : Colors.grey.shade300,
+                    width: 1,
+                  ),
+                ),
+                child: ListTile(
+                  leading: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: toggleValue ? Colors.green : Colors.grey,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      toggleValue ? Icons.check : Icons.close,
+                      color: Colors.white,
+                      size: 22,
+                    ),
+                  ),
+                  title: Text(
+                    "SOS Protection",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+                  subtitle: Text(
+                    toggleValue ? "Active and monitoring" : "Currently disabled",
+                    style: TextStyle(
+                      color: toggleValue ? Colors.green.shade700 : Colors.grey.shade700,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            // False Alarm Button
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.orange.shade400,
+                      Colors.orange.shade600,
+                    ],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.orange.shade300.withOpacity(0.5),
+                      blurRadius: 8,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: ListTile(
+                  leading: Icon(Icons.warning_amber, color: Colors.white),
+                  title: Text(
+                    "False Alarm",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+                  subtitle: Text(
+                    "Cancel accidental SOS alerts",
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.9),
+                      fontSize: 13,
+                    ),
+                  ),
+                  trailing: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 18),
+                  onTap: () => _showFalseAlarmDialog(context),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+            ),
+            // Menu Items
+            _buildDrawerItem(
+              icon: Icons.smart_toy,
+              title: "AI Assistant",
+              subtitle: "Get safety advice",
+              color: Colors.blueAccent,
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => ChatBotPage())),
+            ),
+            _buildDrawerItem(
+              icon: Icons.request_page_outlined,
+              title: "send request",
+              subtitle: "send request to pinkpolice",
+              color: Colors.blueAccent,
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => SendEmergencyRequestPage())),
+            ),
+
+            _buildDrawerItem(
+              icon: Icons.lightbulb,
+              title: "Add Idea",
+              subtitle: "Share safety ideas",
+              color: Colors.amber.shade600,
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => AddIdeaPage())),
+            ),
+            _buildDrawerItem(
+              icon: Icons.safety_check,
+              title: "View Safe Points",
+              subtitle: "Safe point",
+              color: Colors.amber.shade600,
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => ViewSafePointsPage())),
+            ),
+            _buildDrawerItem(
+              icon: Icons.safety_check,
+              title: "View dangerous Points",
+              subtitle: "dangerous point",
+              color: Colors.amber.shade600,
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => ViewNearbyDangerousPointPage())),
+            ),
+
+            _buildDrawerItem(
+              icon: Icons.report_problem,
+              title: "Send Complaint",
+              subtitle: "Report issues",
+              color: Colors.orange.shade600,
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => SendComplaintPage())),
+            ),
+
+            _buildDrawerItem(
+              icon: Icons.feedback,
+              title: "View Replies",
+              subtitle: "Check responses",
+              color: Colors.teal,
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => ViewReplyPage())),
+            ),
+
+            _buildDrawerItem(
+              icon: Icons.lock_reset,
+              title: "Change Password",
+              subtitle: "Update security",
+              color: Colors.purple.shade600,
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => UserChangePasswordPage())),
+            ),
+
+            _buildDrawerItem(
+              icon: Icons.person_outline,
+              title: "View Profile",
+              subtitle: "Your account",
+              color: Colors.pink.shade400,
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => UserViewProfilePage())),
+            ),
+
+            _buildDrawerItem(
+              icon: Icons.group,
+              title: "Nearby Users",
+              subtitle: "Connect safely",
+              color: Colors.green.shade600,
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => NearbyUsersPage())),
+            ),
+
+            _buildDrawerItem(
+              icon: Icons.dangerous,
+              title: "Dangerous Spots",
+              subtitle: "Marked locations",
+              color: Colors.red.shade600,
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (ctx) => DangerousSpotListPage())),
+            ),
+
+            Divider(
+              height: 40,
+              thickness: 1,
+              color: Colors.grey.shade300,
+              indent: 20,
+              endIndent: 20,
+            ),
+
+            // Logout Button
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.pink.shade400,
+                      Colors.pink.shade600,
+                    ],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.pink.shade300.withOpacity(0.5),
+                      blurRadius: 8,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: ListTile(
+                  leading: Icon(Icons.logout, color: Colors.white),
+                  title: Text(
+                    "Logout",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
+                  ),
+                  trailing: Icon(Icons.arrow_forward_ios, color: Colors.white, size: 18),
+                  onTap: () => _showLogoutDialog(context),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+            ),
+
+            SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> sendFalseAlarmSms(List<String> phoneNumbers) async {
+    final Telephony telephony = Telephony.instance;
+
+    final bool? permissionGranted =
+    await telephony.requestSmsPermissions;
+
+    if (permissionGranted != true) {
+      Fluttertoast.showToast(msg: "❌ SMS permission denied");
+      return;
+    }
+
+    final bool smsCapable = await telephony.isSmsCapable ?? false;
+    if (!smsCapable) {
+      Fluttertoast.showToast(msg: "❌ Device cannot send SMS");
+      return;
+    }
+
+    const String message = "False Alarm. Situation is safe now.";
+
+    int success = 0;
+    int failed = 0;
+
+    for (final String phone in phoneNumbers) {
+      try {
+        await telephony.sendSms(
+          to: phone,
+          message: message,
+        );
+        success++;
+        debugPrint("✅ False alarm SMS sent to $phone");
+      } catch (e) {
+        failed++;
+        debugPrint("❌ Failed to send to $phone : $e");
+      }
+
+      await Future.delayed(const Duration(milliseconds: 300));
+    }
+
+    Fluttertoast.showToast(
+      msg: "📩 False Alarm SMS → Sent: $success | Failed: $failed",
+      gravity: ToastGravity.TOP,
+      backgroundColor: failed == 0 ? Colors.green : Colors.orange,
+      textColor: Colors.white,
+    );
+  }
+
+  Future<bool> _sendFalseAlarmNotification(String password) async
+  {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String baseUrl = prefs.getString('url') ?? '';
+      String lid = prefs.getString('lid') ?? '';
+
+      if (baseUrl.isEmpty || lid.isEmpty) {
+        print('❌ No backend URL or user ID found');
+        return false;
+      }
+
+      String url = "$baseUrl/myapp/send_false_alarm/";
+
+      var response = await http.post(
+        Uri.parse(url),
+        body: {
+          'lid': lid,
+          'password': password,
+        },
+      ).timeout(const Duration(seconds: 30));
+
+      if (response.statusCode != 200) {
+        print('❌ HTTP error: ${response.statusCode}');
+        return false;
+      }
+
+      var jsonData = json.decode(response.body);
+
+      if (jsonData['status'] != 'ok') {
+        print('❌ Backend rejected false alarm');
+        return false;
+      }
+
+      List<String> phoneNumbers = [];
+
+      String? contactsJson = prefs.getString('emergency_contacts');
+      if (contactsJson != null && contactsJson.isNotEmpty) {
+        phoneNumbers = List<String>.from(json.decode(contactsJson));
+      } else if (jsonData.containsKey('contacts')) {
+        phoneNumbers = List<String>.from(jsonData['contacts']);
+      }
+
+      if (phoneNumbers.isEmpty) {
+        Fluttertoast.showToast(
+          msg: "⚠️ No emergency contacts found",
+          gravity: ToastGravity.TOP,
+        );
+        return true;
+      }
+
+      await sendFalseAlarmSms(phoneNumbers);
+
+      Fluttertoast.showToast(
+        msg: "✅ False alarm notification triggered",
+        gravity: ToastGravity.TOP,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+      );
+
+      return true;
+    } catch (e) {
+      print('❌ Exception sending false alarm: $e');
+
+      Fluttertoast.showToast(
+        msg: "❌ Failed to send false alarm",
+        gravity: ToastGravity.TOP,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+      );
+      return false;
+    }
+  }
+
+  void _showFalseAlarmDialog(BuildContext context) {
+    TextEditingController _passwordController = TextEditingController();
+    bool _isLoading = false;
+    String _errorMessage = '';
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              title: Column(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.orange.withOpacity(0.1),
+                    ),
+                    child: Icon(
+                      Icons.warning_amber,
+                      size: 30,
+                      color: Colors.orange,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'False Alarm Confirmation',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orange.shade700,
+                    ),
+                  ),
+                ],
+              ),
+              content: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Please enter your password to send False Alarm notification to your emergency contacts.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey.shade700,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        hintText: 'Enter your account password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        prefixIcon: Icon(Icons.lock),
+                        errorText: _errorMessage.isNotEmpty ? _errorMessage : null,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    if (_isLoading)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: CircularProgressIndicator(),
+                      ),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.grey,
+                  ),
+                  child: Text('Cancel'),
+                ),
+                ElevatedButton(
+                  onPressed: _isLoading
+                      ? null
+                      : () async {
+                    if (_passwordController.text.isEmpty) {
+                      setState(() {
+                        _errorMessage = 'Please enter your password';
+                      });
+                      return;
+                    }
+
+                    setState(() {
+                      _isLoading = true;
+                      _errorMessage = '';
+                    });
+
+                    bool success = await _sendFalseAlarmNotification(
+                      _passwordController.text,
+                    );
+
+                    setState(() {
+                      _isLoading = false;
+                    });
+
+                    if (success) {
+                      Navigator.pop(context);
+                      Fluttertoast.showToast(
+                        msg: 'False Alarm notification sent to all contacts',
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.TOP,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                      );
+                    } else {
+                      setState(() {
+                        _errorMessage = 'Incorrect password. Please try again.';
+                      });
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Text('Send False Alarm'),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildDrawerItem({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.03),
+            blurRadius: 6,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: ListTile(
+        leading: Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
+            icon,
+            size: 22,
+            color: color,
+          ),
+        ),
+        title: Text(
+          title,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 15,
+          ),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.grey.shade600,
+          ),
+        ),
+        trailing: Icon(
+          Icons.chevron_right,
+          size: 20,
+          color: Colors.grey.shade400,
+        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        onTap: onTap,
+      ),
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.red.withOpacity(0.1),
+                  ),
+                  child: Icon(
+                    Icons.logout_rounded,
+                    size: 30,
+                    color: Colors.red,
+                  ),
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'Logout',
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'Are you sure you want to logout?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+                SizedBox(height: 24),
+                Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.grey,
+                          side: BorderSide(color: Colors.grey),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                        ),
+                        child: Text('Cancel'),
+                      ),
+                    ),
+                    SizedBox(width: 16),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          SharedPreferences sh = await SharedPreferences.getInstance();
+                          String url = sh.getString('url') ?? "";
+                          sh.clear();
+                          sh.setString('url', url);
+                          sh.setBool('isLogged', false);
+
+                          Navigator.pop(context);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => LoginPage()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                        ),
+                        child: Text('Logout'),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _onItemTapped(int index) {
+    setState(() => selectedIndex = index);
+  }
+
+  final List<Widget> screens = [
+    const MainHome(),
+    const Set_emergency_number(title: "Emergency Number"),
+  ];
+
+  Widget _buildNavItem(IconData icon, String label, int index) {
+    final isSelected = selectedIndex == index;
+    return GestureDetector(
+      onTap: () => _onItemTapped(index),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: isSelected ? Colors.pink : Colors.grey),
+          Text(
+            label,
+            style: TextStyle(
+              color: isSelected ? Colors.pink : Colors.grey,
+              fontSize: 12,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _StatusIndicator extends StatelessWidget {
+  final IconData icon;
+  final String text;
+  final Color color;
+
+  const _StatusIndicator(
+      {required this.icon, required this.text, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.8),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, color: Colors.white, size: 16),
+          const SizedBox(width: 4),
+          Text(text,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold)),
+        ],
+      ),
+    );
+  }
+}
+
+class MainHome extends StatefulWidget {
+  const MainHome({super.key});
+
+  @override
+  State<MainHome> createState() => _MainHomeState();
+}
+
+class _MainHomeState extends State<MainHome> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color(0xFFFFE3EC),
+                  Color(0xFFFFC2D6),
+                  Color(0xFFFF8FB1),
+                ],
+              ),
+            ),
+          ),
+        ),
+        SafeArea(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            "SheCare",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(width: 48),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Welcome Back,',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Your safety is our priority',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  _buildSectionCard(
+                    title: '🚨 Emergency Helpline Numbers',
+                    color: Colors.red,
+                    children: [
+                      _buildHelplineItem('Women Helpline', '1091', Icons.phone),
+                      _buildHelplineItem(
+                          'National Emergency', '112', Icons.emergency),
+                      _buildHelplineItem('Police', '100', Icons.local_police),
+                      _buildHelplineItem('Cyber Crime', '1930', Icons.computer),
+                      _buildHelplineItem(
+                          'Child Helpline', '1098', Icons.child_care),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  _buildSectionCard(
+                    title: '💡 Safety Tips',
+                    color: Colors.orange,
+                    children: [
+                      _buildTipItem(
+                          'Share your live location with trusted contacts when traveling'),
+                      _buildTipItem(
+                          'Trust your instincts - if something feels wrong, it probably is'),
+                      _buildTipItem(
+                          'Keep your phone charged and emergency numbers saved'),
+                      _buildTipItem(
+                          'Avoid isolated areas, especially during late hours'),
+                      _buildTipItem(
+                          'Be aware of your surroundings at all times'),
+                      _buildTipItem('Learn basic self-defense techniques'),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  _buildSectionCard(
+                    title: '🥊 Quick Self-Defense Tips',
+                    color: Colors.purple,
+                    children: [
+                      _buildTipItem(
+                          'Target vulnerable areas: eyes, nose, throat, groin'),
+                      _buildTipItem(
+                          'Make noise - scream and attract attention'),
+                      _buildTipItem(
+                          'Use everyday items as weapons (keys, umbrella, bag)'),
+                      _buildTipItem('Create distance and escape immediately'),
+                      _buildTipItem(
+                          'Never hesitate to fight back if in danger'),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  _buildSectionCard(
+                    title: '📱 Digital Safety',
+                    color: Colors.blue,
+                    children: [
+                      _buildTipItem(
+                          'Don\'t share personal information with strangers online'),
+                      _buildTipItem(
+                          'Use strong passwords and enable two-factor authentication'),
+                      _buildTipItem(
+                          'Be cautious of suspicious links and messages'),
+                      _buildTipItem(
+                          'Review privacy settings on social media regularly'),
+                      _buildTipItem(
+                          'Report cyberbullying and harassment immediately'),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  _buildSectionCard(
+                    title: '🚗 Travel Safety',
+                    color: Colors.green,
+                    children: [
+                      _buildTipItem(
+                          'Verify cab details before getting in (number plate, driver photo)'),
+                      _buildTipItem(
+                          'Sit in the back seat and keep doors locked'),
+                      _buildTipItem(
+                          'Share trip details with family or friends'),
+                      _buildTipItem(
+                          'Avoid traveling alone late at night when possible'),
+                      _buildTipItem('Keep emergency contacts on speed dial'),
+                    ],
+                  ),
+                  const SizedBox(height: 30),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSectionCard({
+    required String title,
+    required Color color,
+    required List<Widget> children,
+  }) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+            ),
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: children,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHelplineItem(String name, String number, IconData icon) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.red.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(icon, color: Colors.red, size: 20),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87,
+                  ),
+                ),
+                Text(
+                  number,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red[700],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.call, color: Colors.green),
+            onPressed: () {
+              openDialer(number);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  void openDialer(String phoneNumber) async {
+    final Uri dialUri = Uri(scheme: 'tel', path: phoneNumber);
+    if (await canLaunchUrl(dialUri)) {
+      await launchUrl(dialUri);
+    } else {
+      throw 'Could not open dialer';
+    }
+  }
+
+  Widget _buildTipItem(String tip) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 4),
+            width: 6,
+            height: 6,
+            decoration: const BoxDecoration(
+              color: Colors.black54,
+              shape: BoxShape.circle,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              tip,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.black87,
+                height: 1.4,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Set_emergency_number extends StatefulWidget {
+  final String title;
+  const Set_emergency_number({Key? key, required this.title}) : super(key: key);
+
+  @override
+  State<Set_emergency_number> createState() => _Set_emergency_numberState();
+}
+
+class _Set_emergency_numberState extends State<Set_emergency_number> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}

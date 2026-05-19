@@ -1,0 +1,514 @@
+{% extends "police_station/index.html" %}
+{% block body %}
+
+<style>
+    .sos-container {
+        padding: 20px;
+    }
+    
+    .sos-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .sos-header h2 {
+        margin: 0;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .sos-stats {
+        display: flex;
+        gap: 20px;
+    }
+    
+    .stat-badge {
+        background: rgba(255,255,255,0.2);
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-align: center;
+    }
+    
+    .stat-badge .number {
+        font-size: 28px;
+        font-weight: bold;
+        display: block;
+    }
+    
+    .stat-badge .label {
+        font-size: 12px;
+        opacity: 0.9;
+    }
+    
+    .sos-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-left: 5px solid #f44336;
+        transition: transform 0.2s;
+    }
+    
+    .sos-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+    
+    .sos-card.resolved {
+        border-left-color: #4CAF50;
+        opacity: 0.8;
+    }
+    
+    .sos-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .sos-badge {
+        background: #f44336;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .sos-badge.resolved {
+        background: #4CAF50;
+    }
+    
+    .distance-badge {
+        background: #2196F3;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-left: 10px;
+    }
+    
+    .user-info {
+        background: #f5f5f5;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 15px 0;
+    }
+    
+    .user-info-row {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    .user-details {
+        flex: 1;
+    }
+    
+    .user-details h4 {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+    }
+    
+    .user-details p {
+        margin: 0;
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .location-info {
+        display: flex;
+        gap: 20px;
+        margin: 15px 0;
+        flex-wrap: wrap;
+    }
+    
+    .coord-box {
+        background: #e3f2fd;
+        padding: 10px 15px;
+        border-radius: 6px;
+        flex: 1;
+        min-width: 150px;
+    }
+    
+    .coord-box strong {
+        color: #1976d2;
+        display: block;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    
+    .coord-box span {
+        font-size: 14px;
+        font-weight: 500;
+    }
+    
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .btn-resolve {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+    
+    .btn-resolve:hover {
+        background: #45a049;
+        transform: translateY(-2px);
+        color: white;
+        text-decoration: none;
+    }
+    
+    .btn-map {
+        background: #2196F3;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+    
+    .btn-map:hover {
+        background: #1976d2;
+        transform: translateY(-2px);
+        color: white;
+        text-decoration: none;
+    }
+    
+    .btn-refresh {
+        background: #FF9800;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.3s;
+        margin-bottom: 20px;
+    }
+    
+    .btn-refresh:hover {
+        background: #F57C00;
+        transform: translateY(-2px);
+    }
+    
+    .timestamp {
+        color: #999;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .no-alerts {
+        text-align: center;
+        padding: 50px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .no-alerts i {
+        font-size: 60px;
+        color: #4CAF50;
+        margin-bottom: 20px;
+    }
+    
+    .no-alerts h3 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+    
+    .no-alerts p {
+        color: #666;
+    }
+    
+    .filter-section {
+        background: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .filter-btn {
+        background: #f5f5f5;
+        color: #333;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s;
+    }
+    
+    .filter-btn.active {
+        background: #667eea;
+        color: white;
+    }
+    
+    .filter-btn:hover {
+        background: #e0e0e0;
+    }
+    
+    .filter-btn.active:hover {
+        background: #5a67d8;
+    }
+    
+    @media (max-width: 768px) {
+        .sos-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+        }
+        
+        .sos-stats {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .user-info-row {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .action-buttons {
+            flex-direction: column;
+        }
+        
+        .btn-resolve, .btn-map {
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .filter-section {
+            justify-content: center;
+        }
+    }
+</style>
+
+<div class="sos-container">
+    <div class="sos-header">
+        <h2>
+            <i class="fas fa-exclamation-triangle"></i>
+            Nearby SOS Alerts
+        </h2>
+        <div class="sos-stats">
+            <div class="stat-badge">
+                <span class="number">{{ total_alerts }}</span>
+                <span class="label">Total Active</span>
+            </div>
+            <div class="stat-badge">
+                <span class="number">{{ alerts|length }}</span>
+                <span class="label">Nearby</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-section">
+        <button class="filter-btn active" onclick="filterAlerts('all')">All Alerts</button>
+        <button class="filter-btn" onclick="filterAlerts('active')">Active Only</button>
+        <button class="filter-btn" onclick="filterAlerts('resolved')">Resolved</button>
+        <button class="filter-btn" onclick="filterAlerts('nearby')">Nearest First</button>
+        <div style="flex:1; text-align: right;">
+            <a href="{% url 'police_view_nearby_sos_alerts' %}" class="btn-refresh">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </a>
+        </div>
+    </div>
+
+    {% if alerts %}
+        {% for alert in alerts %}
+        <div class="sos-card {% if alert.status == 'resolved' %}resolved{% endif %}" 
+             data-status="{{ alert.status }}"
+             data-distance="{{ alert.distance }}"
+             id="alert-{{ alert.id }}">
+            <div class="sos-header-row">
+                <div>
+                    {% if alert.status == 'active' %}
+                        <span class="sos-badge">
+                            <i class="fas fa-exclamation-circle"></i> ACTIVE
+                        </span>
+                    {% else %}
+                        <span class="sos-badge resolved">
+                            <i class="fas fa-check-circle"></i> RESOLVED
+                        </span>
+                    {% endif %}
+                    
+                    <span class="distance-badge">
+                        <i class="fas fa-map-marker-alt"></i> {{ alert.distance }} km away
+                    </span>
+                </div>
+                <div class="timestamp">
+                    <i class="far fa-clock"></i> {{ alert.timestamp|date:"d M Y, h:i A" }}
+                </div>
+            </div>
+
+            <div class="user-info">
+                <div class="user-info-row">
+                    <div class="user-avatar">
+                        {{ alert.user_name|first|upper }}
+                    </div>
+                    <div class="user-details">
+                        <h4>{{ alert.user_name }}</h4>
+                        {% if alert.user_phone %}
+                        <p>
+                            <i class="fas fa-phone"></i> {{ alert.user_phone }}
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-info">
+                <div class="coord-box">
+                    <strong><i class="fas fa-map-pin"></i> LATITUDE</strong>
+                    <span>{{ alert.latitude }}</span>
+                </div>
+                <div class="coord-box">
+                    <strong><i class="fas fa-map-pin"></i> LONGITUDE</strong>
+                    <span>{{ alert.longitude }}</span>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                {% if alert.status == 'active' %}
+                <a href="{% url 'update_sos_status' alert.id %}?status=resolved" 
+                   class="btn-resolve"
+                   onclick="return confirm('Mark this SOS alert as resolved?')">
+                    <i class="fas fa-check-circle"></i> Mark Resolved
+                </a>
+                {% endif %}
+                
+                <a href="https://www.google.com/maps?q={{ alert.latitude }},{{ alert.longitude }}" 
+                   target="_blank" 
+                   class="btn-map">
+                    <i class="fas fa-map-marked-alt"></i> View on Map
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-alerts">
+            <i class="fas fa-check-circle"></i>
+            <h3>No SOS Alerts Found</h3>
+            <p>There are currently no active SOS alerts in your area.</p>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    function filterAlerts(filterType) {
+        const cards = document.querySelectorAll('.sos-card');
+        const buttons = document.querySelectorAll('.filter-btn');
+        
+        // Update active button
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        cards.forEach(card => {
+            const status = card.dataset.status;
+            
+            switch(filterType) {
+                case 'all':
+                    card.style.display = 'block';
+                    break;
+                case 'active':
+                    card.style.display = status === 'active' ? 'block' : 'none';
+                    break;
+                case 'resolved':
+                    card.style.display = status === 'resolved' ? 'block' : 'none';
+                    break;
+                case 'nearby':
+                    // Sort by distance (already sorted from backend)
+                    card.style.display = 'block';
+                    break;
+            }
+        });
+        
+        // Show message if no cards visible
+        const visibleCards = Array.from(cards).filter(card => card.style.display !== 'none');
+        const noAlertsMsg = document.querySelector('.no-alerts');
+        
+        if (visibleCards.length === 0 && !noAlertsMsg) {
+            // Create and show no results message
+            const container = document.querySelector('.sos-container');
+            const msg = document.createElement('div');
+            msg.className = 'no-alerts';
+            msg.innerHTML = `
+                <i class="fas fa-search"></i>
+                <h3>No Matching Alerts</h3>
+                <p>No alerts match the selected filter.</p>
+            `;
+            container.appendChild(msg);
+        } else if (visibleCards.length > 0 && noAlertsMsg) {
+            noAlertsMsg.remove();
+        }
+    }
+
+    // Auto-refresh every 30 seconds (optional)
+    setTimeout(function() {
+        location.reload();
+    }, 30000); // 30 seconds
+</script>
+
+{% endblock %}

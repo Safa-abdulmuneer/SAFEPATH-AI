@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Police Personnel - SheCare Admin Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --secondary: #4169e1;
+            --accent: #ff69b4;
+            --light: #f8f9fa;
+            --dark: #2d3748;
+            --success: #00b09b;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --info: #17a2b8;
+            --card-shadow: 0 10px 25px rgba(138, 43, 226, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f0ff 0%, #e6f0ff 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .site-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-tagline {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-left: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: var(--accent);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+            display: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-link {
+            color: var(--dark);
+            text-decoration: none;
+            padding: 12px 20px;
+            display: block;
+            transition: var(--transition);
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-link:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-link:hover {
+            background: #f8f9fa;
+            color: var(--primary);
+            padding-left: 25px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        /* Dashboard Header */
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dashboard-header h1 i {
+            margin-right: 15px;
+            color: var(--accent);
+        }
+
+        .dashboard-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        /* Statistics Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border-left: 5px solid var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .stat-card:nth-child(2) {
+            border-left-color: var(--accent);
+        }
+
+        .stat-card:nth-child(3) {
+            border-left-color: var(--secondary);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.15);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.8rem;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .stat-card:nth-child(2) .stat-icon {
+            background: linear-gradient(135deg, var(--accent), #ff85c0);
+        }
+
+        .stat-card:nth-child(3) .stat-icon {
+            background: linear-gradient(135deg, var(--secondary), #6b8cff);
+        }
+
+        .stat-content h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-content p {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        /* Search Form */
+        .search-container {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .form-control-custom {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: #f8fbff;
+        }
+
+        .form-control-custom:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+        }
+
+        .form-control-custom::placeholder {
+            color: #a0aec0;
+        }
+
+        /* Button Styles */
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
+            height: fit-content;
+            text-decoration: none;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.3);
+            color: white;
+        }
+
+        .btn-secondary-custom {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            height: fit-content;
+        }
+
+        .btn-secondary-custom:hover {
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Table Container */
+        .table-container {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .total-count {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Table Styles */
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table-custom thead {
+            background: #f8fbff;
+        }
+
+        .table-custom th {
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--dark);
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .table-custom td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+            font-size: 0.9rem;
+        }
+
+        .table-custom tbody tr {
+            transition: var(--transition);
+        }
+
+        .table-custom tbody tr:hover {
+            background: #f8fbff;
+        }
+
+        .table-custom tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Badge Styles */
+        .badge-custom {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .badge-male {
+            background: rgba(66, 105, 225, 0.1);
+            color: var(--secondary);
+        }
+
+        .badge-female {
+            background: rgba(255, 105, 180, 0.1);
+            color: var(--accent);
+        }
+
+        .badge-other {
+            background: rgba(0, 176, 155, 0.1);
+            color: var(--success);
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-edit {
+            background: rgba(66, 105, 225, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(66, 105, 225, 0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-edit:hover {
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        .btn-delete {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-delete:hover {
+            background: var(--danger);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: #718096;
+            max-width: 400px;
+            margin: 0 auto 25px;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: linear-gradient(135deg, var(--dark), #1a202c);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #4a5568;
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SweetAlert Custom Styling */
+        .swal2-popup {
+            border-radius: 16px !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        .swal2-title {
+            color: var(--dark) !important;
+            font-weight: 700 !important;
+        }
+
+        .swal2-confirm {
+            background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 12px 30px !important;
+            font-weight: 600 !important;
+            transition: var(--transition) !important;
+        }
+
+        .swal2-confirm:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2) !important;
+        }
+
+        .swal2-deny {
+            background: linear-gradient(135deg, var(--warning), #ffa94d) !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 12px 30px !important;
+            font-weight: 600 !important;
+        }
+
+        .swal2-cancel {
+            background: linear-gradient(135deg, #718096, #a0aec0) !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 12px 30px !important;
+            font-weight: 600 !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .nav-menu {
+                gap: 5px;
+            }
+
+            .nav-link {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 20px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                flex-direction: column;
+                min-width: 250px;
+                padding: 10px 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-link {
+                color: var(--dark);
+                padding: 12px 20px;
+            }
+
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+                display: none;
+                background: #f8f9fa;
+            }
+
+            .nav-item:hover .dropdown-menu {
+                display: block;
+            }
+
+            .search-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .table-custom {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .quick-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .table-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .logo-tagline {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .dashboard-header {
+                padding: 20px;
+            }
+
+            .table-custom th,
+            .table-custom td {
+                padding: 12px 15px;
+            }
+
+            .btn-edit,
+            .btn-delete {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    {% include 'ADMIN/home.html' %}
+
+    <!-- Main Content -->
+    <main class="dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <h1><i class="fas fa-user-shield"></i> Pink Police Personnel</h1>
+            <p>Manage and view all Pink Police personnel across different police stations. Search, filter, and update personnel information.</p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>{{ data|length }}</h3>
+                    <p>Total Personnel</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-venus"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>{{ female_count|default:"0" }}</h3>
+                    <p>Female Personnel</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>{{ vehicle_count|default:"0" }}</h3>
+                    <p>Active Vehicles</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <a href="/myapp/add_pinkpolice/" class="btn-primary-custom">
+                <i class="fas fa-user-plus me-2"></i>Add New Personnel
+            </a>
+            <a href="/myapp/add_policestation/" class="btn-secondary-custom">
+                <i class="fas fa-plus-circle me-2"></i>Add Police Station
+            </a>
+            <button class="btn-secondary-custom" onclick="exportToExcel()">
+                <i class="fas fa-file-export me-2"></i>Export to Excel
+            </button>
+        </div>
+
+        <!-- Search Form -->
+        <div class="search-container">
+            <form id="form1" name="form1" method="post" action="/myapp/search_pinkpolice/">
+                {% csrf_token %}
+                <div class="search-form">
+                    <div class="form-group">
+                        <label class="form-label">
+                            <i class="fas fa-search me-2"></i>Search Personnel
+                        </label>
+                        <input type="text"
+                               name="search"
+                               id="textfield"
+                               class="form-control-custom"
+                               placeholder="Search by name, vehicle number, phone, or station..."
+                               value="{{ search_query|default:'' }}">
+                    </div>
+                    <button type="submit" class="btn-primary-custom" id="searchBtn">
+                        <i class="fas fa-search me-2"></i>SEARCH
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Personnel Table -->
+        <div class="table-container">
+            <div class="table-header">
+                <h2><i class="fas fa-list-alt"></i> Pink Police Personnel</h2>
+                <div class="total-count">{{ data|length }} Personnel Found</div>
+            </div>
+
+            {% if data %}
+            <div class="table-responsive">
+                <table class="table-custom" id="personnelTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Personal Details</th>
+                            <th>Contact Information</th>
+                            <th>Assignment</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                        <tr data-id="{{ i.id }}" data-name="{{ i.officername }}">
+                            <td>{{ forloop.counter }}</td>
+                            <td>
+                                <div class="mb-2">
+                                    <strong>{{ i.officername }}</strong>
+                                    <div class="mt-1">
+                                        <span class="badge-custom badge-{{ i.gender|lower }}">
+                                            <i class="fas fa-{% if i.gender == 'Male' %}mars{% elif i.gender == 'Female' %}venus{% else %}transgender-alt{% endif %} me-1"></i>
+                                            {{ i.gender }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="small text-muted">
+                                    <div><i class="fas fa-id-card me-1"></i> Vehicle: {{ i.vechileno }}</div>
+                                    <div><i class="fas fa-birthday-cake me-1"></i> {{ i.dob|date:"d M Y" }}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="mb-2">
+                                    <div><i class="fas fa-phone me-1"></i> {{ i.phone }}</div>
+                                    <div><i class="fas fa-envelope me-1"></i> {{ i.email|truncatechars:20 }}</div>
+                                </div>
+                                <div class="small text-muted">
+                                    <div><i class="fas fa-map-marker-alt me-1"></i> {{ i.place }}, {{ i.post }}</div>
+                                    <div><i class="fas fa-map me-1"></i> {{ i.district }}, {{ i.state }}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="mb-2">
+                                    <strong>{{ i.POLICESTATION.name }}</strong>
+                                    <div class="small text-muted mt-1">
+                                        <i class="fas fa-shield-alt me-1"></i> Police Station
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="/myapp/edit_pinkpolice/{{ i.id }}" class="btn-edit">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <button type="button" class="btn-delete delete-personnel-btn"
+                                            data-id="{{ i.id }}"
+                                            data-name="{{ i.officername }}"
+                                            data-vehicle="{{ i.vechileno }}">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <i class="fas fa-user-slash"></i>
+                <h3>No Personnel Found</h3>
+                <p>No Pink Police personnel match your search criteria. Try a different search term or add new personnel.</p>
+                <a href="/myapp/add_pinkpolice/" class="btn-primary-custom">
+                    <i class="fas fa-user-plus me-2"></i>Add First Personnel
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Additional Information -->
+        <div class="search-container">
+            <div class="row">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <div class="p-4" style="background: linear-gradient(135deg, #f0f4ff, #e6f0ff); border-radius: 12px;">
+                        <h4 class="mb-3" style="color: var(--dark);">
+                            <i class="fas fa-info-circle me-2" style="color: var(--primary);"></i>About Pink Police
+                        </h4>
+                        <p style="color: #4a5568; font-size: 0.95rem;">
+                            Pink Police personnel are specially trained officers dedicated to women's safety.
+                            They handle gender-sensitive cases and provide immediate assistance in emergencies.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-4" style="background: linear-gradient(135deg, #fff0f7, #ffe6f2); border-radius: 12px;">
+                        <h4 class="mb-3" style="color: var(--dark);">
+                            <i class="fas fa-lightbulb me-2" style="color: var(--accent);"></i>Quick Tips
+                        </h4>
+                        <ul class="mb-0" style="color: #4a5568; font-size: 0.9rem;">
+                            <li class="mb-2">Always verify contact information before assigning personnel</li>
+                            <li class="mb-2">Ensure vehicle numbers are correctly recorded</li>
+                            <li class="mb-2">Regularly update personnel information</li>
+                            <li>Maintain gender balance in station assignments</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    {% include 'ADMIN/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <!-- SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Initialize page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Display any Django messages as SweetAlert notifications
+            showDjangoMessages();
+
+            // Setup mobile menu
+            setupMobileMenu();
+
+            // Setup search functionality
+            setupSearch();
+
+            // Setup delete buttons
+            setupDeleteButtons();
+
+            // Setup table interactions
+            setupTableInteractions();
+        });
+
+        // Function to show Django messages as SweetAlert notifications
+        function showDjangoMessages() {
+            {% if messages %}
+                {% for message in messages %}
+                    const iconType = '{{ message.tags }}' === 'error' ? 'error' :
+                                    '{{ message.tags }}' === 'success' ? 'success' :
+                                    '{{ message.tags }}' === 'warning' ? 'warning' : 'info';
+
+                    Swal.fire({
+                        icon: iconType,
+                        title: '{{ message.tags|title }}',
+                        text: '{{ message }}',
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        background: 'white',
+                        color: 'var(--dark)',
+                        iconColor: getIconColor('{{ message.tags }}'),
+                        customClass: {
+                            popup: 'message-popup'
+                        }
+                    });
+                {% endfor %}
+            {% endif %}
+        }
+
+        function getIconColor(tag) {
+            switch(tag) {
+                case 'success': return 'var(--success)';
+                case 'error': return 'var(--danger)';
+                case 'warning': return 'var(--warning)';
+                case 'info': return 'var(--info)';
+                default: return 'var(--primary)';
+            }
+        }
+
+        function setupMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    mobileMenuBtn.innerHTML = navMenu.classList.contains('active')
+                        ? '<i class="fas fa-times"></i>'
+                        : '<i class="fas fa-bars"></i>';
+                });
+            }
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (navMenu && mobileMenuBtn && !e.target.closest('.header-container') && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        }
+
+        function setupSearch() {
+            const searchForm = document.getElementById('form1');
+            const searchInput = document.getElementById('textfield');
+            const searchBtn = document.getElementById('searchBtn');
+
+            if (searchForm && searchBtn) {
+                searchBtn.addEventListener('click', function(e) {
+                    if (!searchInput.value.trim()) {
+                        e.preventDefault();
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Search Required',
+                            text: 'Please enter a search term to find personnel',
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: 'var(--primary)'
+                        });
+                        searchInput.focus();
+                        return false;
+                    }
+                });
+            }
+
+            // Set active link based on current page
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Add keyboard shortcut for search
+            if (searchInput) {
+                searchInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        if (!searchInput.value.trim()) {
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Search Required',
+                                text: 'Please enter a search term to find personnel',
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: 'var(--primary)'
+                            });
+                            return false;
+                        }
+                        document.getElementById('form1').submit();
+                    }
+                });
+
+                // Focus on search input if empty
+                if (!searchInput.value.trim()) {
+                    searchInput.focus();
+                }
+            }
+        }
+
+        function setupDeleteButtons() {
+            // Setup delete buttons
+            document.querySelectorAll('.delete-personnel-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const personnelId = this.getAttribute('data-id');
+                    const personnelName = this.getAttribute('data-name');
+                    const vehicleNo = this.getAttribute('data-vehicle');
+
+                    Swal.fire({
+                        title: 'Delete Pink Police Personnel',
+                        html: `
+                            <div class="text-start">
+                                <p>Are you sure you want to delete this personnel record?</p>
+                                <div class="alert alert-danger mt-3" style="background: rgba(var(--danger), 0.1);">
+                                    <div class="mb-2">
+                                        <strong><i class="fas fa-user me-2"></i>${personnelName}</strong>
+                                    </div>
+                                    <div>
+                                        <i class="fas fa-car me-2"></i>Vehicle: ${vehicleNo}
+                                    </div>
+                                </div>
+                                <p class="text-danger mt-2"><small><i class="fas fa-exclamation-triangle me-1"></i>This action cannot be undone!</small></p>
+                            </div>
+                        `,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, Delete it!',
+                        cancelButtonText: 'Cancel',
+                        confirmButtonColor: 'var(--danger)',
+                        cancelButtonColor: 'var(--dark)',
+                        reverseButtons: true,
+                        width: '500px'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Show loading state
+                            Swal.fire({
+                                title: 'Deleting...',
+                                text: 'Please wait while we delete the personnel record',
+                                allowOutsideClick: false,
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                }
+                            });
+
+                            // Perform the deletion
+                            deletePersonnel(personnelId, personnelName);
+                        }
+                    });
+                });
+            });
+        }
+
+        function deletePersonnel(id, name) {
+            // Create a form to submit the delete request
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = `/myapp/delete_pinkpolice/${id}/`;
+
+            // Add CSRF token
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            const csrfInput = document.createElement('input');
+            csrfInput.type = 'hidden';
+            csrfInput.name = 'csrfmiddlewaretoken';
+            csrfInput.value = csrfToken;
+            form.appendChild(csrfInput);
+
+            // Append to body and submit
+            document.body.appendChild(form);
+
+            // Use fetch to handle the deletion
+            fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: new FormData(form)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json ? response.json() : response.text();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                // Success - show success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Deleted!',
+                    html: `
+                        <div class="text-start">
+                            <p>Pink Police personnel has been deleted successfully.</p>
+                            <div class="alert alert-success mt-2" style="background: rgba(var(--success), 0.1);">
+                                <i class="fas fa-check-circle me-2"></i>
+                                <strong>${name}</strong> has been removed from the system.
+                            </div>
+                        </div>
+                    `,
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: 'var(--success)'
+                }).then(() => {
+                    // Reload the page to see updated list
+                    window.location.reload();
+                });
+            })
+            .catch(error => {
+                // Error - show error message
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Delete Failed',
+                    text: 'There was an error deleting the personnel record. Please try again.',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: 'var(--danger)'
+                });
+            })
+            .finally(() => {
+                // Clean up the form
+                document.body.removeChild(form);
+            });
+        }
+
+{#        function setupTableInteractions() {#}
+{#            // Add row click functionality for viewing details#}
+{#            const rows = document.querySelectorAll('#personnelTable tbody tr');#}
+{##}
+{#            rows.forEach(row => {#}
+{#                // View details on row click (excluding buttons area)#}
+{#                row.addEventListener('click', function(e) {#}
+{#                    // Don't trigger if clicking on buttons#}
+{#                    if (!e.target.closest('.action-buttons') && !e.target.closest('a') && !e.target.closest('button')) {#}
+{#                        const name = this.getAttribute('data-name');#}
+{#                        const id = this.getAttribute('data-id');#}
+{##}
+{#                        // You could implement a view details modal here#}
+{#                        Swal.fire({#}
+{#                            title: 'Personnel Details',#}
+{#                            html: 'View details feature will be implemented soon!',#}
+{#                            icon: 'info',#}
+{#                            confirmButtonText: 'OK',#}
+{#                            confirmButtonColor: 'var(--primary)'#}
+{#                        });#}
+{#                    }#}
+{#                });#}
+{##}
+{#                // Add hover effect#}
+{#                row.addEventListener('mouseenter', function() {#}
+{#                    this.style.transform = 'translateY(-2px)';#}
+{#                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';#}
+{#                });#}
+{##}
+{#                row.addEventListener('mouseleave', function() {#}
+{#                    this.style.transform = 'translateY(0)';#}
+{#                    this.style.boxShadow = 'none';#}
+{#                });#}
+{#            });#}
+{#        }#}
+
+        // Export to Excel functionality with SweetAlert
+        function exportToExcel() {
+            const table = document.querySelector('.table-custom');
+            if (!table) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'No Data',
+                    text: 'No data available to export!',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: 'var(--warning)'
+                });
+                return;
+            }
+
+            // Show confirmation
+            Swal.fire({
+                title: 'Export Data',
+                text: 'Export Pink Police personnel data to Excel?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Export',
+                cancelButtonText: 'Cancel',
+                confirmButtonColor: 'var(--success)'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Show loading
+                    Swal.fire({
+                        title: 'Exporting...',
+                        text: 'Please wait while we prepare the Excel file',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+
+                    // Create workbook
+                    const wb = XLSX.utils.book_new();
+
+                    // Convert table to worksheet
+                    const ws = XLSX.utils.table_to_sheet(table);
+
+                    // Add worksheet to workbook
+                    XLSX.utils.book_append_sheet(wb, ws, 'Pink Police Personnel');
+
+                    // Generate file name with timestamp
+                    const timestamp = new Date().toISOString().slice(0, 10);
+                    const fileName = `Pink_Police_Personnel_${timestamp}.xlsx`;
+
+                    // Save file
+                    XLSX.writeFile(wb, fileName);
+
+                    // Show success message
+                    setTimeout(() => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Export Successful!',
+                            html: `
+                                <div class="text-start">
+                                    <p>Data has been exported successfully.</p>
+                                    <div class="alert alert-success mt-2" style="background: rgba(var(--success), 0.1);">
+                                        <i class="fas fa-file-excel me-2"></i>
+                                        <strong>${fileName}</strong> has been downloaded.
+                                    </div>
+                                    <p class="text-muted small mt-2">Check your downloads folder for the file.</p>
+                                </div>
+                            `,
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: 'var(--success)'
+                        });
+                    }, 500);
+                }
+            });
+        }
+
+        // Filter functionality
+        function filterByGender(gender) {
+            const searchInput = document.getElementById('textfield');
+            searchInput.value = gender;
+
+            Swal.fire({
+                icon: 'info',
+                title: 'Filter Applied',
+                text: `Filtering by gender: ${gender}`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            setTimeout(() => {
+                document.getElementById('form1').submit();
+            }, 1500);
+        }
+
+        // Sort functionality
+        function sortTable(column) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Sort Feature',
+                text: `Sorting by ${column} would be implemented in a future update!`,
+                confirmButtonText: 'OK',
+                confirmButtonColor: 'var(--info)'
+            });
+        }
+
+        // Add CSS for SweetAlert toast messages
+        const style = document.createElement('style');
+        style.textContent = `
+            /* SweetAlert Toast Styling */
+            .message-popup.swal2-toast {
+                background: white !important;
+                color: var(--dark) !important;
+                border-radius: 12px !important;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+                border-left: 4px solid;
+            }
+
+            .message-popup.swal2-toast.swal2-success {
+                border-left-color: var(--success) !important;
+            }
+
+            .message-popup.swal2-toast.swal2-error {
+                border-left-color: var(--danger) !important;
+            }
+
+            .message-popup.swal2-toast.swal2-warning {
+                border-left-color: var(--warning) !important;
+            }
+
+            .message-popup.swal2-toast.swal2-info {
+                border-left-color: var(--info) !important;
+            }
+
+            /* Table row selection */
+            .table-custom tbody tr.selected {
+                background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(66, 105, 225, 0.1)) !important;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

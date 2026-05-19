@@ -1,0 +1,1093 @@
+Area,Zone,Time,People.Frequency,Is.Police_Station,Is.Bar,Tier,Residence.Level,Class,Day_of_Week,Lighting
+Ramapuram,Aanandam Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Monday,Good
+Ramapuram,Aanandam Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Tuesday,Good
+Ramapuram,Aanandam Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Wednesday,Good
+Ramapuram,Aanandam Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Thursday,Good
+Ramapuram,Aanandam Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Friday,Good
+Ramapuram,Aanandam Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Saturday,Good
+Ramapuram,Aanandam Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Sunday,Good
+Ramapuram,Aanandam Nagar,Afternoon,High,Yes,No,Middle,Medium,Safe,Monday,Good
+Ramapuram,Aanandam Nagar,Afternoon,High,Yes,No,Middle,Medium,Safe,Tuesday,Good
+Ramapuram,Aanandam Nagar,Afternoon,High,Yes,No,Middle,Medium,Safe,Wednesday,Good
+Ramapuram,Aanandam Nagar,Afternoon,High,Yes,No,Middle,Medium,Safe,Thursday,Good
+Ramapuram,Aanandam Nagar,Afternoon,High,Yes,No,Middle,Medium,Safe,Friday,Good
+Ramapuram,Aanandam Nagar,Afternoon,High,Yes,No,Middle,Medium,Safe,Saturday,Good
+Ramapuram,Aanandam Nagar,Afternoon,High,Yes,No,Middle,Medium,Safe,Sunday,Good
+Ramapuram,Aanandam Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Monday,Good
+Ramapuram,Aanandam Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Tuesday,Good
+Ramapuram,Aanandam Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Wednesday,Good
+Ramapuram,Aanandam Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Thursday,Good
+Ramapuram,Aanandam Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Friday,Good
+Ramapuram,Aanandam Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Saturday,Good
+Ramapuram,Aanandam Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Sunday,Good
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Monday,Good
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Monday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Monday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Tuesday,Good
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Tuesday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Tuesday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Wednesday,Good
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Wednesday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Wednesday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Thursday,Good
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Thursday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Thursday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Friday,Good
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Friday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Friday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Saturday,Good
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Saturday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Saturday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Sunday,Good
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Sunday,Moderate
+Ramapuram,Aanandam Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Sunday,Moderate
+Ramapuram,Ambal Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Monday,Good
+Ramapuram,Ambal Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Tuesday,Good
+Ramapuram,Ambal Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Wednesday,Good
+Ramapuram,Ambal Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Thursday,Good
+Ramapuram,Ambal Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Friday,Good
+Ramapuram,Ambal Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Saturday,Good
+Ramapuram,Ambal Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Sunday,Good
+Ramapuram,Ambal Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Monday,Good
+Ramapuram,Ambal Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Tuesday,Good
+Ramapuram,Ambal Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Wednesday,Good
+Ramapuram,Ambal Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Thursday,Good
+Ramapuram,Ambal Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Friday,Good
+Ramapuram,Ambal Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Saturday,Good
+Ramapuram,Ambal Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Sunday,Good
+Ramapuram,Ambal Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Monday,Good
+Ramapuram,Ambal Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Tuesday,Good
+Ramapuram,Ambal Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Wednesday,Good
+Ramapuram,Ambal Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Thursday,Good
+Ramapuram,Ambal Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Friday,Good
+Ramapuram,Ambal Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Saturday,Good
+Ramapuram,Ambal Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Sunday,Good
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Monday,Good
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Monday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Monday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Tuesday,Good
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Tuesday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Tuesday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Wednesday,Good
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Wednesday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Wednesday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Thursday,Good
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Thursday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Thursday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Friday,Good
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Friday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Friday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Saturday,Good
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Saturday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Saturday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Sunday,Good
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Sunday,Moderate
+Ramapuram,Ambal Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Sunday,Moderate
+Ramapuram,Amman Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Monday,Good
+Ramapuram,Amman Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Tuesday,Good
+Ramapuram,Amman Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Wednesday,Good
+Ramapuram,Amman Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Thursday,Good
+Ramapuram,Amman Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Friday,Good
+Ramapuram,Amman Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Saturday,Good
+Ramapuram,Amman Nagar,Morning,Medium,No,No,Outer,Medium,Safe,Sunday,Good
+Ramapuram,Amman Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Monday,Good
+Ramapuram,Amman Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Tuesday,Good
+Ramapuram,Amman Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Wednesday,Good
+Ramapuram,Amman Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Thursday,Good
+Ramapuram,Amman Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Friday,Good
+Ramapuram,Amman Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Saturday,Good
+Ramapuram,Amman Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Sunday,Good
+Ramapuram,Amman Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Monday,Good
+Ramapuram,Amman Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Tuesday,Good
+Ramapuram,Amman Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Wednesday,Good
+Ramapuram,Amman Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Thursday,Good
+Ramapuram,Amman Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Friday,Good
+Ramapuram,Amman Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Saturday,Good
+Ramapuram,Amman Nagar,Evening,Medium,No,No,Outer,Medium,Unsafe,Sunday,Good
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Monday,Good
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Monday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Monday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Tuesday,Good
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Tuesday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Tuesday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Wednesday,Good
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Wednesday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Wednesday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Thursday,Good
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Thursday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Thursday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Safe,Friday,Good
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Safe,Friday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Friday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Saturday,Good
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Saturday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Saturday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Sunday,Good
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Sunday,Moderate
+Ramapuram,Amman Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Sunday,Moderate
+Adyar,Baktavatsalm Nagar,Morning,Medium,No,No,Outer,Low,Safe,Monday,Good
+Adyar,Baktavatsalm Nagar,Morning,Medium,No,No,Outer,Low,Safe,Tuesday,Good
+Adyar,Baktavatsalm Nagar,Morning,Medium,No,No,Outer,Low,Safe,Wednesday,Good
+Adyar,Baktavatsalm Nagar,Morning,Medium,No,No,Outer,Low,Safe,Thursday,Good
+Adyar,Baktavatsalm Nagar,Morning,Medium,No,No,Outer,Low,Safe,Friday,Good
+Adyar,Baktavatsalm Nagar,Morning,Medium,No,No,Outer,Low,Safe,Saturday,Good
+Adyar,Baktavatsalm Nagar,Morning,Medium,No,No,Outer,Low,Safe,Sunday,Good
+Adyar,Baktavatsalm Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Monday,Good
+Adyar,Baktavatsalm Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Tuesday,Good
+Adyar,Baktavatsalm Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Wednesday,Good
+Adyar,Baktavatsalm Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Thursday,Good
+Adyar,Baktavatsalm Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Friday,Good
+Adyar,Baktavatsalm Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Saturday,Good
+Adyar,Baktavatsalm Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Sunday,Good
+Adyar,Baktavatsalm Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Monday,Good
+Adyar,Baktavatsalm Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Tuesday,Good
+Adyar,Baktavatsalm Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Wednesday,Good
+Adyar,Baktavatsalm Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Thursday,Good
+Adyar,Baktavatsalm Nagar,Evening,Medium,No,No,Outer,Low,Safe,Friday,Good
+Adyar,Baktavatsalm Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Saturday,Good
+Adyar,Baktavatsalm Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Sunday,Good
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Moderate
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Moderate
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Moderate
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Moderate
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Moderate
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Moderate
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Moderate
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Poor
+Adyar,Baktavatsalm Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Poor
+Ramapuram,Chidambaram Nagar,Morning,Medium,No,No,Middle,High,Safe,Monday,Good
+Ramapuram,Chidambaram Nagar,Morning,Medium,No,No,Middle,High,Safe,Tuesday,Good
+Ramapuram,Chidambaram Nagar,Morning,Medium,No,No,Middle,High,Safe,Wednesday,Good
+Ramapuram,Chidambaram Nagar,Morning,Medium,No,No,Middle,High,Safe,Thursday,Good
+Ramapuram,Chidambaram Nagar,Morning,Medium,No,No,Middle,High,Safe,Friday,Good
+Ramapuram,Chidambaram Nagar,Morning,Medium,No,No,Middle,High,Safe,Saturday,Good
+Ramapuram,Chidambaram Nagar,Morning,Medium,No,No,Middle,High,Safe,Sunday,Good
+Ramapuram,Chidambaram Nagar,Afternoon,Low,No,No,Middle,High,Safe,Monday,Good
+Ramapuram,Chidambaram Nagar,Afternoon,Low,No,No,Middle,High,Safe,Tuesday,Good
+Ramapuram,Chidambaram Nagar,Afternoon,Low,No,No,Middle,High,Safe,Wednesday,Good
+Ramapuram,Chidambaram Nagar,Afternoon,Low,No,No,Middle,High,Safe,Thursday,Good
+Ramapuram,Chidambaram Nagar,Afternoon,Low,No,No,Middle,High,Safe,Friday,Good
+Ramapuram,Chidambaram Nagar,Afternoon,Low,No,No,Middle,High,Safe,Saturday,Good
+Ramapuram,Chidambaram Nagar,Afternoon,Low,No,No,Middle,High,Safe,Sunday,Good
+Ramapuram,Chidambaram Nagar,Evening,Medium,No,No,Middle,High,Safe,Monday,Good
+Ramapuram,Chidambaram Nagar,Evening,Medium,No,No,Middle,High,Safe,Tuesday,Good
+Ramapuram,Chidambaram Nagar,Evening,Medium,No,No,Middle,High,Safe,Wednesday,Good
+Ramapuram,Chidambaram Nagar,Evening,Medium,No,No,Middle,High,Safe,Thursday,Good
+Ramapuram,Chidambaram Nagar,Evening,Medium,No,No,Middle,High,Safe,Friday,Good
+Ramapuram,Chidambaram Nagar,Evening,Medium,No,No,Middle,High,Safe,Saturday,Good
+Ramapuram,Chidambaram Nagar,Evening,Medium,No,No,Middle,High,Safe,Sunday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Monday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Monday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Monday,Moderate
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Tuesday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Tuesday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Tuesday,Moderate
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Wednesday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Wednesday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Wednesday,Moderate
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Thursday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Thursday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Thursday,Moderate
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Friday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Friday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Safe,Friday,Moderate
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Saturday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Saturday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Saturday,Moderate
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Sunday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Sunday,Good
+Ramapuram,Chidambaram Nagar,Night,Low,No,No,Middle,High,Unsafe,Sunday,Moderate
+Ramapuram,Easwaran Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Monday,Good
+Ramapuram,Easwaran Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Tuesday,Good
+Ramapuram,Easwaran Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Wednesday,Good
+Ramapuram,Easwaran Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Thursday,Good
+Ramapuram,Easwaran Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Friday,Good
+Ramapuram,Easwaran Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Saturday,Good
+Ramapuram,Easwaran Nagar,Morning,Medium,Yes,No,Middle,Medium,Safe,Sunday,Good
+Ramapuram,Easwaran Nagar,Afternoon,Medium,Yes,No,Middle,Medium,Safe,Monday,Good
+Ramapuram,Easwaran Nagar,Afternoon,Medium,Yes,No,Middle,Medium,Safe,Tuesday,Good
+Ramapuram,Easwaran Nagar,Afternoon,Medium,Yes,No,Middle,Medium,Safe,Wednesday,Good
+Ramapuram,Easwaran Nagar,Afternoon,Medium,Yes,No,Middle,Medium,Safe,Thursday,Good
+Ramapuram,Easwaran Nagar,Afternoon,Medium,Yes,No,Middle,Medium,Safe,Friday,Good
+Ramapuram,Easwaran Nagar,Afternoon,Medium,Yes,No,Middle,Medium,Safe,Saturday,Good
+Ramapuram,Easwaran Nagar,Afternoon,Medium,Yes,No,Middle,Medium,Safe,Sunday,Good
+Ramapuram,Easwaran Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Monday,Good
+Ramapuram,Easwaran Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Tuesday,Good
+Ramapuram,Easwaran Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Wednesday,Good
+Ramapuram,Easwaran Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Thursday,Good
+Ramapuram,Easwaran Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Friday,Good
+Ramapuram,Easwaran Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Saturday,Good
+Ramapuram,Easwaran Nagar,Evening,Medium,Yes,No,Middle,Medium,Safe,Sunday,Good
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Monday,Good
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Monday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Monday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Tuesday,Good
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Tuesday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Tuesday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Wednesday,Good
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Wednesday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Wednesday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Thursday,Good
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Thursday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Thursday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Friday,Good
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Friday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Friday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Saturday,Good
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Saturday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Saturday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Sunday,Good
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Sunday,Moderate
+Ramapuram,Easwaran Nagar,Night,Low,Yes,No,Middle,Medium,Safe,Sunday,Moderate
+Ramapuram,Gokulam Colony,Morning,Medium,No,Yes,Outer,High,Safe,Monday,Good
+Ramapuram,Gokulam Colony,Morning,Medium,No,Yes,Outer,High,Safe,Tuesday,Good
+Ramapuram,Gokulam Colony,Morning,Medium,No,Yes,Outer,High,Safe,Wednesday,Good
+Ramapuram,Gokulam Colony,Morning,Medium,No,Yes,Outer,High,Safe,Thursday,Good
+Ramapuram,Gokulam Colony,Morning,Medium,No,Yes,Outer,High,Safe,Friday,Good
+Ramapuram,Gokulam Colony,Morning,Medium,No,Yes,Outer,High,Safe,Saturday,Good
+Ramapuram,Gokulam Colony,Morning,Medium,No,Yes,Outer,High,Safe,Sunday,Good
+Ramapuram,Gokulam Colony,Afternoon,High,No,Yes,Outer,High,Safe,Monday,Good
+Ramapuram,Gokulam Colony,Afternoon,High,No,Yes,Outer,High,Safe,Tuesday,Good
+Ramapuram,Gokulam Colony,Afternoon,High,No,Yes,Outer,High,Safe,Wednesday,Good
+Ramapuram,Gokulam Colony,Afternoon,High,No,Yes,Outer,High,Safe,Thursday,Good
+Ramapuram,Gokulam Colony,Afternoon,High,No,Yes,Outer,High,Safe,Friday,Good
+Ramapuram,Gokulam Colony,Afternoon,High,No,Yes,Outer,High,Safe,Saturday,Good
+Ramapuram,Gokulam Colony,Afternoon,High,No,Yes,Outer,High,Safe,Sunday,Good
+Ramapuram,Gokulam Colony,Evening,Medium,No,Yes,Outer,High,Unsafe,Monday,Good
+Ramapuram,Gokulam Colony,Evening,Medium,No,Yes,Outer,High,Unsafe,Tuesday,Good
+Ramapuram,Gokulam Colony,Evening,Medium,No,Yes,Outer,High,Unsafe,Wednesday,Good
+Ramapuram,Gokulam Colony,Evening,Medium,No,Yes,Outer,High,Unsafe,Thursday,Good
+Ramapuram,Gokulam Colony,Evening,Medium,No,Yes,Outer,High,Unsafe,Friday,Good
+Ramapuram,Gokulam Colony,Evening,Medium,No,Yes,Outer,High,Unsafe,Saturday,Good
+Ramapuram,Gokulam Colony,Evening,Medium,No,Yes,Outer,High,Unsafe,Sunday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Monday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Monday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Monday,Moderate
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Tuesday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Tuesday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Tuesday,Moderate
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Wednesday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Safe,Wednesday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Wednesday,Moderate
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Thursday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Thursday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Thursday,Moderate
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Friday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Friday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Safe,Friday,Moderate
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Saturday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Saturday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Saturday,Moderate
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Sunday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Sunday,Good
+Ramapuram,Gokulam Colony,Night,High,No,Yes,Outer,High,Unsafe,Sunday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Morning,Medium,No,No,Middle,Medium,Safe,Monday,Good
+West Mambalam,Kasi Viswanathar Colony,Morning,Medium,No,No,Middle,Medium,Safe,Tuesday,Good
+West Mambalam,Kasi Viswanathar Colony,Morning,Medium,No,No,Middle,Medium,Safe,Wednesday,Good
+West Mambalam,Kasi Viswanathar Colony,Morning,Medium,No,No,Middle,Medium,Safe,Thursday,Good
+West Mambalam,Kasi Viswanathar Colony,Morning,Medium,No,No,Middle,Medium,Safe,Friday,Good
+West Mambalam,Kasi Viswanathar Colony,Morning,Medium,No,No,Middle,Medium,Safe,Saturday,Good
+West Mambalam,Kasi Viswanathar Colony,Morning,Medium,No,No,Middle,Medium,Safe,Sunday,Good
+West Mambalam,Kasi Viswanathar Colony,Afternoon,Medium,No,No,Middle,Medium,Safe,Monday,Good
+West Mambalam,Kasi Viswanathar Colony,Afternoon,Medium,No,No,Middle,Medium,Safe,Tuesday,Good
+West Mambalam,Kasi Viswanathar Colony,Afternoon,Medium,No,No,Middle,Medium,Safe,Wednesday,Good
+West Mambalam,Kasi Viswanathar Colony,Afternoon,Medium,No,No,Middle,Medium,Safe,Thursday,Good
+West Mambalam,Kasi Viswanathar Colony,Afternoon,Medium,No,No,Middle,Medium,Safe,Friday,Good
+West Mambalam,Kasi Viswanathar Colony,Afternoon,Medium,No,No,Middle,Medium,Safe,Saturday,Good
+West Mambalam,Kasi Viswanathar Colony,Afternoon,Medium,No,No,Middle,Medium,Safe,Sunday,Good
+West Mambalam,Kasi Viswanathar Colony,Evening,Medium,No,No,Middle,Medium,Safe,Monday,Good
+West Mambalam,Kasi Viswanathar Colony,Evening,Medium,No,No,Middle,Medium,Safe,Tuesday,Good
+West Mambalam,Kasi Viswanathar Colony,Evening,Medium,No,No,Middle,Medium,Safe,Wednesday,Good
+West Mambalam,Kasi Viswanathar Colony,Evening,Medium,No,No,Middle,Medium,Safe,Thursday,Good
+West Mambalam,Kasi Viswanathar Colony,Evening,Medium,No,No,Middle,Medium,Safe,Friday,Good
+West Mambalam,Kasi Viswanathar Colony,Evening,Medium,No,No,Middle,Medium,Safe,Saturday,Good
+West Mambalam,Kasi Viswanathar Colony,Evening,Medium,No,No,Middle,Medium,Safe,Sunday,Good
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Monday,Good
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Monday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Monday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Safe,Tuesday,Good
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Tuesday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Tuesday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Wednesday,Good
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Wednesday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Wednesday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Thursday,Good
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Safe,Thursday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Thursday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Friday,Good
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Friday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Friday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Saturday,Good
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Saturday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Saturday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Sunday,Good
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Sunday,Moderate
+West Mambalam,Kasi Viswanathar Colony,Night,Low,No,No,Middle,Medium,Unsafe,Sunday,Moderate
+Ramapuram,Moogambigai Nagar,Morning,Low,No,No,Outer,Low,Unsafe,Monday,Good
+Ramapuram,Moogambigai Nagar,Morning,Low,No,No,Outer,Low,Unsafe,Tuesday,Good
+Ramapuram,Moogambigai Nagar,Morning,Low,No,No,Outer,Low,Unsafe,Wednesday,Good
+Ramapuram,Moogambigai Nagar,Morning,Low,No,No,Outer,Low,Unsafe,Thursday,Good
+Ramapuram,Moogambigai Nagar,Morning,Low,No,No,Outer,Low,Unsafe,Friday,Good
+Ramapuram,Moogambigai Nagar,Morning,Low,No,No,Outer,Low,Unsafe,Saturday,Good
+Ramapuram,Moogambigai Nagar,Morning,Low,No,No,Outer,Low,Unsafe,Sunday,Good
+Ramapuram,Moogambigai Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Monday,Good
+Ramapuram,Moogambigai Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Tuesday,Good
+Ramapuram,Moogambigai Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Wednesday,Good
+Ramapuram,Moogambigai Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Thursday,Good
+Ramapuram,Moogambigai Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Friday,Good
+Ramapuram,Moogambigai Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Saturday,Good
+Ramapuram,Moogambigai Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Sunday,Good
+Ramapuram,Moogambigai Nagar,Evening,Low,No,No,Outer,Low,Unsafe,Monday,Good
+Ramapuram,Moogambigai Nagar,Evening,Low,No,No,Outer,Low,Safe,Tuesday,Good
+Ramapuram,Moogambigai Nagar,Evening,Low,No,No,Outer,Low,Unsafe,Wednesday,Good
+Ramapuram,Moogambigai Nagar,Evening,Low,No,No,Outer,Low,Unsafe,Thursday,Good
+Ramapuram,Moogambigai Nagar,Evening,Low,No,No,Outer,Low,Unsafe,Friday,Good
+Ramapuram,Moogambigai Nagar,Evening,Low,No,No,Outer,Low,Unsafe,Saturday,Good
+Ramapuram,Moogambigai Nagar,Evening,Low,No,No,Outer,Low,Unsafe,Sunday,Good
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Moderate
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Moderate
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Moderate
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Moderate
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Moderate
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Moderate
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Moderate
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Poor
+Ramapuram,Moogambigai Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Poor
+West Mambalam,Moovendar Colony,Morning,Medium,Yes,No,Outer,Medium,Safe,Monday,Good
+West Mambalam,Moovendar Colony,Morning,Medium,Yes,No,Outer,Medium,Safe,Tuesday,Good
+West Mambalam,Moovendar Colony,Morning,Medium,Yes,No,Outer,Medium,Safe,Wednesday,Good
+West Mambalam,Moovendar Colony,Morning,Medium,Yes,No,Outer,Medium,Safe,Thursday,Good
+West Mambalam,Moovendar Colony,Morning,Medium,Yes,No,Outer,Medium,Safe,Friday,Good
+West Mambalam,Moovendar Colony,Morning,Medium,Yes,No,Outer,Medium,Safe,Saturday,Good
+West Mambalam,Moovendar Colony,Morning,Medium,Yes,No,Outer,Medium,Safe,Sunday,Good
+West Mambalam,Moovendar Colony,Afternoon,Low,Yes,No,Outer,Medium,Safe,Monday,Good
+West Mambalam,Moovendar Colony,Afternoon,Low,Yes,No,Outer,Medium,Safe,Tuesday,Good
+West Mambalam,Moovendar Colony,Afternoon,Low,Yes,No,Outer,Medium,Safe,Wednesday,Good
+West Mambalam,Moovendar Colony,Afternoon,Low,Yes,No,Outer,Medium,Safe,Thursday,Good
+West Mambalam,Moovendar Colony,Afternoon,Low,Yes,No,Outer,Medium,Safe,Friday,Good
+West Mambalam,Moovendar Colony,Afternoon,Low,Yes,No,Outer,Medium,Safe,Saturday,Good
+West Mambalam,Moovendar Colony,Afternoon,Low,Yes,No,Outer,Medium,Safe,Sunday,Good
+West Mambalam,Moovendar Colony,Evening,Medium,Yes,No,Outer,Medium,Safe,Monday,Good
+West Mambalam,Moovendar Colony,Evening,Medium,Yes,No,Outer,Medium,Safe,Tuesday,Good
+West Mambalam,Moovendar Colony,Evening,Medium,Yes,No,Outer,Medium,Safe,Wednesday,Good
+West Mambalam,Moovendar Colony,Evening,Medium,Yes,No,Outer,Medium,Safe,Thursday,Good
+West Mambalam,Moovendar Colony,Evening,Medium,Yes,No,Outer,Medium,Safe,Friday,Good
+West Mambalam,Moovendar Colony,Evening,Medium,Yes,No,Outer,Medium,Safe,Saturday,Good
+West Mambalam,Moovendar Colony,Evening,Medium,Yes,No,Outer,Medium,Safe,Sunday,Good
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Monday,Good
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Monday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Monday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Tuesday,Good
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Tuesday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Tuesday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Wednesday,Good
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Wednesday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Wednesday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Thursday,Good
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Thursday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Thursday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Friday,Good
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Friday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Friday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Saturday,Good
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Saturday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Saturday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Sunday,Good
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Sunday,Moderate
+West Mambalam,Moovendar Colony,Night,Low,Yes,No,Outer,Medium,Unsafe,Sunday,Moderate
+Ramapuram,Mullai Nagar,Morning,High,Yes,No,Inner,High,Safe,Monday,Good
+Ramapuram,Mullai Nagar,Morning,High,Yes,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Mullai Nagar,Morning,High,Yes,No,Inner,High,Safe,Wednesday,Good
+Ramapuram,Mullai Nagar,Morning,High,Yes,No,Inner,High,Safe,Thursday,Good
+Ramapuram,Mullai Nagar,Morning,High,Yes,No,Inner,High,Safe,Friday,Good
+Ramapuram,Mullai Nagar,Morning,High,Yes,No,Inner,High,Safe,Saturday,Good
+Ramapuram,Mullai Nagar,Morning,High,Yes,No,Inner,High,Safe,Sunday,Good
+Ramapuram,Mullai Nagar,Afternoon,Medium,Yes,No,Inner,High,Safe,Monday,Good
+Ramapuram,Mullai Nagar,Afternoon,Medium,Yes,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Mullai Nagar,Afternoon,Medium,Yes,No,Inner,High,Safe,Wednesday,Good
+Ramapuram,Mullai Nagar,Afternoon,Medium,Yes,No,Inner,High,Safe,Thursday,Good
+Ramapuram,Mullai Nagar,Afternoon,Medium,Yes,No,Inner,High,Safe,Friday,Good
+Ramapuram,Mullai Nagar,Afternoon,Medium,Yes,No,Inner,High,Safe,Saturday,Good
+Ramapuram,Mullai Nagar,Afternoon,Medium,Yes,No,Inner,High,Safe,Sunday,Good
+Ramapuram,Mullai Nagar,Evening,High,Yes,No,Inner,High,Safe,Monday,Good
+Ramapuram,Mullai Nagar,Evening,High,Yes,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Mullai Nagar,Evening,High,Yes,No,Inner,High,Safe,Wednesday,Good
+Ramapuram,Mullai Nagar,Evening,High,Yes,No,Inner,High,Safe,Thursday,Good
+Ramapuram,Mullai Nagar,Evening,High,Yes,No,Inner,High,Safe,Friday,Good
+Ramapuram,Mullai Nagar,Evening,High,Yes,No,Inner,High,Safe,Saturday,Good
+Ramapuram,Mullai Nagar,Evening,High,Yes,No,Inner,High,Safe,Sunday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Monday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Monday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Monday,Moderate
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Tuesday,Moderate
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Wednesday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Wednesday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Wednesday,Moderate
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Thursday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Thursday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Thursday,Moderate
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Friday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Friday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Friday,Moderate
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Unsafe,Saturday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Unsafe,Saturday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Unsafe,Saturday,Moderate
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Sunday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Sunday,Good
+Ramapuram,Mullai Nagar,Night,High,Yes,No,Inner,High,Safe,Sunday,Moderate
+West Mambalam,Pannerselvam Nagar,Morning,Medium,No,Yes,Outer,Low,Unsafe,Monday,Good
+West Mambalam,Pannerselvam Nagar,Morning,Medium,No,Yes,Outer,Low,Unsafe,Tuesday,Good
+West Mambalam,Pannerselvam Nagar,Morning,Medium,No,Yes,Outer,Low,Unsafe,Wednesday,Good
+West Mambalam,Pannerselvam Nagar,Morning,Medium,No,Yes,Outer,Low,Unsafe,Thursday,Good
+West Mambalam,Pannerselvam Nagar,Morning,Medium,No,Yes,Outer,Low,Unsafe,Friday,Good
+West Mambalam,Pannerselvam Nagar,Morning,Medium,No,Yes,Outer,Low,Unsafe,Saturday,Good
+West Mambalam,Pannerselvam Nagar,Morning,Medium,No,Yes,Outer,Low,Unsafe,Sunday,Good
+West Mambalam,Pannerselvam Nagar,Afternoon,Low,No,Yes,Outer,Low,Safe,Monday,Good
+West Mambalam,Pannerselvam Nagar,Afternoon,Low,No,Yes,Outer,Low,Safe,Tuesday,Good
+West Mambalam,Pannerselvam Nagar,Afternoon,Low,No,Yes,Outer,Low,Safe,Wednesday,Good
+West Mambalam,Pannerselvam Nagar,Afternoon,Low,No,Yes,Outer,Low,Safe,Thursday,Good
+West Mambalam,Pannerselvam Nagar,Afternoon,Low,No,Yes,Outer,Low,Safe,Friday,Good
+West Mambalam,Pannerselvam Nagar,Afternoon,Low,No,Yes,Outer,Low,Safe,Saturday,Good
+West Mambalam,Pannerselvam Nagar,Afternoon,Low,No,Yes,Outer,Low,Safe,Sunday,Good
+West Mambalam,Pannerselvam Nagar,Evening,Low,No,Yes,Outer,Low,Unsafe,Monday,Good
+West Mambalam,Pannerselvam Nagar,Evening,Low,No,Yes,Outer,Low,Unsafe,Tuesday,Good
+West Mambalam,Pannerselvam Nagar,Evening,Low,No,Yes,Outer,Low,Unsafe,Wednesday,Good
+West Mambalam,Pannerselvam Nagar,Evening,Low,No,Yes,Outer,Low,Unsafe,Thursday,Good
+West Mambalam,Pannerselvam Nagar,Evening,Low,No,Yes,Outer,Low,Unsafe,Friday,Good
+West Mambalam,Pannerselvam Nagar,Evening,Low,No,Yes,Outer,Low,Safe,Saturday,Good
+West Mambalam,Pannerselvam Nagar,Evening,Low,No,Yes,Outer,Low,Unsafe,Sunday,Good
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Safe,Monday,Moderate
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Monday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Monday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Tuesday,Moderate
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Tuesday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Tuesday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Wednesday,Moderate
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Wednesday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Wednesday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Thursday,Moderate
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Thursday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Thursday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Friday,Moderate
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Friday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Friday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Saturday,Moderate
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Saturday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Saturday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Sunday,Moderate
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Sunday,Poor
+West Mambalam,Pannerselvam Nagar,Night,Low,No,Yes,Outer,Low,Unsafe,Sunday,Poor
+West Mambalam,Postal Colony,Morning,High,Yes,Yes,Middle,High,Safe,Monday,Good
+West Mambalam,Postal Colony,Morning,High,Yes,Yes,Middle,High,Safe,Tuesday,Good
+West Mambalam,Postal Colony,Morning,High,Yes,Yes,Middle,High,Safe,Wednesday,Good
+West Mambalam,Postal Colony,Morning,High,Yes,Yes,Middle,High,Safe,Thursday,Good
+West Mambalam,Postal Colony,Morning,High,Yes,Yes,Middle,High,Safe,Friday,Good
+West Mambalam,Postal Colony,Morning,High,Yes,Yes,Middle,High,Safe,Saturday,Good
+West Mambalam,Postal Colony,Morning,High,Yes,Yes,Middle,High,Safe,Sunday,Good
+West Mambalam,Postal Colony,Afternoon,High,Yes,Yes,Middle,High,Safe,Monday,Good
+West Mambalam,Postal Colony,Afternoon,High,Yes,Yes,Middle,High,Safe,Tuesday,Good
+West Mambalam,Postal Colony,Afternoon,High,Yes,Yes,Middle,High,Safe,Wednesday,Good
+West Mambalam,Postal Colony,Afternoon,High,Yes,Yes,Middle,High,Safe,Thursday,Good
+West Mambalam,Postal Colony,Afternoon,High,Yes,Yes,Middle,High,Safe,Friday,Good
+West Mambalam,Postal Colony,Afternoon,High,Yes,Yes,Middle,High,Safe,Saturday,Good
+West Mambalam,Postal Colony,Afternoon,High,Yes,Yes,Middle,High,Safe,Sunday,Good
+West Mambalam,Postal Colony,Evening,High,Yes,Yes,Middle,High,Safe,Monday,Good
+West Mambalam,Postal Colony,Evening,High,Yes,Yes,Middle,High,Safe,Tuesday,Good
+West Mambalam,Postal Colony,Evening,High,Yes,Yes,Middle,High,Safe,Wednesday,Good
+West Mambalam,Postal Colony,Evening,High,Yes,Yes,Middle,High,Safe,Thursday,Good
+West Mambalam,Postal Colony,Evening,High,Yes,Yes,Middle,High,Safe,Friday,Good
+West Mambalam,Postal Colony,Evening,High,Yes,Yes,Middle,High,Safe,Saturday,Good
+West Mambalam,Postal Colony,Evening,High,Yes,Yes,Middle,High,Safe,Sunday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Monday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Monday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Monday,Moderate
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Tuesday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Tuesday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Tuesday,Moderate
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Wednesday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Wednesday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Wednesday,Moderate
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Thursday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Thursday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Thursday,Moderate
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Friday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Friday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Friday,Moderate
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Unsafe,Saturday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Unsafe,Saturday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Unsafe,Saturday,Moderate
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Sunday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Sunday,Good
+West Mambalam,Postal Colony,Night,Low,Yes,Yes,Middle,High,Safe,Sunday,Moderate
+West Mambalam,RamaKrishnapuram,Morning,High,Yes,Yes,Inner,High,Safe,Monday,Good
+West Mambalam,RamaKrishnapuram,Morning,High,Yes,Yes,Inner,High,Safe,Tuesday,Good
+West Mambalam,RamaKrishnapuram,Morning,High,Yes,Yes,Inner,High,Safe,Wednesday,Good
+West Mambalam,RamaKrishnapuram,Morning,High,Yes,Yes,Inner,High,Safe,Thursday,Good
+West Mambalam,RamaKrishnapuram,Morning,High,Yes,Yes,Inner,High,Safe,Friday,Good
+West Mambalam,RamaKrishnapuram,Morning,High,Yes,Yes,Inner,High,Safe,Saturday,Good
+West Mambalam,RamaKrishnapuram,Morning,High,Yes,Yes,Inner,High,Safe,Sunday,Good
+West Mambalam,RamaKrishnapuram,Afternoon,High,Yes,Yes,Inner,High,Safe,Monday,Good
+West Mambalam,RamaKrishnapuram,Afternoon,High,Yes,Yes,Inner,High,Safe,Tuesday,Good
+West Mambalam,RamaKrishnapuram,Afternoon,High,Yes,Yes,Inner,High,Safe,Wednesday,Good
+West Mambalam,RamaKrishnapuram,Afternoon,High,Yes,Yes,Inner,High,Safe,Thursday,Good
+West Mambalam,RamaKrishnapuram,Afternoon,High,Yes,Yes,Inner,High,Safe,Friday,Good
+West Mambalam,RamaKrishnapuram,Afternoon,High,Yes,Yes,Inner,High,Safe,Saturday,Good
+West Mambalam,RamaKrishnapuram,Afternoon,High,Yes,Yes,Inner,High,Safe,Sunday,Good
+West Mambalam,RamaKrishnapuram,Evening,High,Yes,Yes,Inner,High,Safe,Monday,Good
+West Mambalam,RamaKrishnapuram,Evening,High,Yes,Yes,Inner,High,Safe,Tuesday,Good
+West Mambalam,RamaKrishnapuram,Evening,High,Yes,Yes,Inner,High,Safe,Wednesday,Good
+West Mambalam,RamaKrishnapuram,Evening,High,Yes,Yes,Inner,High,Safe,Thursday,Good
+West Mambalam,RamaKrishnapuram,Evening,High,Yes,Yes,Inner,High,Safe,Friday,Good
+West Mambalam,RamaKrishnapuram,Evening,High,Yes,Yes,Inner,High,Safe,Saturday,Good
+West Mambalam,RamaKrishnapuram,Evening,High,Yes,Yes,Inner,High,Safe,Sunday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Monday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Monday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Monday,Moderate
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Moderate
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Moderate
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Thursday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Thursday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Thursday,Moderate
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Friday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Friday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Friday,Moderate
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Saturday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Saturday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Saturday,Moderate
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Sunday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Sunday,Good
+West Mambalam,RamaKrishnapuram,Night,Medium,Yes,Yes,Inner,High,Safe,Sunday,Moderate
+Ramapuram,Royala Nagar,Morning,Medium,No,No,Inner,High,Safe,Monday,Good
+Ramapuram,Royala Nagar,Morning,Medium,No,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Royala Nagar,Morning,Medium,No,No,Inner,High,Safe,Wednesday,Good
+Ramapuram,Royala Nagar,Morning,Medium,No,No,Inner,High,Safe,Thursday,Good
+Ramapuram,Royala Nagar,Morning,Medium,No,No,Inner,High,Safe,Friday,Good
+Ramapuram,Royala Nagar,Morning,Medium,No,No,Inner,High,Safe,Saturday,Good
+Ramapuram,Royala Nagar,Morning,Medium,No,No,Inner,High,Safe,Sunday,Good
+Ramapuram,Royala Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Monday,Good
+Ramapuram,Royala Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Royala Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Wednesday,Good
+Ramapuram,Royala Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Thursday,Good
+Ramapuram,Royala Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Friday,Good
+Ramapuram,Royala Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Saturday,Good
+Ramapuram,Royala Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Sunday,Good
+Ramapuram,Royala Nagar,Evening,Medium,No,No,Inner,High,Safe,Monday,Good
+Ramapuram,Royala Nagar,Evening,Medium,No,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Royala Nagar,Evening,Medium,No,No,Inner,High,Safe,Wednesday,Good
+Ramapuram,Royala Nagar,Evening,Medium,No,No,Inner,High,Safe,Thursday,Good
+Ramapuram,Royala Nagar,Evening,Medium,No,No,Inner,High,Safe,Friday,Good
+Ramapuram,Royala Nagar,Evening,Medium,No,No,Inner,High,Safe,Saturday,Good
+Ramapuram,Royala Nagar,Evening,Medium,No,No,Inner,High,Safe,Sunday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Monday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Monday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Monday,Moderate
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Tuesday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Tuesday,Moderate
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Wednesday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Wednesday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Wednesday,Moderate
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Thursday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Thursday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Thursday,Moderate
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Friday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Friday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Friday,Moderate
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Saturday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Saturday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Saturday,Moderate
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Sunday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Sunday,Good
+Ramapuram,Royala Nagar,Night,Low,No,No,Inner,High,Unsafe,Sunday,Moderate
+Ramapuram,Sakthi Nagar,Morning,Low,Yes,Yes,Outer,Medium,Safe,Monday,Good
+Ramapuram,Sakthi Nagar,Morning,Low,Yes,Yes,Outer,Medium,Safe,Tuesday,Good
+Ramapuram,Sakthi Nagar,Morning,Low,Yes,Yes,Outer,Medium,Safe,Wednesday,Good
+Ramapuram,Sakthi Nagar,Morning,Low,Yes,Yes,Outer,Medium,Safe,Thursday,Good
+Ramapuram,Sakthi Nagar,Morning,Low,Yes,Yes,Outer,Medium,Safe,Friday,Good
+Ramapuram,Sakthi Nagar,Morning,Low,Yes,Yes,Outer,Medium,Safe,Saturday,Good
+Ramapuram,Sakthi Nagar,Morning,Low,Yes,Yes,Outer,Medium,Safe,Sunday,Good
+Ramapuram,Sakthi Nagar,Afternoon,High,Yes,Yes,Outer,Medium,Safe,Monday,Good
+Ramapuram,Sakthi Nagar,Afternoon,High,Yes,Yes,Outer,Medium,Safe,Tuesday,Good
+Ramapuram,Sakthi Nagar,Afternoon,High,Yes,Yes,Outer,Medium,Safe,Wednesday,Good
+Ramapuram,Sakthi Nagar,Afternoon,High,Yes,Yes,Outer,Medium,Safe,Thursday,Good
+Ramapuram,Sakthi Nagar,Afternoon,High,Yes,Yes,Outer,Medium,Safe,Friday,Good
+Ramapuram,Sakthi Nagar,Afternoon,High,Yes,Yes,Outer,Medium,Safe,Saturday,Good
+Ramapuram,Sakthi Nagar,Afternoon,High,Yes,Yes,Outer,Medium,Safe,Sunday,Good
+Ramapuram,Sakthi Nagar,Evening,High,Yes,Yes,Outer,Medium,Safe,Monday,Good
+Ramapuram,Sakthi Nagar,Evening,High,Yes,Yes,Outer,Medium,Safe,Tuesday,Good
+Ramapuram,Sakthi Nagar,Evening,High,Yes,Yes,Outer,Medium,Safe,Wednesday,Good
+Ramapuram,Sakthi Nagar,Evening,High,Yes,Yes,Outer,Medium,Safe,Thursday,Good
+Ramapuram,Sakthi Nagar,Evening,High,Yes,Yes,Outer,Medium,Safe,Friday,Good
+Ramapuram,Sakthi Nagar,Evening,High,Yes,Yes,Outer,Medium,Safe,Saturday,Good
+Ramapuram,Sakthi Nagar,Evening,High,Yes,Yes,Outer,Medium,Safe,Sunday,Good
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Safe,Monday,Good
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Monday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Monday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Tuesday,Good
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Tuesday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Tuesday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Wednesday,Good
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Wednesday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Safe,Wednesday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Thursday,Good
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Thursday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Thursday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Friday,Good
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Friday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Friday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Saturday,Good
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Saturday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Saturday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Sunday,Good
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Sunday,Moderate
+Ramapuram,Sakthi Nagar,Night,Medium,Yes,Yes,Outer,Medium,Unsafe,Sunday,Moderate
+Adyar,Shastri Nagar,Morning,Medium,Yes,Yes,Inner,High,Safe,Monday,Good
+Adyar,Shastri Nagar,Morning,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Good
+Adyar,Shastri Nagar,Morning,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Good
+Adyar,Shastri Nagar,Morning,Medium,Yes,Yes,Inner,High,Safe,Thursday,Good
+Adyar,Shastri Nagar,Morning,Medium,Yes,Yes,Inner,High,Safe,Friday,Good
+Adyar,Shastri Nagar,Morning,Medium,Yes,Yes,Inner,High,Safe,Saturday,Good
+Adyar,Shastri Nagar,Morning,Medium,Yes,Yes,Inner,High,Safe,Sunday,Good
+Adyar,Shastri Nagar,Afternoon,Medium,Yes,Yes,Inner,High,Safe,Monday,Good
+Adyar,Shastri Nagar,Afternoon,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Good
+Adyar,Shastri Nagar,Afternoon,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Good
+Adyar,Shastri Nagar,Afternoon,Medium,Yes,Yes,Inner,High,Safe,Thursday,Good
+Adyar,Shastri Nagar,Afternoon,Medium,Yes,Yes,Inner,High,Safe,Friday,Good
+Adyar,Shastri Nagar,Afternoon,Medium,Yes,Yes,Inner,High,Safe,Saturday,Good
+Adyar,Shastri Nagar,Afternoon,Medium,Yes,Yes,Inner,High,Safe,Sunday,Good
+Adyar,Shastri Nagar,Evening,High,Yes,Yes,Inner,High,Safe,Monday,Good
+Adyar,Shastri Nagar,Evening,High,Yes,Yes,Inner,High,Safe,Tuesday,Good
+Adyar,Shastri Nagar,Evening,High,Yes,Yes,Inner,High,Safe,Wednesday,Good
+Adyar,Shastri Nagar,Evening,High,Yes,Yes,Inner,High,Safe,Thursday,Good
+Adyar,Shastri Nagar,Evening,High,Yes,Yes,Inner,High,Safe,Friday,Good
+Adyar,Shastri Nagar,Evening,High,Yes,Yes,Inner,High,Safe,Saturday,Good
+Adyar,Shastri Nagar,Evening,High,Yes,Yes,Inner,High,Safe,Sunday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Monday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Monday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Monday,Moderate
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Moderate
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Moderate
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Thursday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Thursday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Thursday,Moderate
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Friday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Friday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Friday,Moderate
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Saturday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Saturday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Saturday,Moderate
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Sunday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Sunday,Good
+Adyar,Shastri Nagar,Night,Medium,Yes,Yes,Inner,High,Safe,Sunday,Moderate
+Adyar,South Kesavaperumalpuram,Morning,Low,No,No,Outer,Low,Unsafe,Monday,Good
+Adyar,South Kesavaperumalpuram,Morning,Low,No,No,Outer,Low,Unsafe,Tuesday,Good
+Adyar,South Kesavaperumalpuram,Morning,Low,No,No,Outer,Low,Unsafe,Wednesday,Good
+Adyar,South Kesavaperumalpuram,Morning,Low,No,No,Outer,Low,Unsafe,Thursday,Good
+Adyar,South Kesavaperumalpuram,Morning,Low,No,No,Outer,Low,Unsafe,Friday,Good
+Adyar,South Kesavaperumalpuram,Morning,Low,No,No,Outer,Low,Unsafe,Saturday,Good
+Adyar,South Kesavaperumalpuram,Morning,Low,No,No,Outer,Low,Unsafe,Sunday,Good
+Adyar,South Kesavaperumalpuram,Afternoon,Low,No,No,Outer,Low,Safe,Monday,Good
+Adyar,South Kesavaperumalpuram,Afternoon,Low,No,No,Outer,Low,Safe,Tuesday,Good
+Adyar,South Kesavaperumalpuram,Afternoon,Low,No,No,Outer,Low,Safe,Wednesday,Good
+Adyar,South Kesavaperumalpuram,Afternoon,Low,No,No,Outer,Low,Safe,Thursday,Good
+Adyar,South Kesavaperumalpuram,Afternoon,Low,No,No,Outer,Low,Safe,Friday,Good
+Adyar,South Kesavaperumalpuram,Afternoon,Low,No,No,Outer,Low,Safe,Saturday,Good
+Adyar,South Kesavaperumalpuram,Afternoon,Low,No,No,Outer,Low,Safe,Sunday,Good
+Adyar,South Kesavaperumalpuram,Evening,Low,No,No,Outer,Low,Safe,Monday,Good
+Adyar,South Kesavaperumalpuram,Evening,Low,No,No,Outer,Low,Safe,Tuesday,Good
+Adyar,South Kesavaperumalpuram,Evening,Low,No,No,Outer,Low,Safe,Wednesday,Good
+Adyar,South Kesavaperumalpuram,Evening,Low,No,No,Outer,Low,Safe,Thursday,Good
+Adyar,South Kesavaperumalpuram,Evening,Low,No,No,Outer,Low,Safe,Friday,Good
+Adyar,South Kesavaperumalpuram,Evening,Low,No,No,Outer,Low,Safe,Saturday,Good
+Adyar,South Kesavaperumalpuram,Evening,Low,No,No,Outer,Low,Safe,Sunday,Good
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Monday,Moderate
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Monday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Monday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Moderate
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Moderate
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Safe,Wednesday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Moderate
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Safe,Friday,Moderate
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Friday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Friday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Moderate
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Moderate
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Poor
+Adyar,South Kesavaperumalpuram,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Poor
+Adyar,Subramaniam Nagar,Morning,Medium,Yes,Yes,Inner,Medium,Safe,Monday,Good
+Adyar,Subramaniam Nagar,Morning,Medium,Yes,Yes,Inner,Medium,Safe,Tuesday,Good
+Adyar,Subramaniam Nagar,Morning,Medium,Yes,Yes,Inner,Medium,Safe,Wednesday,Good
+Adyar,Subramaniam Nagar,Morning,Medium,Yes,Yes,Inner,Medium,Safe,Thursday,Good
+Adyar,Subramaniam Nagar,Morning,Medium,Yes,Yes,Inner,Medium,Safe,Friday,Good
+Adyar,Subramaniam Nagar,Morning,Medium,Yes,Yes,Inner,Medium,Safe,Saturday,Good
+Adyar,Subramaniam Nagar,Morning,Medium,Yes,Yes,Inner,Medium,Safe,Sunday,Good
+Adyar,Subramaniam Nagar,Afternoon,Low,Yes,Yes,Inner,Medium,Unsafe,Monday,Good
+Adyar,Subramaniam Nagar,Afternoon,Low,Yes,Yes,Inner,Medium,Unsafe,Tuesday,Good
+Adyar,Subramaniam Nagar,Afternoon,Low,Yes,Yes,Inner,Medium,Unsafe,Wednesday,Good
+Adyar,Subramaniam Nagar,Afternoon,Low,Yes,Yes,Inner,Medium,Unsafe,Thursday,Good
+Adyar,Subramaniam Nagar,Afternoon,Low,Yes,Yes,Inner,Medium,Safe,Friday,Good
+Adyar,Subramaniam Nagar,Afternoon,Low,Yes,Yes,Inner,Medium,Unsafe,Saturday,Good
+Adyar,Subramaniam Nagar,Afternoon,Low,Yes,Yes,Inner,Medium,Unsafe,Sunday,Good
+Adyar,Subramaniam Nagar,Evening,High,Yes,Yes,Inner,Medium,Safe,Monday,Good
+Adyar,Subramaniam Nagar,Evening,High,Yes,Yes,Inner,Medium,Safe,Tuesday,Good
+Adyar,Subramaniam Nagar,Evening,High,Yes,Yes,Inner,Medium,Safe,Wednesday,Good
+Adyar,Subramaniam Nagar,Evening,High,Yes,Yes,Inner,Medium,Safe,Thursday,Good
+Adyar,Subramaniam Nagar,Evening,High,Yes,Yes,Inner,Medium,Safe,Friday,Good
+Adyar,Subramaniam Nagar,Evening,High,Yes,Yes,Inner,Medium,Safe,Saturday,Good
+Adyar,Subramaniam Nagar,Evening,High,Yes,Yes,Inner,Medium,Safe,Sunday,Good
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Monday,Good
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Monday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Monday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Tuesday,Good
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Tuesday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Tuesday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Wednesday,Good
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Wednesday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Wednesday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Thursday,Good
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Thursday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Thursday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Friday,Good
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Friday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Friday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Saturday,Good
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Saturday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Saturday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Sunday,Good
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Sunday,Moderate
+Adyar,Subramaniam Nagar,Night,Medium,Yes,Yes,Inner,Medium,Safe,Sunday,Moderate
+Ramapuram,Suresh Nagar,Morning,Low,No,No,Outer,Medium,Unsafe,Monday,Good
+Ramapuram,Suresh Nagar,Morning,Low,No,No,Outer,Medium,Safe,Tuesday,Good
+Ramapuram,Suresh Nagar,Morning,Low,No,No,Outer,Medium,Unsafe,Wednesday,Good
+Ramapuram,Suresh Nagar,Morning,Low,No,No,Outer,Medium,Unsafe,Thursday,Good
+Ramapuram,Suresh Nagar,Morning,Low,No,No,Outer,Medium,Unsafe,Friday,Good
+Ramapuram,Suresh Nagar,Morning,Low,No,No,Outer,Medium,Unsafe,Saturday,Good
+Ramapuram,Suresh Nagar,Morning,Low,No,No,Outer,Medium,Unsafe,Sunday,Good
+Ramapuram,Suresh Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Monday,Good
+Ramapuram,Suresh Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Tuesday,Good
+Ramapuram,Suresh Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Wednesday,Good
+Ramapuram,Suresh Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Thursday,Good
+Ramapuram,Suresh Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Friday,Good
+Ramapuram,Suresh Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Saturday,Good
+Ramapuram,Suresh Nagar,Afternoon,Low,No,No,Outer,Medium,Safe,Sunday,Good
+Ramapuram,Suresh Nagar,Evening,Low,No,No,Outer,Medium,Safe,Monday,Good
+Ramapuram,Suresh Nagar,Evening,Low,No,No,Outer,Medium,Safe,Tuesday,Good
+Ramapuram,Suresh Nagar,Evening,Low,No,No,Outer,Medium,Safe,Wednesday,Good
+Ramapuram,Suresh Nagar,Evening,Low,No,No,Outer,Medium,Safe,Thursday,Good
+Ramapuram,Suresh Nagar,Evening,Low,No,No,Outer,Medium,Safe,Friday,Good
+Ramapuram,Suresh Nagar,Evening,Low,No,No,Outer,Medium,Safe,Saturday,Good
+Ramapuram,Suresh Nagar,Evening,Low,No,No,Outer,Medium,Safe,Sunday,Good
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Monday,Good
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Monday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Monday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Tuesday,Good
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Tuesday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Tuesday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Wednesday,Good
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Wednesday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Wednesday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Safe,Thursday,Good
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Thursday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Thursday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Friday,Good
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Friday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Friday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Saturday,Good
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Saturday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Saturday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Sunday,Good
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Sunday,Moderate
+Ramapuram,Suresh Nagar,Night,Low,No,No,Outer,Medium,Unsafe,Sunday,Moderate
+Ramapuram,Tamil Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Monday,Good
+Ramapuram,Tamil Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Tuesday,Good
+Ramapuram,Tamil Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Wednesday,Good
+Ramapuram,Tamil Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Thursday,Good
+Ramapuram,Tamil Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Friday,Good
+Ramapuram,Tamil Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Saturday,Good
+Ramapuram,Tamil Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Sunday,Good
+Ramapuram,Tamil Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Monday,Good
+Ramapuram,Tamil Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Tuesday,Good
+Ramapuram,Tamil Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Wednesday,Good
+Ramapuram,Tamil Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Thursday,Good
+Ramapuram,Tamil Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Friday,Good
+Ramapuram,Tamil Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Saturday,Good
+Ramapuram,Tamil Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Sunday,Good
+Ramapuram,Tamil Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Monday,Good
+Ramapuram,Tamil Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Tuesday,Good
+Ramapuram,Tamil Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Wednesday,Good
+Ramapuram,Tamil Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Thursday,Good
+Ramapuram,Tamil Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Friday,Good
+Ramapuram,Tamil Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Saturday,Good
+Ramapuram,Tamil Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Sunday,Good
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Moderate
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Moderate
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Moderate
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Moderate
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Moderate
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Moderate
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Moderate
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Poor
+Ramapuram,Tamil Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Poor
+Adyar,Teachers Colony,Morning,Medium,Yes,Yes,Inner,High,Safe,Monday,Good
+Adyar,Teachers Colony,Morning,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Good
+Adyar,Teachers Colony,Morning,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Good
+Adyar,Teachers Colony,Morning,Medium,Yes,Yes,Inner,High,Safe,Thursday,Good
+Adyar,Teachers Colony,Morning,Medium,Yes,Yes,Inner,High,Safe,Friday,Good
+Adyar,Teachers Colony,Morning,Medium,Yes,Yes,Inner,High,Safe,Saturday,Good
+Adyar,Teachers Colony,Morning,Medium,Yes,Yes,Inner,High,Safe,Sunday,Good
+Adyar,Teachers Colony,Afternoon,Low,Yes,Yes,Inner,High,Safe,Monday,Good
+Adyar,Teachers Colony,Afternoon,Low,Yes,Yes,Inner,High,Safe,Tuesday,Good
+Adyar,Teachers Colony,Afternoon,Low,Yes,Yes,Inner,High,Safe,Wednesday,Good
+Adyar,Teachers Colony,Afternoon,Low,Yes,Yes,Inner,High,Safe,Thursday,Good
+Adyar,Teachers Colony,Afternoon,Low,Yes,Yes,Inner,High,Safe,Friday,Good
+Adyar,Teachers Colony,Afternoon,Low,Yes,Yes,Inner,High,Safe,Saturday,Good
+Adyar,Teachers Colony,Afternoon,Low,Yes,Yes,Inner,High,Safe,Sunday,Good
+Adyar,Teachers Colony,Evening,High,Yes,Yes,Inner,High,Safe,Monday,Good
+Adyar,Teachers Colony,Evening,High,Yes,Yes,Inner,High,Safe,Tuesday,Good
+Adyar,Teachers Colony,Evening,High,Yes,Yes,Inner,High,Safe,Wednesday,Good
+Adyar,Teachers Colony,Evening,High,Yes,Yes,Inner,High,Safe,Thursday,Good
+Adyar,Teachers Colony,Evening,High,Yes,Yes,Inner,High,Safe,Friday,Good
+Adyar,Teachers Colony,Evening,High,Yes,Yes,Inner,High,Safe,Saturday,Good
+Adyar,Teachers Colony,Evening,High,Yes,Yes,Inner,High,Safe,Sunday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Monday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Monday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Monday,Moderate
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Tuesday,Moderate
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Wednesday,Moderate
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Thursday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Thursday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Thursday,Moderate
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Friday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Friday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Friday,Moderate
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Unsafe,Saturday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Unsafe,Saturday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Unsafe,Saturday,Moderate
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Sunday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Sunday,Good
+Adyar,Teachers Colony,Night,Medium,Yes,Yes,Inner,High,Safe,Sunday,Moderate
+Ramapuram,Thiru Nagar,Morning,Medium,Yes,No,Inner,Low,Safe,Monday,Good
+Ramapuram,Thiru Nagar,Morning,Medium,Yes,No,Inner,Low,Safe,Tuesday,Good
+Ramapuram,Thiru Nagar,Morning,Medium,Yes,No,Inner,Low,Safe,Wednesday,Good
+Ramapuram,Thiru Nagar,Morning,Medium,Yes,No,Inner,Low,Safe,Thursday,Good
+Ramapuram,Thiru Nagar,Morning,Medium,Yes,No,Inner,Low,Safe,Friday,Good
+Ramapuram,Thiru Nagar,Morning,Medium,Yes,No,Inner,Low,Safe,Saturday,Good
+Ramapuram,Thiru Nagar,Morning,Medium,Yes,No,Inner,Low,Safe,Sunday,Good
+Ramapuram,Thiru Nagar,Afternoon,High,Yes,No,Inner,Low,Safe,Monday,Good
+Ramapuram,Thiru Nagar,Afternoon,High,Yes,No,Inner,Low,Safe,Tuesday,Good
+Ramapuram,Thiru Nagar,Afternoon,High,Yes,No,Inner,Low,Safe,Wednesday,Good
+Ramapuram,Thiru Nagar,Afternoon,High,Yes,No,Inner,Low,Safe,Thursday,Good
+Ramapuram,Thiru Nagar,Afternoon,High,Yes,No,Inner,Low,Safe,Friday,Good
+Ramapuram,Thiru Nagar,Afternoon,High,Yes,No,Inner,Low,Safe,Saturday,Good
+Ramapuram,Thiru Nagar,Afternoon,High,Yes,No,Inner,Low,Safe,Sunday,Good
+Ramapuram,Thiru Nagar,Evening,Medium,Yes,No,Inner,Low,Safe,Monday,Good
+Ramapuram,Thiru Nagar,Evening,Medium,Yes,No,Inner,Low,Safe,Tuesday,Good
+Ramapuram,Thiru Nagar,Evening,Medium,Yes,No,Inner,Low,Safe,Wednesday,Good
+Ramapuram,Thiru Nagar,Evening,Medium,Yes,No,Inner,Low,Safe,Thursday,Good
+Ramapuram,Thiru Nagar,Evening,Medium,Yes,No,Inner,Low,Safe,Friday,Good
+Ramapuram,Thiru Nagar,Evening,Medium,Yes,No,Inner,Low,Safe,Saturday,Good
+Ramapuram,Thiru Nagar,Evening,Medium,Yes,No,Inner,Low,Safe,Sunday,Good
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Monday,Moderate
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Monday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Monday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Tuesday,Moderate
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Tuesday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Tuesday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Wednesday,Moderate
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Wednesday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Wednesday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Thursday,Moderate
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Thursday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Thursday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Friday,Moderate
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Friday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Safe,Friday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Saturday,Moderate
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Saturday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Saturday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Sunday,Moderate
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Sunday,Poor
+Ramapuram,Thiru Nagar,Night,Low,Yes,No,Inner,Low,Unsafe,Sunday,Poor
+Adyar,Venkateshwar Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Monday,Good
+Adyar,Venkateshwar Nagar,Morning,Medium,No,No,Outer,Low,Safe,Tuesday,Good
+Adyar,Venkateshwar Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Wednesday,Good
+Adyar,Venkateshwar Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Thursday,Good
+Adyar,Venkateshwar Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Friday,Good
+Adyar,Venkateshwar Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Saturday,Good
+Adyar,Venkateshwar Nagar,Morning,Medium,No,No,Outer,Low,Unsafe,Sunday,Good
+Adyar,Venkateshwar Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Monday,Good
+Adyar,Venkateshwar Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Tuesday,Good
+Adyar,Venkateshwar Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Wednesday,Good
+Adyar,Venkateshwar Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Thursday,Good
+Adyar,Venkateshwar Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Friday,Good
+Adyar,Venkateshwar Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Saturday,Good
+Adyar,Venkateshwar Nagar,Afternoon,Low,No,No,Outer,Low,Safe,Sunday,Good
+Adyar,Venkateshwar Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Monday,Good
+Adyar,Venkateshwar Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Tuesday,Good
+Adyar,Venkateshwar Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Wednesday,Good
+Adyar,Venkateshwar Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Thursday,Good
+Adyar,Venkateshwar Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Friday,Good
+Adyar,Venkateshwar Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Saturday,Good
+Adyar,Venkateshwar Nagar,Evening,Medium,No,No,Outer,Low,Unsafe,Sunday,Good
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Moderate
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Monday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Moderate
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Tuesday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Moderate
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Wednesday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Moderate
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Thursday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Moderate
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Friday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Moderate
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Saturday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Moderate
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Poor
+Adyar,Venkateshwar Nagar,Night,Low,No,No,Outer,Low,Unsafe,Sunday,Poor
+Ramapuram,Venkateshwara Nagar,Morning,Medium,No,No,Inner,High,Safe,Monday,Good
+Ramapuram,Venkateshwara Nagar,Morning,Medium,No,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Venkateshwara Nagar,Morning,Medium,No,No,Inner,High,Safe,Wednesday,Good
+Ramapuram,Venkateshwara Nagar,Morning,Medium,No,No,Inner,High,Safe,Thursday,Good
+Ramapuram,Venkateshwara Nagar,Morning,Medium,No,No,Inner,High,Safe,Friday,Good
+Ramapuram,Venkateshwara Nagar,Morning,Medium,No,No,Inner,High,Safe,Saturday,Good
+Ramapuram,Venkateshwara Nagar,Morning,Medium,No,No,Inner,High,Safe,Sunday,Good
+Ramapuram,Venkateshwara Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Monday,Good
+Ramapuram,Venkateshwara Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Venkateshwara Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Wednesday,Good
+Ramapuram,Venkateshwara Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Thursday,Good
+Ramapuram,Venkateshwara Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Friday,Good
+Ramapuram,Venkateshwara Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Saturday,Good
+Ramapuram,Venkateshwara Nagar,Afternoon,Medium,No,No,Inner,High,Safe,Sunday,Good
+Ramapuram,Venkateshwara Nagar,Evening,Medium,No,No,Inner,High,Safe,Monday,Good
+Ramapuram,Venkateshwara Nagar,Evening,Medium,No,No,Inner,High,Safe,Tuesday,Good
+Ramapuram,Venkateshwara Nagar,Evening,Medium,No,No,Inner,High,Safe,Wednesday,Good
+Ramapuram,Venkateshwara Nagar,Evening,Medium,No,No,Inner,High,Safe,Thursday,Good
+Ramapuram,Venkateshwara Nagar,Evening,Medium,No,No,Inner,High,Safe,Friday,Good
+Ramapuram,Venkateshwara Nagar,Evening,Medium,No,No,Inner,High,Safe,Saturday,Good
+Ramapuram,Venkateshwara Nagar,Evening,Medium,No,No,Inner,High,Safe,Sunday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Monday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Monday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Monday,Moderate
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Tuesday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Tuesday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Tuesday,Moderate
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Wednesday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Wednesday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Wednesday,Moderate
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Thursday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Thursday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Thursday,Moderate
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Friday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Friday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Friday,Moderate
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Saturday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Saturday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Saturday,Moderate
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Sunday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Sunday,Good
+Ramapuram,Venkateshwara Nagar,Night,Low,No,No,Inner,High,Unsafe,Sunday,Moderate
+West Mambalam,Vivekanandapuram,Morning,High,No,No,Inner,High,Safe,Monday,Good
+West Mambalam,Vivekanandapuram,Morning,High,No,No,Inner,High,Safe,Tuesday,Good
+West Mambalam,Vivekanandapuram,Morning,High,No,No,Inner,High,Safe,Wednesday,Good
+West Mambalam,Vivekanandapuram,Morning,High,No,No,Inner,High,Safe,Thursday,Good
+West Mambalam,Vivekanandapuram,Morning,High,No,No,Inner,High,Safe,Friday,Good
+West Mambalam,Vivekanandapuram,Morning,High,No,No,Inner,High,Safe,Saturday,Good
+West Mambalam,Vivekanandapuram,Morning,High,No,No,Inner,High,Safe,Sunday,Good
+West Mambalam,Vivekanandapuram,Afternoon,Medium,No,No,Inner,High,Safe,Monday,Good
+West Mambalam,Vivekanandapuram,Afternoon,Medium,No,No,Inner,High,Safe,Tuesday,Good
+West Mambalam,Vivekanandapuram,Afternoon,Medium,No,No,Inner,High,Safe,Wednesday,Good
+West Mambalam,Vivekanandapuram,Afternoon,Medium,No,No,Inner,High,Safe,Thursday,Good
+West Mambalam,Vivekanandapuram,Afternoon,Medium,No,No,Inner,High,Safe,Friday,Good
+West Mambalam,Vivekanandapuram,Afternoon,Medium,No,No,Inner,High,Safe,Saturday,Good
+West Mambalam,Vivekanandapuram,Afternoon,Medium,No,No,Inner,High,Safe,Sunday,Good
+West Mambalam,Vivekanandapuram,Evening,High,No,No,Inner,High,Safe,Monday,Good
+West Mambalam,Vivekanandapuram,Evening,High,No,No,Inner,High,Safe,Tuesday,Good
+West Mambalam,Vivekanandapuram,Evening,High,No,No,Inner,High,Safe,Wednesday,Good
+West Mambalam,Vivekanandapuram,Evening,High,No,No,Inner,High,Safe,Thursday,Good
+West Mambalam,Vivekanandapuram,Evening,High,No,No,Inner,High,Safe,Friday,Good
+West Mambalam,Vivekanandapuram,Evening,High,No,No,Inner,High,Safe,Saturday,Good
+West Mambalam,Vivekanandapuram,Evening,High,No,No,Inner,High,Safe,Sunday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Monday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Monday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Monday,Moderate
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Tuesday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Tuesday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Tuesday,Moderate
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Wednesday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Wednesday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Wednesday,Moderate
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Safe,Thursday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Thursday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Thursday,Moderate
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Friday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Friday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Friday,Moderate
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Saturday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Saturday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Saturday,Moderate
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Sunday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Sunday,Good
+West Mambalam,Vivekanandapuram,Night,Low,No,No,Inner,High,Unsafe,Sunday,Moderate

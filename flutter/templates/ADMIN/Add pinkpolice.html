@@ -1,0 +1,389 @@
+{% include 'ADMIN/home.html' %}
+
+<main class="dashboard-container">
+
+    <!-- Page Header -->
+    <div class="dashboard-header">
+        <div class="header-content">
+            <h1><i class="fas fa-shield-alt me-2"></i>Register Pink Police</h1>
+        </div>
+
+    </div>
+
+    <!-- Main Content Card -->
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3><i class="fas fa-user-plus me-2"></i>Pink Police Registration Form</h3>
+            <p class="mb-0">Fill in the details below to register a new Pink Police officer</p>
+        </div>
+
+        <div class="card-body">
+            <!-- Messages Display -->
+            {% if messages %}
+            <div class="messages-container mb-4">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show d-flex align-items-center" role="alert">
+                    {% if message.tags == 'error' %}
+                    <i class="fas fa-exclamation-triangle me-3 fs-5"></i>
+                    {% elif message.tags == 'success' %}
+                    <i class="fas fa-check-circle me-3 fs-5"></i>
+                    {% endif %}
+                    <div class="flex-grow-1">{{ message }}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Registration Form -->
+            <form id="pinkPoliceForm" name="form1" method="post" action="/myapp/add_pinkpolice_post/" class="needs-validation" novalidate>
+                {% csrf_token %}
+
+                <!-- Personal Details Section -->
+                <div class="form-section mb-5">
+                    <h4 class="section-title mb-4">
+                        <i class="fas fa-id-card me-2"></i>Personal Details
+                    </h4>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" name="textfield" class="form-control" id="vehicleNo" placeholder="Vehicle Number" required>
+                                <label for="vehicleNo"><i class="fas fa-car me-2"></i>Vehicle Number</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid vehicle number
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" name="textfield2" class="form-control" id="officeName" placeholder="Office Name" required>
+                                <label for="officeName"><i class="fas fa-building me-2"></i>Office Name</label>
+                                <div class="invalid-feedback">
+                                    Please provide the office name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="text" name="textfield3" class="form-control" id="place" placeholder="Place" required>
+                                <label for="place"><i class="fas fa-map-marker-alt me-2"></i>Place</label>
+                                <div class="invalid-feedback">
+                                    Please provide the place
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="text" name="textfield4" class="form-control" id="post" placeholder="Post" required>
+                                <label for="post"><i class="fas fa-briefcase me-2"></i>Post</label>
+                                <div class="invalid-feedback">
+                                    Please provide the post
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                                <input type="date" name="textfield9" class="form-control" id="dob" required>
+                                <label for="dob"><i class="fas fa-calendar-alt me-2"></i>Date of Birth</label>
+                                <div class="invalid-feedback">
+                                    Please select date of birth
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address Details Section -->
+                <div class="form-section mb-5">
+                    <h4 class="section-title mb-4">
+                        <i class="fas fa-map-marked-alt me-2"></i>Address Details
+                    </h4>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" name="textfield5" class="form-control" id="district" placeholder="District" required>
+                                <label for="district"><i class="fas fa-landmark me-2"></i>District</label>
+                                <div class="invalid-feedback">
+                                    Please provide the district
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" name="textfield6" class="form-control" id="state" placeholder="State" required>
+                                <label for="state"><i class="fas fa-flag me-2"></i>State</label>
+                                <div class="invalid-feedback">
+                                    Please provide the state
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Details Section -->
+                <div class="form-section mb-5">
+                    <h4 class="section-title mb-4">
+                        <i class="fas fa-address-book me-2"></i>Contact Details
+                    </h4>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" name="textfield7" class="form-control" id="email" placeholder="Email" required>
+                                <label for="email"><i class="fas fa-envelope me-2"></i>Email Address</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email address
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="tel" name="textfield8" class="form-control" id="phone" placeholder="Phone"  required>
+                                <label for="phone"><i class="fas fa-phone me-2"></i>Phone Number</label>
+                                <div class="invalid-feedback">
+                                    Please provide a valid 10-digit phone number
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information Section -->
+                <div class="form-section mb-5">
+                    <h4 class="section-title mb-4">
+                        <i class="fas fa-info-circle me-2"></i>Additional Information
+                    </h4>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label mb-3"><i class="fas fa-venus-mars me-2"></i>Gender</label>
+                                <div class="gender-options d-flex gap-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="RadioGroup1" id="male" value="Male" required>
+                                        <label class="form-check-label" for="male">
+                                            <i class="fas fa-male me-2"></i>Male
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="RadioGroup1" id="female" value="Female">
+                                        <label class="form-check-label" for="female">
+                                            <i class="fas fa-female me-2"></i>Female
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="RadioGroup1" id="other" value="Other">
+                                        <label class="form-check-label" for="other">
+                                            <i class="fas fa-user me-2"></i>Other
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please select gender
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select name="policestation" class="form-control" id="policeStation" required>
+                                    <option value="" selected disabled>Select Police Station</option>
+                                    {% for i in data %}
+                                    <option value="{{ i.id }}" {% if i.id == data.POLICESTATION.id %}selected{% endif %}>
+                                        {{ i.name }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                                <label for="policeStation"><i class="fas fa-shield-alt me-2"></i>Police Station</label>
+                                <div class="invalid-feedback">
+                                    Please select a police station
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions border-top pt-4">
+                    <div class="d-flex justify-content-end gap-3">
+                        <button type="reset" class="btn btn-outline-secondary px-4">
+                            <i class="fas fa-redo me-2"></i>Reset Form
+                        </button>
+                        <button type="submit" class="btn btn-primary px-4">
+                            <i class="fas fa-user-plus me-2"></i>Register Pink Police
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</main>
+
+<style>
+    .dashboard-card {
+        background: var(--card-bg);
+        border-radius: 15px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 2rem;
+        border: 1px solid var(--border-color);
+    }
+
+    .card-header {
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid var(--border-color);
+        background: rgba(var(--primary-rgb), 0.05);
+        border-radius: 15px 15px 0 0;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .form-section {
+        padding: 1.5rem;
+        background: var(--card-bg);
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+        color: var(--text-color);
+        font-weight: 600;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary-color);
+        display: flex;
+        align-items: center;
+    }
+
+    .form-floating {
+        position: relative;
+    }
+
+    .form-floating label {
+        color: var(--text-muted);
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.25rem rgba(var(--primary-rgb), 0.1);
+    }
+
+    .form-check-input:checked {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    .gender-options .form-check {
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .gender-options .form-check:hover {
+        background: rgba(var(--primary-rgb), 0.05);
+    }
+
+    .gender-options .form-check-input:checked + .form-check-label {
+        color: var(--primary-color);
+        font-weight: 500;
+    }
+
+    .invalid-feedback {
+        color: #dc3545;
+        font-size: 0.875em;
+        margin-top: 0.25rem;
+    }
+
+    .form-control.is-invalid {
+        border-color: #dc3545;
+        padding-right: calc(1.5em + 0.75rem);
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.1875rem) center;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    }
+
+    .alert {
+        border: none;
+        border-radius: 10px;
+        padding: 1rem 1.5rem;
+    }
+
+    .alert-success {
+        background-color: rgba(25, 135, 84, 0.1);
+        color: var(--text-color);
+        border-left: 4px solid #198754;
+    }
+
+    .alert-danger {
+        background-color: rgba(220, 53, 69, 0.1);
+        color: var(--text-color);
+        border-left: 4px solid #dc3545;
+    }
+
+    @media (max-width: 768px) {
+        .card-body {
+            padding: 1rem;
+        }
+
+        .form-section {
+            padding: 1rem;
+        }
+
+        .gender-options {
+            flex-direction: column;
+            gap: 0.5rem !important;
+        }
+
+        .form-actions .btn {
+            width: 100%;
+        }
+    }
+</style>
+
+<script>
+    // Form validation
+    (function () {
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+    // Phone number formatting
+    // Format on blur
+document.getElementById('phone').addEventListener('blur', function (e) {
+    let digits = e.target.value.replace(/\D/g, '');
+
+    if (digits.length === 10) {
+        e.target.value = '(' + digits.substring(0, 3) + ') ' +
+                         digits.substring(3, 6) + '-' +
+                         digits.substring(6, 10);
+        e.target.classList.remove("is-invalid");
+        e.target.classList.add("is-valid");
+    } else {
+        e.target.classList.remove("is-valid");
+        e.target.classList.add("is-invalid");
+    }
+});
+
+// Clear formatting on focus
+document.getElementById('phone').addEventListener('focus', function (e) {
+    e.target.value = e.target.value.replace(/\D/g, '');
+});
+
+</script>
+
+
+
+
+{% include 'ADMIN/footer.html' %}

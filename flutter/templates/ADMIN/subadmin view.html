@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Sub Admins - SheCare Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --secondary: #4169e1;
+            --accent: #ff69b4;
+            --light: #f8f9fa;
+            --dark: #2d3748;
+            --success: #00b09b;
+            --warning: #ff8c00;
+            --danger: #ff416c;
+            --info: #17a2b8;
+            --card-shadow: 0 10px 25px rgba(138, 43, 226, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f0ff 0%, #e6f0ff 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border-left: 5px solid var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .stat-card:nth-child(2) {
+            border-left-color: var(--accent);
+        }
+
+        .stat-card:nth-child(3) {
+            border-left-color: var(--info);
+        }
+
+        .stat-card:nth-child(4) {
+            border-left-color: var(--success);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.15);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 1.8rem;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .stat-card:nth-child(2) .stat-icon {
+            background: linear-gradient(135deg, var(--accent), #ff85c0);
+        }
+
+        .stat-card:nth-child(3) .stat-icon {
+            background: linear-gradient(135deg, var(--info), #2dd4bf);
+        }
+
+        .stat-card:nth-child(4) .stat-icon {
+            background: linear-gradient(135deg, var(--success), #00d4aa);
+        }
+
+        .stat-content h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-content p {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        /* Search Bar */
+        .search-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #f8fbff;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+            background-color: white;
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #718096;
+        }
+
+        .btn-search {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .btn-search:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
+        }
+
+        /* Data Table */
+        .data-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .table-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .table-title i {
+            color: var(--primary);
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, var(--success), #00d4aa);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 176, 155, 0.2);
+            color: white;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .admin-table thead th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 600;
+            padding: 18px 15px;
+            text-align: left;
+            border: none;
+            position: relative;
+        }
+
+        .admin-table thead th:first-child {
+            border-top-left-radius: 12px;
+        }
+
+        .admin-table thead th:last-child {
+            border-top-right-radius: 12px;
+        }
+
+        .admin-table tbody tr {
+            transition: var(--transition);
+        }
+
+        .admin-table tbody tr:hover {
+            background-color: #f8fbff;
+        }
+
+        .admin-table tbody td {
+            padding: 18px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+
+        .admin-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .admin-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #e2e8f0;
+            transition: var(--transition);
+        }
+
+        .admin-photo:hover {
+            transform: scale(1.1);
+            border-color: var(--primary);
+        }
+
+        .gender-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .gender-male {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #1565c0;
+        }
+
+        .gender-female {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            color: #c2185b;
+        }
+
+        .gender-others {
+            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+            color: #7b1fa2;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-action {
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+        }
+
+        .btn-edit {
+            background: linear-gradient(135deg, var(--info), #2dd4bf);
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: linear-gradient(135deg, #138496, #0c5460);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(23, 162, 184, 0.2);
+        }
+
+        .btn-delete {
+            background: linear-gradient(135deg, var(--danger), #ff6b8b);
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: linear-gradient(135deg, #dc3545, #bd2130);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(220, 53, 69, 0.2);
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 50px;
+            color: #718096;
+        }
+
+        .no-data i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #cbd5e0;
+        }
+
+        /* Pagination */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .page-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-link {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .page-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .page-link.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn-primary-action {
+            background: linear-gradient(135deg, var(--success), #00d4aa);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-primary-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 176, 155, 0.3);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .search-form {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-input-wrapper {
+                width: 100%;
+            }
+            
+            .btn-search {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .admin-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 0 15px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .table-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .btn-action {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .quick-actions {
+                flex-direction: column;
+            }
+            
+            .btn-primary-action {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header {
+                padding: 20px;
+            }
+            
+            .admin-table thead {
+                display: none;
+            }
+            
+            .admin-table tbody tr {
+                display: block;
+                margin-bottom: 20px;
+                border: 1px solid #e2e8f0;
+                border-radius: 12px;
+                padding: 15px;
+            }
+            
+            .admin-table tbody td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 0;
+                border-bottom: 1px solid #e2e8f0;
+            }
+            
+            .admin-table tbody td:before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: var(--dark);
+                margin-right: 15px;
+            }
+            
+            .admin-table tbody td:last-child {
+                border-bottom: none;
+            }
+        }
+
+        /* SweetAlert Custom Styling */
+        .swal2-popup {
+            border-radius: 16px !important;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        }
+
+        .swal2-title {
+            color: var(--dark) !important;
+            font-weight: 700 !important;
+        }
+
+        .swal2-confirm {
+            background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 12px 30px !important;
+            font-weight: 600 !important;
+            transition: var(--transition) !important;
+        }
+
+        .swal2-confirm:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2) !important;
+        }
+
+        .swal2-deny {
+            background: linear-gradient(135deg, var(--warning), #ffa94d) !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 12px 30px !important;
+            font-weight: 600 !important;
+        }
+
+        .swal2-cancel {
+            background: linear-gradient(135deg, #718096, #a0aec0) !important;
+            border: none !important;
+            border-radius: 10px !important;
+            padding: 12px 30px !important;
+            font-weight: 600 !important;
+        }
+    </style>
+</head>
+<body>
+    {% include 'ADMIN/home.html' %}
+
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1><i class="fas fa-user-cog me-3"></i>Manage Sub Admins</h1>
+            <p>View and manage all sub-admin accounts. Monitor permissions, edit details, and ensure proper access control across the SheCare system.</p>
+        </div>
+
+        <!-- Stats Overview -->
+     <div class="stats-grid">
+
+
+
+
+
+
+
+</div>
+
+
+        <!-- Search Card -->
+        <div class="search-card">
+            <form id="searchForm" name="form1" method="post" action="/myapp/view_subadmin_post/">
+                {% csrf_token %}
+                <div class="search-form">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" name="textfield" placeholder="Search by name or email..." id="textfield" class="search-input">
+                    </div>
+                    <button type="submit" name="button" class="btn-search" id="button">
+                        <i class="fas fa-search"></i>SEARCH
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Data Table Card -->
+        <div class="data-card">
+            <div class="table-header">
+                <h2 class="table-title">
+                    <i class="fas fa-list"></i>
+                    Sub Admin List
+                </h2>
+
+            </div>
+
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Photo</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if data %}
+                            {% for i in data %}
+                            <tr>
+                                <td data-label="#">{{ forloop.counter }}</td>
+                                <td data-label="Name">{{ i.name }}</td>
+                                <td data-label="Gender">
+                                    <span class="gender-badge gender-{{ i.gender }}">
+                                        {{ i.gender }}
+                                    </span>
+                                </td>
+                                <td data-label="Email">{{ i.email }}</td>
+                                <td data-label="Phone">{{ i.phone }}</td>
+                                <td data-label="Photo">
+                                    <img src="{{ i.photo }}" alt="{{ i.name }}" class="admin-photo">
+                                </td>
+                                <td data-label="Actions">
+                                    <div class="action-buttons">
+                                        <a href="/myapp/edit_subadmin/{{ i.LOGIN_id }}" class="btn-action btn-edit">
+                                            <i class="fas fa-edit"></i>Edit
+                                        </a>
+                                        <a href="#" class="btn-action btn-delete delete-btn" data-id="{{ i.id }}" data-name="{{ i.name }}">
+                                            <i class="fas fa-trash-alt"></i>Delete
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="7">
+                                    <div class="no-data">
+                                        <i class="fas fa-user-slash"></i>
+                                        <h4>No Sub Admins Found</h4>
+                                        <p>No sub-admin accounts are registered yet. Add your first sub-admin to get started.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination (Sample) -->
+            {% if data and data|length > 10 %}
+            <div class="pagination-container">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a href="#" class="page-link"><i class="fas fa-chevron-left"></i></a>
+                    </li>
+                    <li class="page-item">
+                        <a href="#" class="page-link active">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a href="#" class="page-link">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a href="#" class="page-link">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <a href="/myapp/add_subadmin/" class="btn-primary-action">
+                <i class="fas fa-user-plus"></i>Add New Sub Admin
+            </a>
+            <a href="/myapp/admin_main_home/" class="btn-primary-action" style="background: linear-gradient(135deg, var(--primary), var(--secondary));">
+                <i class="fas fa-home"></i>Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    {% include 'ADMIN/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Initialize page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Display any Django messages as SweetAlert notifications
+            showDjangoMessages();
+            
+            // Update stats with animations
+            animateStats();
+            
+            // Add search functionality
+            setupSearch();
+            
+            // Setup table interactions
+            setupTableInteractions();
+            
+            // Setup delete buttons
+            setupDeleteButtons();
+            
+            // Initialize responsive table
+            setupResponsiveTable();
+        });
+
+        // Function to show Django messages as SweetAlert notifications
+        function showDjangoMessages() {
+            // If you have Django messages in template context, you can check for them
+            // For example, if you pass messages via context
+            {% if messages %}
+                {% for message in messages %}
+                    Swal.fire({
+                        icon: '{{ message.tags }}',
+                        title: '{{ message.tags|title }}',
+                        text: '{{ message }}',
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        background: 'white',
+                        color: 'var(--dark)',
+                        iconColor: getIconColor('{{ message.tags }}'),
+                        customClass: {
+                            popup: 'message-popup'
+                        }
+                    });
+                {% endfor %}
+            {% endif %}
+        }
+
+        function getIconColor(tag) {
+            switch(tag) {
+                case 'success': return 'var(--success)';
+                case 'error': return 'var(--danger)';
+                case 'warning': return 'var(--warning)';
+                case 'info': return 'var(--info)';
+                default: return 'var(--primary)';
+            }
+        }
+
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-content h3');
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, 20);
+            });
+        }
+
+        function setupSearch() {
+            const searchForm = document.getElementById('searchForm');
+            const searchInput = document.getElementById('textfield');
+            
+            searchForm.addEventListener('submit', function(e) {
+                if (searchInput.value.trim() === '') {
+                    e.preventDefault();
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Search Required',
+                        text: 'Please enter a search term to find sub-admins',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: 'var(--primary)'
+                    });
+                    return false;
+                }
+            });
+            
+            // Real-time search highlight
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const tableRows = document.querySelectorAll('.admin-table tbody tr');
+                
+                tableRows.forEach(row => {
+                    if (row.querySelector('.no-data')) return;
+                    
+                    const name = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                    const email = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+                    
+                    if (name.includes(searchTerm) || email.includes(searchTerm)) {
+                        row.style.display = '';
+                        // Highlight matching text
+                        highlightText(row, searchTerm);
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        function highlightText(row, term) {
+            if (!term) return;
+            
+            const cells = row.querySelectorAll('td');
+            cells.forEach(cell => {
+                const text = cell.textContent;
+                const regex = new RegExp(`(${term})`, 'gi');
+                cell.innerHTML = text.replace(regex, '<span style="background: linear-gradient(135deg, #ffecb3, #ffd54f); padding: 2px 5px; border-radius: 3px;">$1</span>');
+            });
+        }
+
+        function setupTableInteractions() {
+            const tableRows = document.querySelectorAll('.admin-table tbody tr:not(.no-data)');
+            
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+                
+                // Click to select row
+                row.addEventListener('click', function(e) {
+                    if (!e.target.closest('.action-buttons')) {
+                        this.classList.toggle('selected');
+                    }
+                });
+            });
+        }
+
+        function setupDeleteButtons() {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const adminId = this.getAttribute('data-id');
+                    const adminName = this.getAttribute('data-name');
+                    
+                    Swal.fire({
+                        title: 'Delete Sub Admin',
+                        html: `<p>Are you sure you want to delete <strong>"${adminName}"</strong>?</p>
+                               <p class="text-danger">This action cannot be undone!</p>`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, Delete it!',
+                        cancelButtonText: 'Cancel',
+                        confirmButtonColor: 'var(--danger)',
+                        cancelButtonColor: 'var(--dark)',
+                        reverseButtons: true,
+                        customClass: {
+                            confirmButton: 'delete-confirm-btn',
+                            cancelButton: 'delete-cancel-btn'
+                        }
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Show loading state
+                            Swal.fire({
+                                title: 'Deleting...',
+                                text: 'Please wait while we delete the sub-admin',
+                                allowOutsideClick: false,
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                }
+                            });
+                            
+                            // Perform the deletion
+                            deleteSubAdmin(adminId, adminName);
+                        }
+                    });
+                });
+            });
+        }
+
+        function deleteSubAdmin(id, name) {
+            // Create a form to submit the delete request
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = `/myapp/deleteSubAdmin/${id}/`;
+            
+            // Add CSRF token
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            const csrfInput = document.createElement('input');
+            csrfInput.type = 'hidden';
+            csrfInput.name = 'csrfmiddlewaretoken';
+            csrfInput.value = csrfToken;
+            form.appendChild(csrfInput);
+            
+            // Append to body and submit
+            document.body.appendChild(form);
+            
+            // Use fetch to handle the deletion with better error handling
+            fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest' // This helps identify AJAX requests
+                },
+                body: new FormData(form)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json ? response.json() : response.text();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(data => {
+                // Success - show success message and reload
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Deleted!',
+                    text: `Sub-admin "${name}" has been deleted successfully.`,
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: 'var(--success)'
+                }).then(() => {
+                    // Reload the page to see updated list
+                    window.location.reload();
+                });
+            })
+            .catch(error => {
+                // Error - show error message
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Delete Failed',
+                    text: 'There was an error deleting the sub-admin. Please try again.',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: 'var(--danger)'
+                });
+            })
+            .finally(() => {
+                // Clean up the form
+                document.body.removeChild(form);
+            });
+        }
+
+        function setupResponsiveTable() {
+            // Add data labels for responsive view
+            if (window.innerWidth <= 576) {
+                const headers = ['#', 'Name', 'Gender', 'Email', 'Phone', 'Photo', 'Actions'];
+                const cells = document.querySelectorAll('.admin-table tbody td');
+                
+                cells.forEach((cell, index) => {
+                    const headerIndex = index % headers.length;
+                    cell.setAttribute('data-label', headers[headerIndex]);
+                });
+            }
+        }
+
+        function confirmDelete(adminName) {
+            // This function is now replaced by SweetAlert
+            return false; // Prevent default browser confirm
+        }
+
+        function exportToExcel() {
+            Swal.fire({
+                icon: 'info',
+                title: 'Export Feature',
+                text: 'The export feature will be available in the next update!',
+                confirmButtonText: 'Got it!',
+                confirmButtonColor: 'var(--info)'
+            });
+        }
+
+        // Add CSS for SweetAlert toast messages
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            .admin-table tbody tr.selected {
+                background: linear-gradient(135deg, #e3f2fd, #bbdefb) !important;
+            }
+            
+            /* SweetAlert Toast Styling */
+            .message-popup.swal2-toast {
+                background: white !important;
+                color: var(--dark) !important;
+                border-radius: 12px !important;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+                border-left: 4px solid;
+            }
+            
+            .message-popup.swal2-toast.swal2-success {
+                border-left-color: var(--success) !important;
+            }
+            
+            .message-popup.swal2-toast.swal2-error {
+                border-left-color: var(--danger) !important;
+            }
+            
+            .message-popup.swal2-toast.swal2-warning {
+                border-left-color: var(--warning) !important;
+            }
+            
+            .message-popup.swal2-toast.swal2-info {
+                border-left-color: var(--info) !important;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Listen for window resize to update responsive table
+        window.addEventListener('resize', setupResponsiveTable);
+    </script>
+</body>
+</html>

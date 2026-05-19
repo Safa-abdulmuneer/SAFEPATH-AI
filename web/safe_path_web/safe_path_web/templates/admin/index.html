@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafePath | Travel Safety Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8fafd;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #0a285a;
+            padding: 0 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: #4dabf7;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #4dabf7;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .dropdown-menu li {
+            width: 100%;
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            padding: 12px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f0f7ff;
+            color: #0a285a;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu .dropdown-menu {
+            left: 100%;
+            top: 0;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-login:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-signup {
+            background-color: #4dabf7;
+            color: white;
+        }
+
+        .btn-signup:hover {
+            background-color: #3a8fd9;
+        }
+
+        .mobile-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Slider Styles */
+        .hero-section {
+            margin-top: 80px;
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .slider {
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+        }
+
+        .slide-tag {
+            background-color: rgba(77, 171, 247, 0.9);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .slide-title {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            line-height: 1.2;
+            max-width: 700px;
+        }
+
+        .slide-description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .slide-btn {
+            background-color: #0a285a;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .slide-btn:hover {
+            background-color: #4dabf7;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slider-dot.active {
+            background-color: white;
+            transform: scale(1.3);
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .slider-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .slider-arrow.prev {
+            left: 30px;
+        }
+
+        .slider-arrow.next {
+            right: 30px;
+        }
+
+        /* Main Content Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+            background-color: #A4C1EB;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #0a285a;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .feature-icon i {
+            font-size: 2.2rem;
+            color: #4dabf7;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #0a285a;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        /* Safety Tips Slider */
+        .tips-slider-container {
+            position: relative;
+            margin-top: 50px;
+            padding: 0 40px;
+        }
+
+        .tips-slider {
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .tips-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .tip-slide {
+            min-width: 100%;
+            background-color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .tip-number {
+            background-color: #0a285a;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .tip-slide h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #0a285a;
+        }
+
+        .tip-slide p {
+            color: #555;
+            max-width: 800px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .tips-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            color: #0a285a;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        .tips-arrow:hover {
+            background-color: #0a285a;
+            color: white;
+        }
+
+        .tips-arrow.prev {
+            left: 0;
+        }
+
+        .tips-arrow.next {
+            right: 0;
+        }
+
+        .tips-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .tip-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tip-dot.active {
+            background-color: #0a285a;
+            transform: scale(1.3);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background-color: #0a285a;
+            color: white;
+            padding: 80px 0;
+            margin: 60px 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: #4dabf7;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(rgba(10, 40, 90, 0.9), rgba(10, 40, 90, 0.9)), url('https://lh3.googleusercontent.com/gg-dl/AOI_d_9w7QCpHWwPV3HHXdwInwoqtT6OtXPHNV4su2Dnn6omFa8JZUdZxldjaxq843wQrbm-RLFknBd4CRcnyQ-8SYlQj55xvGkj6NRiwZO7sKHh4JgrrSthQvpF9G9nvIoGtiw4MTSQrzxwdnYTA7bm91c-JTRKcw94EGiXviccvDd0b43tQw=s1024-rj');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            border-radius: 12px;
+            margin: 80px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            background-color: #4dabf7;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background-color: white;
+            color: #0a285a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a1a3a;
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #4dabf7;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4dabf7;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .slide-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-section {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 0 20px;
+            }
+
+            .slide-title {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .tips-slider-container {
+                padding: 0 20px;
+            }
+
+            .tip-slide {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .hero-section {
+                height: 400px;
+                margin-top: 70px;
+            }
+
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .slider-arrow.prev {
+                left: 10px;
+            }
+
+            .slider-arrow.next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span class="logo-text">SafePath</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="/admin_home">Home</a></li>
+                <li class="dropdown">
+                    <a href="#">Police Station <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/adm_add_police_station#content">Add</a></li>
+                        <li><a href="/adm_view_police_station#content">View</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Police Officers <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/adm_verify_police_officer#content">New</a></li>
+                        <li><a href="/adm_view_verified_police_officer#content">Verified</a></li>
+                    </ul>
+                </li>
+                <li><a href="/adm_view_users#content">Users</a></li>
+                <li><a href="/adm_view_false_reportings#content">False Reportings</a></li>
+            </ul>
+
+            <div class="auth-buttons">
+                <button class="btn btn-login">Logout</button>
+            </div>
+
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <section class="hero-section" id="home">
+        <div class="slider">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');"></div>
+                <div class="slide-content">
+                    <span class="slide-tag">Global Safety Network</span>
+                    <h1 class="slide-title">Travel with Confidence, Explore with Safety</h1>
+                    <p class="slide-description">Access real-time danger zone alerts, safe routes, and emergency contacts worldwide. Your safety is our priority wherever your journey takes you.</p>
+                    <button class="slide-btn">Explore Safety Map</button>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');"></div>
+                <div class="slide-content">
+                    <span class="slide-tag">Community Powered</span>
+                    <h1 class="slide-title">Real-Time Updates from Fellow Travelers</h1>
+                    <p class="slide-description">Get the latest safety information from our global community of travelers. Share experiences and help others stay safe on their journeys.</p>
+                    <button class="slide-btn">Join Our Community</button>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');"></div>
+                <div class="slide-content">
+                    <span class="slide-tag">Emergency Preparedness</span>
+                    <h1 class="slide-title">Be Prepared for Any Situation</h1>
+                    <p class="slide-description">Access emergency guides, local contact numbers, and evacuation routes. We help you prepare for the unexpected while traveling.</p>
+                    <button class="slide-btn">View Emergency Resources</button>
+                </div>
+            </div>
+
+            <!-- Slider Controls -->
+            <div class="slider-arrow prev">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="slider-arrow next">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+
+            <div class="slider-controls">
+                <div class="slider-dot active" data-slide="0"></div>
+                <div class="slider-dot" data-slide="1"></div>
+                <div class="slider-dot" data-slide="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="content">
+        <div class="container">
+
+            <div class="features">
+                <div class="feature-card">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Tips Slider -->
+    <section class="section" style="background-color: #f0f7ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Essential Safety Tips</h2>
+                <p>Key safety advice for travelers to ensure a secure and enjoyable journey</p>
+            </div>
+
+            <div class="tips-slider-container">
+                <div class="tips-arrow prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+
+                <div class="tips-slider">
+                    <div class="tips-track">
+                        <!-- Tip 1 -->
+                        <div class="tip-slide">
+                            <div class="tip-number">01</div>
+                            <h3>Research Your Destination</h3>
+                            <p>Before you travel, research local customs, laws, and safety concerns. Check government travel advisories and understand the political climate, health risks, and areas to avoid. Register with your embassy if recommended for your destination.</p>
+                        </div>
+
+                        <!-- Tip 2 -->
+                        <div class="tip-slide">
+                            <div class="tip-number">02</div>
+                            <h3>Share Your Itinerary</h3>
+                            <p>Always share your travel plans with family or friends. Provide them with copies of your passport, visa, and itinerary. Check in regularly during your trip, especially if traveling alone or to remote areas.</p>
+                        </div>
+
+                        <!-- Tip 3 -->
+                        <div class="tip-slide">
+                            <div class="tip-number">03</div>
+                            <h3>Secure Your Belongings</h3>
+                            <p>Use anti-theft bags, money belts, and hotel safes. Keep digital copies of important documents in secure cloud storage. Be discreet with expensive items like cameras and jewelry to avoid drawing unwanted attention.</p>
+                        </div>
+
+                        <!-- Tip 4 -->
+                        <div class="tip-slide">
+                            <div class="tip-number">04</div>
+                            <h3>Stay Connected</h3>
+                            <p>Ensure you have multiple ways to communicate: local SIM card, international roaming, and messaging apps. Save emergency contacts in your phone and on paper. Know how to contact local emergency services in your destination.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tips-arrow next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+
+                <div class="tips-dots">
+                    <div class="tip-dot active" data-tip="0"></div>
+                    <div class="tip-dot" data-tip="1"></div>
+                    <div class="tip-dot" data-tip="2"></div>
+                    <div class="tip-dot" data-tip="3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>150K+</h3>
+                    <p>Active Community Members</p>
+                </div>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>Users Feel More Secure</p>
+                </div>
+                <div class="stat-item">
+                    <h3>200+</h3>
+                    <p>Countries Covered</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Real-Time Updates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="container">
+        <div class="cta-section">
+            <h2>Start Your Safe Journey Today</h2>
+            <p>Join thousands of travelers who trust SafePath for their safety needs. Get access to real-time alerts, community insights, and emergency resources wherever you go.</p>
+            <button class="cta-btn">Create Free Account</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SafePath</h3>
+                    <p>Your trusted companion for safe travel experiences worldwide. We provide real-time safety information, danger zone alerts, and emergency contacts.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#safety-info">Safety Information</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#community">Community</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Safety Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#danger-zones">Danger Zones Map</a></li>
+                        <li><a href="#emergency-contacts">Emergency Contacts</a></li>
+                        <li><a href="#travel-alerts">Travel Alerts</a></li>
+                        <li><a href="#safety-tips">Safety Tips</a></li>
+                        <li><a href="#checklists">Travel Checklists</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> support@safepath.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (800) 555-SAFE</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Global Safety Network</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 SafePath. All rights reserved. Travel safely and responsibly.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hero Slider Functionality
+        const heroSlides = document.querySelectorAll('.hero-section .slide');
+        const heroDots = document.querySelectorAll('.hero-section .slider-dot');
+        const prevArrow = document.querySelector('.hero-section .slider-arrow.prev');
+        const nextArrow = document.querySelector('.hero-section .slider-arrow.next');
+        let currentSlide = 0;
+        let slideInterval;
+
+        // Function to show a specific slide
+        function showSlide(index) {
+            // Remove active class from all slides and dots
+            heroSlides.forEach(slide => slide.classList.remove('active'));
+            heroDots.forEach(dot => dot.classList.remove('active'));
+
+            // Add active class to current slide and dot
+            heroSlides[index].classList.add('active');
+            heroDots[index].classList.add('active');
+
+            currentSlide = index;
+        }
+
+        // Function to show next slide
+        function nextSlide() {
+            let nextIndex = (currentSlide + 1) % heroSlides.length;
+            showSlide(nextIndex);
+        }
+
+        // Function to show previous slide
+        function prevSlide() {
+            let prevIndex = (currentSlide - 1 + heroSlides.length) % heroSlides.length;
+            showSlide(prevIndex);
+        }
+
+        // Event listeners for dots
+        heroDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                let slideIndex = parseInt(this.getAttribute('data-slide'));
+                showSlide(slideIndex);
+                resetSlideInterval();
+            });
+        });
+
+        // Event listeners for arrows
+        prevArrow.addEventListener('click', function() {
+            prevSlide();
+            resetSlideInterval();
+        });
+
+        nextArrow.addEventListener('click', function() {
+            nextSlide();
+            resetSlideInterval();
+        });
+
+        // Auto-slide functionality
+        function startSlideInterval() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetSlideInterval() {
+            clearInterval(slideInterval);
+            startSlideInterval();
+        }
+
+        // Start auto-sliding
+        startSlideInterval();
+
+        // Safety Tips Slider Functionality
+        const tipsSlides = document.querySelectorAll('.tip-slide');
+        const tipDots = document.querySelectorAll('.tip-dot');
+        const tipsPrevArrow = document.querySelector('.tips-arrow.prev');
+        const tipsNextArrow = document.querySelector('.tips-arrow.next');
+        const tipsTrack = document.querySelector('.tips-track');
+        let currentTip = 0;
+
+        // Function to show a specific tip
+        function showTip(index) {
+            // Update track position
+            tipsTrack.style.transform = `translateX(-${index * 100}%)`;
+
+            // Update active dot
+            tipDots.forEach(dot => dot.classList.remove('active'));
+            tipDots[index].classList.add('active');
+
+            currentTip = index;
+        }
+
+        // Event listeners for tip dots
+        tipDots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                let tipIndex = parseInt(this.getAttribute('data-tip'));
+                showTip(tipIndex);
+            });
+        });
+
+        // Event listeners for tip arrows
+        tipsPrevArrow.addEventListener('click', function() {
+            let prevIndex = (currentTip - 1 + tipsSlides.length) % tipsSlides.length;
+            showTip(prevIndex);
+        });
+
+        tipsNextArrow.addEventListener('click', function() {
+            let nextIndex = (currentTip + 1) % tipsSlides.length;
+            showTip(nextIndex);
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const authButtons = document.querySelector('.auth-buttons');
+
+        mobileToggle.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            authButtons.style.display = authButtons.style.display === 'flex' ? 'none' : 'flex';
+
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.backgroundColor = '#0a285a';
+                navLinks.style.padding = '20px';
+
+                authButtons.style.flexDirection = 'column';
+                authButtons.style.position = 'absolute';
+                authButtons.style.top = 'calc(100% + 200px)';
+                authButtons.style.left = '0';
+                authButtons.style.width = '100%';
+                authButtons.style.padding = '20px';
+                authButtons.style.backgroundColor = '#0a285a';
+                authButtons.style.gap = '15px';
+            }
+        });
+
+        // Button click handlers
+        document.querySelectorAll('.slide-btn, .cta-btn, .btn-signup').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('In a real application, this would redirect to the signup/login page.');
+            });
+        });
+
+        document.querySelector('.btn-login').addEventListener('click', function() {
+            alert('Successfully logged out');
+            window.location="/logoutt";
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

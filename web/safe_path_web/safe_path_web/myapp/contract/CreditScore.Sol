@@ -1,0 +1,81 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract CreditScore {
+    struct User {
+        string username;
+        uint256 creditScore;
+        uint256 totalApprovedSpots;
+        uint256 lastUpdated;
+    }
+
+    // Mapping from user ID to User struct
+    mapping(uint256 => User) private users;
+    uint256[] private userIds;
+    uint256 private nextUserId = 1;
+
+    // Mapping from username to user ID (for quick lookup)
+    mapping(string => uint256) private usernameToId;
+
+    // Events
+    event UserAdded(uint256 indexed userId, string username, uint256 creditScore);
+    event CreditScoreUpdated(uint256 indexed userId, string username, uint256 newScore, uint256 totalSpots);
+
+    // Add new user or update existing user's credit score
+    function updateCreditScore(string memory username, uint256 creditScore, uint256 totalSpots) public {
+        uint256 userId = usernameToId[username];
+
+        if (userId == 0) {
+            // New user
+            userId = nextUserId;
+            usernameToId[username] = userId;
+            userIds.push(userId);
+            nextUserId++;
+
+            users[userId] = User(username, creditScore, totalSpots, block.timestamp);
+            emit UserAdded(userId, username, creditScore);
+        } else {
+            // Update existing user
+            User storage user = users[userId];
+            user.creditScore = creditScore;
+            user.totalApprovedSpots = totalSpots;
+            user.lastUpdated = block.timestamp;
+
+            emit CreditScoreUpdated(userId, username, creditScore, totalSpots);
+        }
+    }
+
+    // Get user by ID
+    function getUser(uint256 userId) public view returns (string memory, uint256, uint256, uint256) {
+        require(userId > 0 && userId < nextUserId, "User does not exist");
+        User memory user = users[userId];
+        return (user.username, user.creditScore, user.totalApprovedSpots, user.lastUpdated);
+    }
+
+    // Get user by username
+    function getUserByUsername(string memory username) public view returns (uint256, string memory, uint256, uint256, uint256) {
+        uint256 userId = usernameToId[username];
+        require(userId != 0, "User does not exist");
+        User memory user = users[userId];
+        return (userId, user.username, user.creditScore, user.totalApprovedSpots, user.lastUpdated);
+    }
+
+    // Get all user IDs
+    function getAllUserIds() public view returns (uint256[] memory) {
+        return userIds;
+    }
+
+    // Get total users count
+    function getUserCount() public view returns (uint256) {
+        return userIds.length;
+    }
+
+    // Add multiple credit scores at once (for batch approval)
+    function batchUpdateCreditScores(string[] memory usernames, uint256[] memory creditScores, uint256[] memory totalSpots) public {
+        require(usernames.length == creditScores.length && creditScores.length == totalSpots.length, "Array length mismatch");
+
+        for (uint256 i = 0; i < usernames.length; i++) {
+            updateCreditScore(usernames[i], creditScores[i], totalSpots[i]);
+        }
+    }
+}

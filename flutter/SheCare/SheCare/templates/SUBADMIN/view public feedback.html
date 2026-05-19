@@ -1,0 +1,180 @@
+{% include 'SUBADMIN/home.html' %}
+
+<!-- Main Container -->
+<main class="dashboard-container">
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <h1><i class="fas fa-comments"></i> Public Feedback</h1>
+        <p>View feedback submitted by the public under your Sub-Admin jurisdiction.</p>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-form-container">
+        <form method="post" action="/myapp/sub_view_publicfeedback_post/">
+            {% csrf_token %}
+            <div class="search-form">
+
+                <div class="form-group">
+                    <label class="form-label">From Date</label>
+                    <input type="date"
+                           name="textfield"
+                           class="form-control-custom"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">To Date</label>
+                    <input type="date"
+                           name="textfield2"
+                           class="form-control-custom"
+                           required>
+                </div>
+
+                <button type="submit" class="btn-primary-custom">
+                    <i class="fas fa-search me-2"></i>Search
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Table Section -->
+    <div class="table-container">
+        <div class="table-header">
+            <h2><i class="fas fa-list"></i> Feedback Details</h2>
+            <div class="total-users">{{ data|length }} Records Found</div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table-custom">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Feedback</th>
+                    <th>User</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.date }}</td>
+                    <td>{{ i.feedback }}</td>
+                    <td>{{ i.USER.name }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center py-5">
+                        <i class="fas fa-inbox fa-3x mb-3" style="color:#bbb;"></i>
+                        <h4>No Feedback Found</h4>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+{% include 'ADMIN/footer.html' %}
+<!-- SAME THEME STYLES -->
+<style>
+    :root {
+        --primary: #8a2be2;
+        --secondary: #4169e1;
+        --accent: #ff69b4;
+        --light: #f8f9fa;
+        --dark: #2d3748;
+        --success: #00b09b;
+        --card-shadow: 0 10px 25px rgba(138, 43, 226, 0.1);
+        --transition: all 0.3s ease;
+    }
+
+    body {
+        background: #f4f1ff;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .dashboard-container {
+        max-width: 1400px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    .dashboard-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        padding: 30px;
+        color: white;
+        border-radius: 18px;
+        margin-bottom: 30px;
+        box-shadow: var(--card-shadow);
+    }
+
+    .dashboard-header h1 {
+        font-size: 2.3rem;
+    }
+
+    .search-form-container {
+        background: white;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 30px;
+    }
+
+    .search-form {
+        display: flex;
+        gap: 20px;
+    }
+
+    .form-control-custom {
+        padding: 15px;
+        width: 100%;
+        border: 2px solid #e2e8f0;
+        background: #f8fbff;
+        border-radius: 12px;
+    }
+
+    .btn-primary-custom {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        padding: 18px 35px;
+        border-radius: 12px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 28px;
+    }
+
+    .table-container {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+    }
+
+    .table-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        padding: 20px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .table-custom {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table-custom th {
+        padding: 15px;
+        background: #f6f7ff;
+        font-weight: 600;
+    }
+
+    .table-custom td {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+    }
+</style>

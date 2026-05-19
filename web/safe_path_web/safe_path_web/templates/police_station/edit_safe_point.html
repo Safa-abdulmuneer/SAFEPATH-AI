@@ -1,0 +1,799 @@
+{#{% extends "police_station/index.html" %}#}
+{#{% block body %}#}
+{#<style>#}
+{#    .admin-container {#}
+{#        max-width: 900px;#}
+{#        margin: 0 auto;#}
+{#        padding: 30px;#}
+{#    }#}
+{##}
+{#    .admin-header {#}
+{#        background: linear-gradient(to right, #1a2980, #26d0ce);#}
+{#        color: white;#}
+{#        padding: 25px;#}
+{#        border-radius: 12px 12px 0 0;#}
+{#        margin-bottom: 0;#}
+{#    }#}
+{##}
+{#    .admin-header h2 {#}
+{#        margin: 0;#}
+{#        font-size: 1.8rem;#}
+{#        display: flex;#}
+{#        align-items: center;#}
+{#        gap: 12px;#}
+{#    }#}
+{##}
+{#    .admin-header h2 i {#}
+{#        color: #26d0ce;#}
+{#        background: white;#}
+{#        padding: 10px;#}
+{#        border-radius: 50%;#}
+{#    }#}
+{##}
+{#    .form-card {#}
+{#        background: white;#}
+{#        border-radius: 0 0 12px 12px;#}
+{#        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);#}
+{#        padding: 40px;#}
+{#    }#}
+{##}
+{#    .form-row {#}
+{#        display: flex;#}
+{#        flex-wrap: wrap;#}
+{#        margin-bottom: 30px;#}
+{#        gap: 20px;#}
+{#    }#}
+{##}
+{#    .form-group {#}
+{#        flex: 1;#}
+{#        min-width: 300px;#}
+{#    }#}
+{##}
+{#    .form-group label {#}
+{#        display: block;#}
+{#        margin-bottom: 10px;#}
+{#        font-weight: 600;#}
+{#        color: #333;#}
+{#        font-size: 1.05rem;#}
+{#    }#}
+{##}
+{#    .form-group label i {#}
+{#        color: #1a2980;#}
+{#        margin-right: 8px;#}
+{#        width: 20px;#}
+{#    }#}
+{##}
+{#    .form-input {#}
+{#        width: 100%;#}
+{#        padding: 14px 18px;#}
+{#        border: 2px solid #e1e8ed;#}
+{#        border-radius: 8px;#}
+{#        font-size: 1rem;#}
+{#        transition: all 0.3s;#}
+{#        background-color: #f8fafc;#}
+{#    }#}
+{##}
+{#    .form-input:focus {#}
+{#        border-color: #26d0ce;#}
+{#        outline: none;#}
+{#        box-shadow: 0 0 0 3px rgba(38, 208, 206, 0.2);#}
+{#        background-color: white;#}
+{#    }#}
+{##}
+{#    .form-input:valid {#}
+{#        border-color: #4CAF50;#}
+{#    }#}
+{##}
+{#    .input-hint {#}
+{#        display: block;#}
+{#        margin-top: 6px;#}
+{#        font-size: 0.85rem;#}
+{#        color: #666;#}
+{#        font-style: italic;#}
+{#    }#}
+{##}
+{#    .input-hint.error {#}
+{#        color: #f44336;#}
+{#    }#}
+{##}
+{#    .input-hint.success {#}
+{#        color: #4CAF50;#}
+{#    }#}
+{##}
+{#    .btn-container {#}
+{#        display: flex;#}
+{#        justify-content: center;#}
+{#        gap: 20px;#}
+{#        margin-top: 40px;#}
+{#        padding-top: 30px;#}
+{#        border-top: 1px solid #eaeaea;#}
+{#    }#}
+{##}
+{#    .btn-submit {#}
+{#        background: linear-gradient(to right, #1a2980, #26d0ce);#}
+{#        color: white;#}
+{#        border: none;#}
+{#        padding: 16px 40px;#}
+{#        border-radius: 8px;#}
+{#        font-size: 1.1rem;#}
+{#        font-weight: 600;#}
+{#        cursor: pointer;#}
+{#        transition: all 0.3s;#}
+{#        display: flex;#}
+{#        align-items: center;#}
+{#        gap: 10px;#}
+{#        box-shadow: 0 4px 15px rgba(26, 41, 128, 0.2);#}
+{#    }#}
+{##}
+{#    .btn-submit:hover {#}
+{#        transform: translateY(-3px);#}
+{#        box-shadow: 0 6px 20px rgba(26, 41, 128, 0.3);#}
+{#        background: linear-gradient(to right, #16236b, #1fb9b7);#}
+{#    }#}
+{##}
+{#    .btn-reset {#}
+{#        background: #f5f7fa;#}
+{#        color: #666;#}
+{#        border: 2px solid #ddd;#}
+{#        padding: 16px 40px;#}
+{#        border-radius: 8px;#}
+{#        font-size: 1.1rem;#}
+{#        font-weight: 600;#}
+{#        cursor: pointer;#}
+{#        transition: all 0.3s;#}
+{#        display: flex;#}
+{#        align-items: center;#}
+{#        gap: 10px;#}
+{#    }#}
+{##}
+{#    .btn-reset:hover {#}
+{#        background: #eaeaea;#}
+{#        color: #333;#}
+{#    }#}
+{##}
+{#    .form-note {#}
+{#        background: #e8f4fd;#}
+{#        border-left: 4px solid #1a2980;#}
+{#        padding: 15px;#}
+{#        border-radius: 4px;#}
+{#        margin-top: 25px;#}
+{#        font-size: 0.95rem;#}
+{#        color: #333;#}
+{#    }#}
+{##}
+{#    .form-note h4 {#}
+{#        margin-top: 0;#}
+{#        color: #1a2980;#}
+{#        display: flex;#}
+{#        align-items: center;#}
+{#        gap: 8px;#}
+{#    }#}
+{##}
+{#    .required-mark {#}
+{#        color: #f44336;#}
+{#    }#}
+{##}
+{#    /* Responsive adjustments */#}
+{#    @media (max-width: 768px) {#}
+{#        .admin-container {#}
+{#            padding: 15px;#}
+{#        }#}
+{##}
+{#        .form-card {#}
+{#            padding: 25px;#}
+{#        }#}
+{##}
+{#        .form-row {#}
+{#            flex-direction: column;#}
+{#            gap: 25px;#}
+{#        }#}
+{##}
+{#        .form-group {#}
+{#            min-width: 100%;#}
+{#        }#}
+{##}
+{#        .btn-container {#}
+{#            flex-direction: column;#}
+{#        }#}
+{##}
+{#        .btn-submit, .btn-reset {#}
+{#            width: 100%;#}
+{#            justify-content: center;#}
+{#        }#}
+{#    }#}
+{##}
+{#    /* Validation states */#}
+{#    .valid-feedback {#}
+{#        color: #4CAF50;#}
+{#        font-size: 0.9rem;#}
+{#        margin-top: 5px;#}
+{#        display: none;#}
+{#    }#}
+{##}
+{#    .invalid-feedback {#}
+{#        color: #f44336;#}
+{#        font-size: 0.9rem;#}
+{#        margin-top: 5px;#}
+{#        display: none;#}
+{#    }#}
+{##}
+{#    .was-validated .form-input:valid {#}
+{#        border-color: #4CAF50;#}
+{#    }#}
+{##}
+{#    .was-validated .form-input:valid ~ .valid-feedback {#}
+{#        display: block;#}
+{#    }#}
+{##}
+{#    .was-validated .form-input:invalid {#}
+{#        border-color: #f44336;#}
+{#    }#}
+{##}
+{#    .was-validated .form-input:invalid ~ .invalid-feedback {#}
+{#        display: block;#}
+{#    }#}
+{#</style>#}
+{##}
+{#<div class="admin-container">#}
+{#    <div class="admin-header">#}
+{#        <h2><i class="fas fa-user-shield"></i> Edit Safe Point</h2>#}
+{#    </div>#}
+{##}
+{#    <div class="form-card">#}
+{#        <form method="post" action="/pol_edit_safe_point_post/{{ data.id }}" enctype="multipart/form-data" id="authorityForm">#}
+{#            <div class="form-row">#}
+{#                <div class="form-group">#}
+{#                    <label for="name"><i class="fas fa-user"></i> Place Name <span class="required-mark">*</span></label>#}
+{#                    <input type="text"#}
+{#                           id="textfield"#}
+{#                           name="textfield"#}
+{#                           class="form-input"#}
+{#                           placeholder="Enter place name"#}
+{#                           required value="{{ data.place_name }}"#}
+{#                           pattern="[A-Za-z\s]{3,50}" />#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="form-row">#}
+{#                <div class="form-group">#}
+{#                    <label for="email"><i class="fas fa-envelope"></i> Latitude <span class="required-mark">*</span></label>#}
+{#                    <input type="text"#}
+{#                           id="textfield2"#}
+{#                           name="textfield2"#}
+{#                           class="form-input"#}
+{#                           placeholder="Enter Latitude" value="{{ data.latitude }}"#}
+{#                           required />#}
+{#                </div>#}
+{##}
+{#                <div class="form-group">#}
+{#                    <label for="phone"><i class="fas fa-phone"></i> Longitude <span class="required-mark">*</span></label>#}
+{#                    <input type="text"#}
+{#                           id="textfield3"#}
+{#                           name="textfield3"#}
+{#                           class="form-input"#}
+{#                           placeholder="Enter longitude" value="{{ data.longitude }}"#}
+{#                           required />#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="btn-container">#}
+{#                <button type="submit" class="btn-submit">#}
+{#                    <i class="fas fa-user-plus"></i> Update Safe Point#}
+{#                </button>#}
+{#            </div>#}
+{#        </form>#}
+{#    </div>#}
+{#</div>#}
+{##}
+{#{% endblock %}#}
+
+
+
+
+{% extends "police_station/index.html" %}
+{% block body %}
+<style>
+    .admin-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+
+    .admin-header {
+        background: linear-gradient(to right, #1a2980, #26d0ce);
+        color: white;
+        padding: 25px;
+        border-radius: 12px 12px 0 0;
+        margin-bottom: 0;
+    }
+
+    .admin-header h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .admin-header h2 i {
+        color: #26d0ce;
+        background: white;
+        padding: 10px;
+        border-radius: 50%;
+    }
+
+    .form-card {
+        background: white;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 40px;
+    }
+
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        gap: 20px;
+    }
+
+    .form-group {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: #333;
+        font-size: 1.05rem;
+    }
+
+    .form-group label i {
+        color: #1a2980;
+        margin-right: 8px;
+        width: 20px;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 14px 18px;
+        border: 2px solid #e1e8ed;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s;
+        background-color: #f8fafc;
+    }
+
+    .form-input:focus {
+        border-color: #26d0ce;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(38, 208, 206, 0.2);
+        background-color: white;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 40px;
+        padding-top: 30px;
+        border-top: 1px solid #eaeaea;
+    }
+
+    .btn-submit {
+        background: linear-gradient(to right, #1a2980, #26d0ce);
+        color: white;
+        border: none;
+        padding: 16px 40px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 4px 15px rgba(26, 41, 128, 0.2);
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(26, 41, 128, 0.3);
+        background: linear-gradient(to right, #16236b, #1fb9b7);
+    }
+
+    .btn-reset {
+        background: #f5f7fa;
+        color: #666;
+        border: 2px solid #ddd;
+        padding: 16px 40px;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-reset:hover {
+        background: #eaeaea;
+        color: #333;
+    }
+
+    .btn-location {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 14px 20px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .btn-location:hover {
+        background: #45a049;
+    }
+
+    .map-container {
+        height: 400px;
+        width: 100%;
+        margin: 20px 0;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 2px solid #e1e8ed;
+    }
+
+    .coordinates-display {
+        background: #f0f8ff;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .coord-box {
+        flex: 1;
+        min-width: 200px;
+        padding: 10px;
+        background: white;
+        border-radius: 6px;
+        border-left: 4px solid #1a2980;
+    }
+
+    .coord-box strong {
+        color: #1a2980;
+        display: block;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+
+    .coord-box span {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-note {
+        background: #e8f4fd;
+        border-left: 4px solid #1a2980;
+        padding: 15px;
+        border-radius: 4px;
+        margin-top: 25px;
+        font-size: 0.95rem;
+        color: #333;
+    }
+
+    .form-note h4 {
+        margin-top: 0;
+        color: #1a2980;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .required-mark {
+        color: #f44336;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .admin-container {
+            padding: 15px;
+        }
+
+        .form-card {
+            padding: 25px;
+        }
+
+        .form-row {
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group {
+            min-width: 100%;
+        }
+
+        .btn-container {
+            flex-direction: column;
+        }
+
+        .btn-submit, .btn-reset {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .coordinates-display {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<!-- Leaflet CSS and JS for map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<div class="admin-container">
+    <div class="admin-header">
+        <h2><i class="fas fa-edit"></i> Edit Safe Point</h2>
+    </div>
+
+    <div class="form-card">
+        <!-- Current Location Button -->
+        <div style="text-align: right; margin-bottom: 20px;">
+            <button type="button" class="btn-location" onclick="getCurrentLocation()">
+                <i class="fas fa-location-arrow"></i> Get Current Location
+            </button>
+        </div>
+
+        <!-- Map Container -->
+        <div class="map-container" id="map"></div>
+
+        <!-- Coordinates Display -->
+        <div class="coordinates-display" id="coordinatesDisplay">
+            <div class="coord-box">
+                <strong><i class="fas fa-map-pin"></i> LATITUDE</strong>
+                <span id="displayLat">{{ data.latitude }}</span>
+            </div>
+            <div class="coord-box">
+                <strong><i class="fas fa-map-pin"></i> LONGITUDE</strong>
+                <span id="displayLng">{{ data.longitude }}</span>
+            </div>
+        </div>
+
+        <form method="post" action="/pol_edit_safe_point_post/{{ data.id }}" enctype="multipart/form-data" id="authorityForm" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="place_name"><i class="fas fa-map-marker-alt"></i> Place Name <span class="required-mark">*</span></label>
+                    <input type="text"
+                           id="place_name"
+                           name="place_name"
+                           class="form-input"
+                           placeholder="Enter place name"
+                           required
+                           value="{{ data.place_name }}"
+                           pattern="[A-Za-z\s]{3,50}" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="latitude"><i class="fas fa-globe-asia"></i> Latitude <span class="required-mark">*</span></label>
+                    <input type="text"
+                           id="latitude"
+                           name="latitude"
+                           class="form-input"
+                           placeholder="Click on map to select latitude"
+                           value="{{ data.latitude }}"
+                           readonly
+                           required />
+                </div>
+
+                <div class="form-group">
+                    <label for="longitude"><i class="fas fa-globe-asia"></i> Longitude <span class="required-mark">*</span></label>
+                    <input type="text"
+                           id="longitude"
+                           name="longitude"
+                           class="form-input"
+                           placeholder="Click on map to select longitude"
+                           value="{{ data.longitude }}"
+                           readonly
+                           required />
+                </div>
+            </div>
+
+            <div class="form-note">
+                <h4><i class="fas fa-info-circle"></i> Instructions:</h4>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li>Click on the map to update the safe point location</li>
+                    <li>Use the "Get Current Location" button to use your current position</li>
+                    <li>Drag the marker to adjust the exact location</li>
+                    <li>Latitude and Longitude will be automatically updated</li>
+                </ul>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-save"></i> Update Safe Point
+                </button>
+                <button type="button" class="btn-reset" onclick="resetToOriginal()">
+                    <i class="fas fa-undo-alt"></i> Reset
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Original coordinates from database
+    var originalLat = {{ data.latitude }};
+    var originalLng = {{ data.longitude }};
+
+    // Initialize map
+    var map = L.map('map').setView([originalLat, originalLng], 15);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Variable to store marker
+    var marker;
+
+    // Function to update coordinates
+    function updateCoordinates(lat, lng) {
+        // Update input fields
+        document.getElementById('latitude').value = lat.toFixed(6);
+        document.getElementById('longitude').value = lng.toFixed(6);
+
+        // Update display
+        document.getElementById('displayLat').innerText = lat.toFixed(6);
+        document.getElementById('displayLng').innerText = lng.toFixed(6);
+
+        // Update or create marker
+        if (marker) {
+            marker.setLatLng([lat, lng]);
+        } else {
+            marker = L.marker([lat, lng], {draggable: true}).addTo(map);
+
+            // Make marker draggable for fine adjustments
+            marker.on('dragend', function(e) {
+                var position = marker.getLatLng();
+                updateCoordinates(position.lat, position.lng);
+            });
+        }
+
+        // Center map on selected location
+        map.setView([lat, lng], 15);
+
+        showToast('📍 Location updated!');
+    }
+
+    // Initialize marker with existing coordinates
+    window.onload = function() {
+        if (originalLat && originalLng) {
+            updateCoordinates(originalLat, originalLng);
+        }
+    };
+
+    // Handle map click
+    map.on('click', function(e) {
+        updateCoordinates(e.latlng.lat, e.latlng.lng);
+    });
+
+    // Get current location
+    function getCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    updateCoordinates(lat, lng);
+                },
+                function(error) {
+                    var message = 'Error getting location: ';
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            message += 'Please allow location access';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            message += 'Location information unavailable';
+                            break;
+                        case error.TIMEOUT:
+                            message += 'Location request timed out';
+                            break;
+                    }
+                    alert(message);
+                }
+            );
+        } else {
+            alert('Geolocation is not supported by this browser');
+        }
+    }
+
+    // Validate form before submit
+    function validateForm() {
+        var lat = document.getElementById('latitude').value;
+        var lng = document.getElementById('longitude').value;
+        var place = document.getElementById('place_name').value;
+
+        if (!place.trim()) {
+            alert('Please enter place name');
+            return false;
+        }
+
+        if (!lat || !lng) {
+            alert('Please select a location on the map');
+            return false;
+        }
+
+        return true;
+    }
+
+    // Reset to original coordinates
+    function resetToOriginal() {
+        document.getElementById('place_name').value = "{{ data.place_name }}";
+        updateCoordinates(originalLat, originalLng);
+        showToast('🔄 Reset to original location');
+    }
+
+    // Simple toast message function
+    function showToast(message) {
+        // Create toast element
+        var toast = document.createElement('div');
+        toast.innerHTML = message;
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #1a2980, #26d0ce);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 9999;
+            font-size: 14px;
+            animation: slideUp 0.3s ease;
+        `;
+
+        document.body.appendChild(toast);
+
+        // Remove after 3 seconds
+        setTimeout(function() {
+            toast.style.animation = 'slideDown 0.3s ease';
+            setTimeout(function() {
+                document.body.removeChild(toast);
+            }, 300);
+        }, 3000);
+    }
+
+    // Add animations
+    var style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes slideUp {
+            from { bottom: -50px; opacity: 0; }
+            to { bottom: 20px; opacity: 1; }
+        }
+        @keyframes slideDown {
+            from { bottom: 20px; opacity: 1; }
+            to { bottom: -50px; opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+{% endblock %}

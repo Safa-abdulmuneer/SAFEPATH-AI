@@ -1,0 +1,114 @@
+{% include 'SUBADMIN/home.html' %}
+
+<main class="dashboard-container">
+
+    <!-- Page Header -->
+    <div class="dashboard-header">
+        <div class="header-content">
+            <h1><i class="fas fa-map-marker-alt me-2"></i>Add Safe Point</h1>
+        </div>
+
+    </div>
+
+    <!-- Main Content Card -->
+    <div class="dashboard-card">
+        <div class="card-header">
+            <h3><i class="fas fa-plus-circle me-2"></i>Safe Point Registration</h3>
+            <p class="mb-0">Fill the details below to add a new safe point</p>
+        </div>
+
+        <div class="card-body">
+
+            <!-- SweetAlert messages -->
+            {% if messages %}
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    {% for message in messages %}
+                    Swal.fire({
+icon: "{% if message.tags == 'error' %}error{% else %}success{% endif %}",
+
+                        title: "{{ message.tags|capfirst }}",
+                        text: "{{ message }}",
+                        confirmButtonColor: "#8a2be2",
+                        width: 450
+                    });
+                    {% endfor %}
+                });
+            </script>
+            {% endif %}
+
+            <!-- Safe Point Form -->
+            <form method="post" action="/myapp/add_safepoint_post/" class="needs-validation" novalidate>
+                {% csrf_token %}
+
+                <div class="form-section mb-4">
+                    <h4 class="section-title mb-4">
+                        <i class="fas fa-map me-2"></i>Location Details
+                    </h4>
+
+                    <div class="row g-4">
+
+                        <!-- Place -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" name="textfield" class="form-control" id="place" placeholder="Place" required>
+                                <label for="place"><i class="fas fa-location-dot me-2"></i>Place</label>
+                                <div class="invalid-feedback">
+                                    Please enter a valid place
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Landmark -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" name="textfield4" class="form-control" id="landmark" placeholder="Landmark" required>
+                                <label for="landmark"><i class="fas fa-map-pin me-2"></i>Landmark</label>
+                                <div class="invalid-feedback">
+                                    Please enter a landmark
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Latitude -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" name="textfield2" class="form-control" id="latitude" placeholder="Latitude" required>
+                                <label for="latitude"><i class="fas fa-compass me-2"></i>Latitude</label>
+                                <div class="invalid-feedback">
+                                    Please enter valid latitude
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Longitude -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" name="textfield3" class="form-control" id="longitude" placeholder="Longitude" required>
+                                <label for="longitude"><i class="fas fa-globe me-2"></i>Longitude</label>
+                                <div class="invalid-feedback">
+                                    Please enter valid longitude
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions border-top pt-4 d-flex justify-content-end gap-3">
+                    <button type="reset" class="btn btn-outline-secondary px-4">
+                        <i class="fas fa-redo me-2"></i>Reset
+                    </button>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="fas fa-check-circle me-2"></i>Submit Safe Point
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</main>
+
+{% include 'ADMIN/footer.html' %}
